@@ -218,6 +218,8 @@
         });
     });
 
+
+
     // MOBILNÍ VERZE SCRIPTU
 
     // OVLÁDÁNÍ MENU PRO MOBIL
@@ -238,4 +240,40 @@
             navList.classList.remove('active');
         });
     });
+
+    // --- LOGIKA SWIPOVÁNÍ PRO GEAR SLIDER ---
+    const gearContainer = document.querySelector('.gear-slider-container');
+    let touchStartX = 0;
+    let touchEndX = 0;
+
+    if (gearContainer) {
+        gearContainer.addEventListener('touchstart', e => {
+            touchStartX = e.changedTouches[0].screenX;
+        }, { passive: true });
+
+        gearContainer.addEventListener('touchend', e => {
+            touchEndX = e.changedTouches[0].screenX;
+            handleSwipe();
+        }, { passive: true });
+    }
+
+    function handleSwipe() {
+        const swipeThreshold = 50; // Minimální vzdálenost v px pro detekci swipu
+
+        // Swipe DOLEVA (další karta)
+        if (touchStartX - touchEndX > swipeThreshold) {
+            if (filteredCards.length > 0) {
+                currentCardIndex = (currentCardIndex + 1) % filteredCards.length;
+                renderCard();
+            }
+        }
+
+        // Swipe DOPRAVA (předchozí karta)
+        if (touchEndX - touchStartX > swipeThreshold) {
+            if (filteredCards.length > 0) {
+                currentCardIndex = (currentCardIndex - 1 + filteredCards.length) % filteredCards.length;
+                renderCard();
+            }
+        }
+    }
 });

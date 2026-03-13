@@ -909,6 +909,7 @@ p {
         display: none; /* Na mobilu èáry schováme */
     }
 }
+
 /* MOBILNÍ VERZE */
 /* --- ZÁKLADNÍ STYL (PC verze) --- */
 .menu-toggle {
@@ -958,17 +959,306 @@ p {
             margin: 20px 0;
             color: #fff;
         }
+    /* --- KOMPLETNÍ MOBILNÍ SEKCE (Do 768px) --- */
+    @media (max-width: 768px) {
 
-    /* Animace hamburgeru na X pøi otevøení */
-    .menu-toggle.active .bar:nth-child(2) {
-        opacity: 0;
+        /* Zajištìní plynulého pohybu pro skrıvání */
+        .main-nav {
+            transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1), background-color 0.3s ease;
+            padding: 20px 30px; /* Kompaktnìjší verze pro mobil */
+        }
+
+        /* Tato tøída se aktivuje skrze JS pøi scrollu dolù */
+        .nav-hidden {
+            transform: translateY(-100%) !important;
+        }
+
+        .menu-toggle {
+            display: flex;
+            flex-direction: column;
+            cursor: pointer;
+            gap: 6px;
+            z-index: 1001;
+        }
+
+        .bar {
+            width: 25px;
+            height: 3px;
+            background-color: #ff5500;
+            transition: 0.3s;
+        }
+
+        /* Vnitøek mobilního menu */
+        .nav-links {
+            position: fixed;
+            top: 0;
+            right: -100%;
+            width: 100%;
+            height: 100vh;
+            background-color: rgba(8, 8, 8, 0.98); /* Tmavé pozadí tvého studia */
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            transition: 0.4s ease-in-out;
+            z-index: 1000;
+            display: flex;
+        }
+
+            .nav-links.active {
+                right: 0;
+            }
+
+            .nav-links a {
+                font-size: 1.8rem;
+                margin: 20px 0;
+                color: #fff;
+                opacity: 1; /* Na mobilu je chceme vidìt jasnì */
+            }
+
+        /* Animace hamburgeru na X */
+        .menu-toggle.active .bar:nth-child(2) {
+            opacity: 0;
+        }
+
+        .menu-toggle.active .bar:nth-child(1) {
+            transform: translateY(9px) rotate(45deg);
+        }
+
+        .menu-toggle.active .bar:nth-child(3) {
+            transform: translateY(-9px) rotate(-45deg);
+        }
+    }
+    /* --- ÚPRAVA SEKCE O MNÌ (POUZE MOBIL) --- */
+    @media (max-width: 768px) {
+        #about.services-section {
+            padding: 60px 25px !important; /* Odstup od hran displeje */
+        }
+
+        .about-text-wrapper p {
+            font-size: 1rem;
+            line-height: 1.7;
+            text-align: left !important; /* Zarovnání všech odstavcù doleva */
+            margin-bottom: 20px;
+            color: rgba(255, 255, 255, 0.8);
+        }
+
+        .lead-text {
+            font-size: 1.2rem !important;
+            text-align: left !important; /* Teï u i lead-text lícuje doleva */
+            margin-bottom: 30px !important;
+            color: #fff !important;
+        }
+
+        .about-content-centered {
+            padding: 0 !important;
+        }
+    }
+    /* --- SHOWREEL MOBILNÍ ÚPRAVY --- */
+    @media (max-width: 768px) {
+        .showreel-grid {
+            gap: 20px;
+            padding: 0 10px;
+        }
+
+        .audio-card {
+            padding: 20px !important;
+            flex-direction: column; /* Všechno pod sebe */
+            align-items: center;
+        }
+
+        .audio-content {
+            flex-direction: column; /* Cover nahoru, text dolù */
+            width: 100%;
+            gap: 20px;
+        }
+
+        .audio-cover {
+            width: 160px; /* Trochu ho na mobilu zvìtšíme, a je dominantní */
+            height: 160px;
+            margin: 0 auto;
+            /* Na mobilu chceme play tlaèítko vidìt poøád, hover tam není */
+        }
+
+        .play-overlay {
+            opacity: 1 !important;
+            background: rgba(0, 0, 0, 0.3);
+        }
+
+        .audio-info {
+            text-align: center; /* Vycentrujeme texty */
+            width: 100%;
+        }
+
+            .audio-info h3 {
+                font-size: 1.2rem;
+                margin: 10px 0;
+            }
+
+        .track-tag {
+            font-size: 0.6rem;
+            letter-spacing: 1px;
+        }
+
+        .waveform {
+            justify-content: center; /* Vlnka na støed */
+            margin: 15px 0;
+        }
+
+        /* Spotify ikona v rohu */
+        .spotify-corner-link {
+            top: 15px;
+            right: 15px;
+            opacity: 1; /* Na mobilu musí bıt vidìt poøád */
+        }
+
+        .spotify-svg-icon {
+            width: 20px;
+            height: 20px;
+        }
+
+        /* Progress bar udìláme tlustší, aby se do nìj lépe trefovalo prstem */
+        .progress-container {
+            height: 6px;
+            margin-top: 20px;
+        }
     }
 
-    .menu-toggle.active .bar:nth-child(1) {
-        transform: translateY(9px) rotate(45deg);
+    /* GEAR NA MOBILU */
+
+    @media (max-width: 768px) {
+        /* Kontejner, kterı drí kartu a šipky */
+        .gear-slider-wrapper {
+            display: flex;
+            justify-content: center; /* Vycentruje obsah horizontálnì */
+            align-items: center;
+            width: 100%;
+            margin: 0 auto;
+            padding: 0 !important; /* Odstraní pøípadné boèní paddingy */
+        }
+
+        /* Samotná oblast, kde jsou karty */
+        .gear-slider-container {
+            width: 100%;
+            max-width: 100%; /* Zajistí, e nepøetéká */
+            margin: 0 auto !important;
+            display: flex;
+            justify-content: center;
+            padding: 0 !important;
+        }
+
+        /* Vnitøní karta gearu */
+        .gear-card {
+            width: 90%; /* Dáme jí 90 %, aby se nelepila úplnì na hrany displeje */
+            max-width: 350px; /* Nebo tvá preferovaná šíøka */
+            margin: 0 auto !important; /* Tohle je nejdùleitìjší pro vycentrování */
+            left: 0 !important; /* Resetuje pøípadné absolutní pozicování */
+        }
+
+            /* Ujistíme se, e service-card uvnitø nemá fixní šíøku */
+            .gear-card .service-card {
+                width: 100% !important;
+                margin: 0 auto;
+            }
     }
 
-    .menu-toggle.active .bar:nth-child(3) {
-        transform: translateY(-9px) rotate(-45deg);
+    @media (max-width: 768px) {
+        /* Schováme šipky na mobilu */
+        #prevGear, #nextGear {
+            display: none !important;
+        }
+
+        /* Roztáhneme kontejner na celou šíøku, aby byl swipe pohodlnı */
+        .gear-slider-wrapper {
+            padding: 0 10px;
+            touch-action: pan-y; /* Povolí vertikální scroll webu, ale zachytí horizontální swipe */
+        }
+
+        .gear-slider-container {
+            min-height: 420px; /* Trochu víc místa pro texty na vıšku */
+        }
     }
-}
+    /* FAQ */
+    @media (max-width: 768px) {
+        /* 1. Zarovnání otázek nalevo a úprava textu */
+        .faq-question {
+            text-align: left !important;
+            justify-content: space-between;
+            display: flex;
+            align-items: center;
+            font-size: 1rem; /* Trochu menší písmo, aby se otázka vešla */
+            padding: 15px 5px;
+            line-height: 1.4;
+        }
+
+        /* 2. Zarovnání odpovìdí nalevo */
+        .faq-answer {
+            text-align: left !important;
+        }
+
+            .faq-answer p {
+                text-align: left !important;
+                padding: 0 5px 15px 5px;
+                margin: 0;
+                font-size: 0.95rem;
+                line-height: 1.6;
+            }
+
+        /* 3. OPRAVA: Aby byla vidìt celá odpovìï */
+        /* Místo fixní vıšky (napø. 200px) dáme velkorysejší limit nebo auto */
+        .faq-item.active .faq-answer {
+            max-height: 1000px; /* Dostateèná rezerva pro dlouhé texty na mobilu */
+            overflow: visible;
+        }
+
+        /* Úprava kontejneru pro mobil, aby nebyl nalepenı na kraje */
+        .faq-container {
+            padding: 0 20px;
+        }
+    }
+    /* KONTAKT */
+
+    @media (max-width: 768px) {
+        /* 1. Celkové odsazení sekce od okrajù displeje */
+        .contact-section {
+            padding: 80px 25px !important;
+        }
+
+        /* 2. Mezery mezi kartami */
+        .contact-cards {
+            display: flex;
+            flex-direction: column; /* Karty pod sebe */
+            align-items: center;
+            gap: 30px; /* Poøádná mezera mezi e-mailem a Instagramem */
+            width: 100%;
+        }
+
+        /* 3. Úprava samotné karty */
+        .contact-card {
+            width: 100% !important; /* Karta na celou dostupnou šíøku */
+            max-width: 400px; /* Ale ne víc, ne je zdrávo */
+            padding: 40px 20px !important; /* Vnitøní prostor karty */
+            box-sizing: border-box;
+        }
+
+            /* 4. Texty uvnitø karty */
+            .contact-card h3 {
+                font-size: 1.3rem;
+                letter-spacing: 2px;
+                margin-bottom: 15px;
+            }
+
+            .contact-card p {
+                font-size: 1rem;
+                margin-bottom: 25px;
+            }
+
+        /* 5. Tlaèítko uvnitø karty - udìláme ho trochu vıraznìjší na dotyk */
+        .contact-btn {
+            width: 80%; /* Tlaèítko na celou šíøku karty pro snadnìjší klik */
+            text-align: center;
+            padding: 15px 0;
+            opacity: 1 !important; /* Na mobilu hned viditelné */
+            background: rgba(255, 85, 0, 0.1); /* Jemnı nádech oranové */
+            border-color: #ff5500;
+        }
+    }
