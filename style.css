@@ -1369,7 +1369,25 @@ p {
             opacity: 0.6;
         }
 
-        .footer-scroll {
-            margin-top: 10px;
+            .footer-scroll {
+            position: fixed; /* Musí být fixní, aby tě doprovázelo */
+            bottom: 30px;
+            right: 30px;
+            z-index: 99999 !important; /* Maximální priorita */
+            cursor: pointer;
+            touch-action: manipulation;
+            margin-top: 0; /* Vymaž ten margin, tady je k ničemu */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        /* Pojistka pro mobil: pokud ho chceš mít větší pro prsty */
+        @media (max-width: 768px) {
+            .footer-scroll {
+                bottom: 20px;
+                right: 20px;
+                padding: 10px;
+            }
         }
     }
