@@ -1,4 +1,4 @@
-/* --- Z√ÅKLADN√ç NASTAVEN√ç A RESET --- */
+/* --- Z¡KLADNÕ NASTAVENÕ A RESET --- */
 body, html {
     margin: 0;
     padding: 0;
@@ -8,9 +8,10 @@ body, html {
     color: white;
     font-family: 'Inter', sans-serif;
     overflow-x: hidden;
+ /* PlynulÈ scrollov·nÌ po kliknutÌ na menu */
 }
 
-/* --- JEMN√Å ANALOGOV√Å TEXTURA --- */
+/* --- JEMN¡ ANALOGOV¡ TEXTURA --- */
 .overlay {
     position: fixed;
     top: 0;
@@ -34,14 +35,7 @@ body, html {
     padding: 30px 60px;
     box-sizing: border-box;
     z-index: 9999 !important;
-    background: linear-gradient(to bottom, rgba(0,0,0,0.8) 0%, rgba(0,0,0,0) 100%);
-    /* P≈ôidej tohle pro jistotu: */
-    pointer-events: none; 
-}
-
-/* Mus√≠me povolit klik√°n√≠ na logo, hamburger a odkazy zpƒõt */
-.nav-logo, .menu-toggle, .nav-links {
-    pointer-events: auto;
+    background: linear-gradient(to bottom, rgba(0,0,0,0.5), transparent);
 }
 
 .nav-logo {
@@ -57,7 +51,7 @@ body, html {
         opacity: 0.7;
     }
 
-/* KONTEJNER PRO ODKAZY - P√∏id√°n Flexbox */
+/* KONTEJNER PRO ODKAZY - P¯id·n Flexbox */
 .nav-links {
     display: flex;
     align-items: center;
@@ -81,11 +75,11 @@ body, html {
             text-shadow: 0 0 10px rgba(255, 85, 0, 0.3);
         }
 
-/* P√òEP√çNA√à JAZYKA V MENU */
+/* PÿEPÕNA» JAZYKA V MENU */
 .lang-selector {
-    display: inline-flex !important; /* Zamkne prvky do jedn√© linky */
+    display: inline-flex !important; /* Zamkne prvky do jednÈ linky */
     align-items: center;
-    gap: 0; /* Vynulujeme gap, mezery po√∏e≈°√≠me paddingem */
+    gap: 0; /* Vynulujeme gap, mezery po¯eöÌme paddingem */
     margin-left: 35px;
     padding-left: 20px;
     border-left: 1px solid rgba(255, 255, 255, 0.1);
@@ -99,15 +93,15 @@ body, html {
     font-weight: 700 !important;
     color: rgba(255, 255, 255, 0.4) !important;
     text-decoration: none !important;
-    padding: 0 4px !important; /* T√≠mhle ovl√°d√°≈° mezeru kolem lom√≠tka */
+    padding: 0 4px !important; /* TÌmhle ovl·d·ö mezeru kolem lomÌtka */
     margin: 0 !important;
-    transform: none !important; /* Zru≈°√≠me p√∏√≠padn√© posuvy z menu */
+    transform: none !important; /* ZruöÌme p¯ÌpadnÈ posuvy z menu */
     line-height: 1;
 }
-    /* Aktivn√≠ jazyk bude oran≈æov√Ω */
+    /* AktivnÌ jazyk bude oranûov˝ */
     .lang-btn.active {
         color: #ff5500 !important;
-        opacity: 1 !important; /* Aby nesv√≠til jen polovi√®at√¨ */
+        opacity: 1 !important; /* Aby nesvÌtil jen poloviËatÏ */
     }
 
 .lang-sep {
@@ -120,15 +114,15 @@ body, html {
     user-select: none;
 }
 
-/* Oprava pro EN, aby neut√≠kalo */
+/* Oprava pro EN, aby neutÌkalo */
 .lang-selector a:last-child {
     padding-right: 0 !important;
 }
 
-/* MOBILN√ç √öPRAVA */
+/* MOBILNÕ ⁄PRAVA */
 @media (max-width: 768px) {
     .nav-links {
-        flex-direction: column; /* Linky pod sebe v mobiln√≠m menu */
+        flex-direction: column; /* Linky pod sebe v mobilnÌm menu */
         justify-content: center;
     }
 
@@ -154,7 +148,7 @@ body, html {
     }
 }
 
-/* --- HERO SEKCE (√öVODN√ç OBRAZOVKA) --- */
+/* --- HERO SEKCE (⁄VODNÕ OBRAZOVKA) --- */
 .hero {
     width: 100%;
     height: 100vh;
@@ -183,7 +177,7 @@ p {
     margin-top: 10px;
 }
 
-/* --- TLA√à√çTKO --- */
+/* --- TLA»ÕTKO --- */
 .cta-button {
     display: inline-block;
     margin-top: 40px;
@@ -206,26 +200,26 @@ p {
         transform: translateY(-5px);
     }
 
-/* --- √öPRAVA POZICE SEKCE SLU≈ΩBY --- */
+/* --- ⁄PRAVA POZICE SEKCE SLUéBY --- */
 .services-section {
     padding: 100px 20px;
     background: linear-gradient(to bottom, transparent, #080808 20%);
     position: relative;
     z-index: 5;
-    /* Zm√¨n√≠me na -5vh. To je dost na to, aby tam nebyla d√≠ra, 
-       ale dost m√°lo na to, aby to nebylo vid√¨t hned p√∏i startu. */
+    /* ZmÏnÌme na -5vh. To je dost na to, aby tam nebyla dÌra, 
+       ale dost m·lo na to, aby to nebylo vidÏt hned p¯i startu. */
     margin-top: -5vh;
     text-align: center;
 }
 
-/* √öprava nadpisu, aby nebyl moc daleko od horn√≠ho okraje sekce */
+/* ⁄prava nadpisu, aby nebyl moc daleko od hornÌho okraje sekce */
 .section-title {
     margin-top: 0;
     margin-bottom: 60px; /* Mezera mezi nadpisem a kartami */
-    /* ... zbytek st√°vaj√≠c√≠ho stylu ... */
+    /* ... zbytek st·vajÌcÌho stylu ... */
 }
 
-/* --- NACPIS SEKCE S P√ò√çPRAVOU NA ANIMACI --- */
+/* --- NACPIS SEKCE S PÿÕPRAVOU NA ANIMACI --- */
 .section-title {
     font-size: 1.8rem;
     letter-spacing: 10px;
@@ -233,13 +227,13 @@ p {
     font-weight: 300;
     text-transform: uppercase;
     color: rgba(255, 255, 255, 0.9);
-    /* V√ùCHOZ√ç STAV (Skryto) */
+    /* V›CHOZÕ STAV (Skryto) */
     opacity: 0;
-    transform: translateY(30px); /* Jemn√Ω posun nahoru */
-    transition: all 1s ease-out; /* Trochu pomalej≈°√≠ a elegantn√¨j≈°√≠ */
+    transform: translateY(30px); /* Jemn˝ posun nahoru */
+    transition: all 1s ease-out; /* Trochu pomalejöÌ a elegantnÏjöÌ */
 }
 
-    /* T√ò√çDA PRO ZJEVEN√ç NADPISU */
+    /* TÿÕDA PRO ZJEVENÕ NADPISU */
     .section-title.appear {
         opacity: 1;
         transform: translateY(0);
@@ -253,7 +247,7 @@ p {
     margin: 0 auto;
 }
 
-/* --- KARTA S P√ò√çPRAVOU NA ANIMACI (RYCHLEJ≈†√ç REAKCE) --- */
+/* --- KARTA S PÿÕPRAVOU NA ANIMACI (RYCHLEJäÕ REAKCE) --- */
 .service-card {
     background: rgba(255, 255, 255, 0.03);
     backdrop-filter: blur(10px);
@@ -263,23 +257,23 @@ p {
     border-radius: 20px;
     position: relative;
     overflow: hidden;
-    /* V√ùCHOZ√ç STAV PRO SCROLL REVEAL (Skryto) */
+    /* V›CHOZÕ STAV PRO SCROLL REVEAL (Skryto) */
     opacity: 0;
     transform: translateY(50px) scale(0.95);
-    /* ZKR√ÅCEN√ç √àASU: transform na 0.4s a cubic-bezier pro svi≈æn√¨j≈°√≠ start */
+    /* ZKR¡CENÕ »ASU: transform na 0.4s a cubic-bezier pro sviûnÏjöÌ start */
     transition: transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94), opacity 0.8s ease, border-color 0.3s ease, box-shadow 0.3s ease;
 
 }
 
-    /* T√ò√çDA AKTIVOVAN√Å JAVASCRIPTEM */
+    /* TÿÕDA AKTIVOVAN¡ JAVASCRIPTEM */
     .service-card.appear {
         opacity: 1;
         transform: translateY(0) scale(1);
-        /* KL√ç√àOV√ù FIX: Jakmile se karta zjev√≠, zru≈°√≠me delay, aby hover reagoval hned */
+        /* KLÕ»OV› FIX: Jakmile se karta zjevÌ, zruöÌme delay, aby hover reagoval hned */
         transition-delay: 0s !important;
     }
 
-    /* STAGGER EFEKT (Z√πst√°v√° jen pro √∫vodn√≠ zjeven√≠) */
+    /* STAGGER EFEKT (Z˘st·v· jen pro ˙vodnÌ zjevenÌ) */
     .service-card:nth-child(2) {
         transition-delay: 0.2s;
     }
@@ -288,9 +282,9 @@ p {
         transition-delay: 0.4s;
     }
 
-    /* EFEKT P√òI HOVERU - Te√Ø bude mnohem svi≈æn√¨j≈°√≠ */
+    /* EFEKT PÿI HOVERU - TeÔ bude mnohem sviûnÏjöÌ */
     .service-card:hover {
-        /* M√≠rn√¨ men≈°√≠ scale (1.03) √®asto p√πsob√≠ pr√©miov√¨ji a stabiln√¨ji */
+        /* MÌrnÏ menöÌ scale (1.03) Ëasto p˘sobÌ prÈmiovÏji a stabilnÏji */
         transform: scale(1.03) translateZ(0);
         border-color: rgba(255, 85, 0, 0.6);
         box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5), 0 0 15px rgba(255, 85, 0, 0.15);
@@ -317,7 +311,7 @@ p {
     color: rgba(255, 255, 255, 0.6);
     letter-spacing: 0.5px;
 }
-/* --- SHOWREEL SPECIFICK√â STYLY --- */
+/* --- SHOWREEL SPECIFICK… STYLY --- */
 .showreel-grid {
     display: flex;
     flex-direction: column;
@@ -331,18 +325,18 @@ p {
     align-items: center;
     text-align: left;
     padding: 25px !important;
-    /* ZAJI≈†T√åN√ç STABILITY */
-    transform: none !important; /* Karta se nebude zv√¨t≈°ovat */
+    /* ZAJIäTÃNÕ STABILITY */
+    transform: none !important; /* Karta se nebude zvÏtöovat */
     transition: background-color 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
-    cursor: default; /* Aby karta nep√πsobila jako cel√© tla√®√≠tko, pokud nechce≈° */
+    cursor: default; /* Aby karta nep˘sobila jako celÈ tlaËÌtko, pokud nechceö */
 }
 
-    /* Hover efekt bez zv√¨t≈°en√≠ */
+    /* Hover efekt bez zvÏtöenÌ */
     .audio-card:hover {
-        transform: none !important; /* Tot√°ln√≠ stopka pro scale/zv√¨t≈°en√≠ */
-        border-color: #ff5500; /* Decentn√≠ zv√Ωrazn√¨n√≠ barvou */
+        transform: none !important; /* Tot·lnÌ stopka pro scale/zvÏtöenÌ */
+        border-color: #ff5500; /* DecentnÌ zv˝raznÏnÌ barvou */
      
-        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3); /* Pouze st√≠n pro hloubku */
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3); /* Pouze stÌn pro hloubku */
     }
 
 .audio-content {
@@ -352,7 +346,7 @@ p {
     align-items: center;
 }
 
-/* Responzivita - na mobilu d√°me obsah pod sebe */
+/* Responzivita - na mobilu d·me obsah pod sebe */
 @media (max-width: 768px) {
     .audio-content {
         flex-direction: column;
@@ -361,7 +355,7 @@ p {
     }
 }
 
-/* Styl pro √®tvercov√Ω cover art */
+/* Styl pro Ëtvercov˝ cover art */
 .audio-cover {
     width: 120px;
     height: 120px;
@@ -380,7 +374,7 @@ p {
         transition: opacity 0.3s ease;
     }
 
-/* Play tla√®√≠tko, co se objev√≠ na coveru */
+/* Play tlaËÌtko, co se objevÌ na coveru */
 .play-overlay {
     position: absolute;
     top: 0;
@@ -409,7 +403,7 @@ p {
     color: white;
 }
 
-/* Textov√© informace o tracku */
+/* TextovÈ informace o tracku */
 .audio-info {
     flex-grow: 1;
 }
@@ -429,13 +423,13 @@ p {
     letter-spacing: 2px;
 }
 
-/* --- VIZUALIZ√âR (VLNOVKA) --- */
+/* --- VIZUALIZ…R (VLNOVKA) --- */
 
 .waveform {
     display: flex;
     align-items: flex-end;
     justify-content: flex-start;
-    gap: 4px; /* V√¨t≈°√≠ mezera mezi ≈°ir≈°√≠mi bary */
+    gap: 4px; /* VÏtöÌ mezera mezi öiröÌmi bary */
     height: 20px;
     margin-top: 15px;
     opacity: 0.3;
@@ -448,21 +442,21 @@ p {
 }
 
 .bar {
-    width: 6px; /* ZDVOJN√ÅSOBEN√Å ≈†√ç√òKA - te√Ø jsou to sp√≠≈° obd√©ln√≠√®ky */
+    width: 6px; /* ZDVOJN¡SOBEN¡ äÕÿKA - teÔ jsou to spÌö obdÈlnÌËky */
     background: #ff5500;
-    border-radius: 1px; /* M√©n√¨ zaoblen√© pro technick√Ω vzhled */
+    border-radius: 1px; /* MÈnÏ zaoblenÈ pro technick˝ vzhled */
     height: 4px;
     transition: height 0.3s ease;
 }
 
-/* JEMN√Å ANIMACE - aby bary z√πstaly sp√≠≈°e "p√∏i zemi" */
+/* JEMN¡ ANIMACE - aby bary z˘staly spÌöe "p¯i zemi" */
 @keyframes pulse {
     0% {
         height: 4px;
     }
 
     50% {
-        height: 12px; /* Sn√≠≈æeno, aby to nebyla "vysok√°" √®√°ra */
+        height: 12px; /* SnÌûeno, aby to nebyla "vysok·" Ë·ra */
     }
 
     100% {
@@ -470,7 +464,7 @@ p {
     }
 }
 
-/* Animace z√πst√°v√° pro organick√Ω pohyb */
+/* Animace z˘st·v· pro organick˝ pohyb */
 .js-audio-card.is-playing .bar:nth-child(odd),
 .is-playing .bar:nth-child(odd) {
     animation: pulse 1.1s infinite ease-in-out;
@@ -482,30 +476,30 @@ p {
     animation-delay: 0.1s;
 }
 
-/* Kontejner linky (to ≈°ed√© pozad√≠) */
+/* Kontejner linky (to öedÈ pozadÌ) */
 .progress-container {
     width: 100%;
     height: 4px;
-    background: rgba(255, 255, 255, 0.1); /* Tmav√¨ ≈°ed√° linka */
+    background: rgba(255, 255, 255, 0.1); /* TmavÏ öed· linka */
     border-radius: 2px;
     margin-top: 15px;
     cursor: pointer;
-    overflow: hidden; /* Aby oran≈æov√° nep√∏et√©kala za zaoblen√≠ */
+    overflow: hidden; /* Aby oranûov· nep¯etÈkala za zaoblenÌ */
 }
 
-/* Container pro li≈°tu (to ≈°ed√© pozad√≠) */
+/* Container pro liötu (to öedÈ pozadÌ) */
 .progress-container {
     width: 100%;
-    height: 4px; /* Z√°kladn√≠ v√Ω≈°ka */
+    height: 4px; /* Z·kladnÌ v˝öka */
     background: rgba(255, 255, 255, 0.1);
     border-radius: 2px;
     cursor: pointer;
     margin: 10px 0;
-    overflow: visible; /* D√πle≈æit√©, aby scale mohl "p√∏et√©ct" ven */
+    overflow: visible; /* D˘leûitÈ, aby scale mohl "p¯etÈct" ven */
     transition: transform 0.2s ease, background 0.2s ease;
 }
 
-/* Samotn√° oran≈æov√° linka */
+/* Samotn· oranûov· linka */
 .progress-bar {
     width: 0%;
     height: 100%;
@@ -514,13 +508,13 @@ p {
     transition: width 0.1s linear;
 }
 
-/* OPRAVA: Efekt p√∏i najet√≠ my≈°√≠ */
+/* OPRAVA: Efekt p¯i najetÌ myöÌ */
 .progress-container:hover {
-    /* M√≠sto height: 6px pou≈æijeme scale */
+    /* MÌsto height: 6px pouûijeme scale */
     transform: scaleY(1.8); 
     background: rgba(255, 255, 255, 0.2);
 }
-/* Kontejner pro ikonu (udr≈æuje stabilitu slideru) */
+/* Kontejner pro ikonu (udrûuje stabilitu slideru) */
 .gear-icon-wrapper {
     height: 85px;
     display: flex;
@@ -529,21 +523,21 @@ p {
     margin-bottom: 20px;
 }
 
-/* Styl samotn√©ho PNG */
+/* Styl samotnÈho PNG */
 .gear-custom-icon {
     height: 100%;
     width: auto;
     transition: all 0.3s ease-in-out;
-    /* Filtr pro tvou oran≈æovou #ff5500 */
+    /* Filtr pro tvou oranûovou #ff5500 */
     filter: brightness(0) saturate(100%) invert(43%) sepia(96%) saturate(3000%) hue-rotate(1deg) brightness(101%) contrast(106%);
     opacity: 0.85;
 }
 
-/* HOVER EFEKT: Cel√° karta vyvol√° z√°√∏i ikony */
+/* HOVER EFEKT: Cel· karta vyvol· z·¯i ikony */
 .service-card:hover .gear-custom-icon {
   
     opacity: 1;
-    /* Neonov√° z√°√∏e kolem linek PNG */
+    /* Neonov· z·¯e kolem linek PNG */
     filter: brightness(0) saturate(100%) invert(43%) sepia(96%) saturate(3000%) hue-rotate(1deg) brightness(101%) contrast(106%) drop-shadow(0 0 10px rgba(255, 85, 0, 0.8));
 }
 /* Styling pro Spotify ikonu v rohu */
@@ -553,13 +547,13 @@ p {
     right: 20px;
     z-index: 10;
     transition: transform 0.3s ease, opacity 0.3s ease;
-    opacity: 0.6; /* Decentn√≠ vzhled, dokud na kartu nenajede≈° */
+    opacity: 0.6; /* DecentnÌ vzhled, dokud na kartu nenajedeö */
 }
 
 .spotify-svg-icon {
     width: 22px;
     height: 22px;
-    /* Pokud je tv√© SVG √®ern√©, tento filtr ho obarv√≠ do tv√© oran≈æov√© */
+    /* Pokud je tvÈ SVG ËernÈ, tento filtr ho obarvÌ do tvÈ oranûovÈ */
     filter: invert(48%) sepia(79%) saturate(2476%) hue-rotate(346deg) brightness(101%) contrast(101%);
 }
 
@@ -569,7 +563,7 @@ p {
 }
 
 .spotify-corner-link:hover {
-    filter: drop-shadow(0 0 8px #ff5500); /* Oran≈æov√° z√°√∏e p√∏i hoveru */
+    filter: drop-shadow(0 0 8px #ff5500); /* Oranûov· z·¯e p¯i hoveru */
 }
 
 
@@ -577,7 +571,7 @@ p {
 
 .gear-slider-wrapper {
     display: flex;
-    align-items: center; /* Kl√≠√®ov√©: Zarovn√° ≈°ipky na st√∏ed v√π√®i kart√¨ */
+    align-items: center; /* KlÌËovÈ: Zarovn· öipky na st¯ed v˘Ëi kartÏ */
     justify-content: center;
     gap: 30px;
     width: 100%;
@@ -589,16 +583,16 @@ p {
     flex-grow: 1;
     display: flex;
     justify-content: center;
-    align-items: center; /* Pojistka pro vertik√°ln√≠ st√∏ed karty */
+    align-items: center; /* Pojistka pro vertik·lnÌ st¯ed karty */
     min-height: 400px;
 }
 
-/* --- KARTY (JEDNOTLIV√â KUSY GEARU) --- */
+/* --- KARTY (JEDNOTLIV… KUSY GEARU) --- */
 .gear-card {
     display: none;
     width: 100%;
     margin: 0;
-    /* Zkr√°cen√Ω √®as na 0.3s a jemn√¨j≈°√≠ n√°b√¨h ease-in-out */
+    /* Zkr·cen˝ Ëas na 0.3s a jemnÏjöÌ n·bÏh ease-in-out */
     animation: gearSlideIn 0.3s ease-in-out forwards;
 }
 
@@ -614,19 +608,19 @@ p {
         text-align: center;
         padding: 30px;
         box-sizing: border-box;
-        /* ZAJI≈†T√åN√ç PROTI ZV√åT≈†OV√ÅN√ç */
+        /* ZAJIäTÃNÕ PROTI ZVÃTäOV¡NÕ */
         transform: none !important;
         transition: border-color 0.3s ease, box-shadow 0.3s ease;
     }
 
-        /* ODSTRAN√åN√ç HOVER EFEKTU ZV√åT≈†EN√ç */
+        /* ODSTRANÃNÕ HOVER EFEKTU ZVÃTäENÕ */
         .gear-card .service-card:hover {
             transform: none !important;
         }
 @keyframes gearSlideIn {
     from {
         opacity: 0;
-        transform: translateY(5px); /* Jen mal√Ω posun o 10px */
+        transform: translateY(5px); /* Jen mal˝ posun o 10px */
     }
 
     to {
@@ -636,11 +630,11 @@ p {
 } 
 
 
-/* --- ≈†IPKY --- */
+/* --- äIPKY --- */
 .slider-arrow {
-    background: transparent; /* Odstran√¨no oran≈æov√© pozad√≠ v z√°kladu */
-    border: 1px solid rgba(255, 255, 255, 0.2); /* Decentn√≠ b√≠l√Ω/≈°ed√Ω okraj */
-    color: rgba(255, 255, 255, 0.5); /* Sv√¨tle ≈°ed√° barva ≈°ipky */
+    background: transparent; /* OdstranÏno oranûovÈ pozadÌ v z·kladu */
+    border: 1px solid rgba(255, 255, 255, 0.2); /* DecentnÌ bÌl˝/öed˝ okraj */
+    color: rgba(255, 255, 255, 0.5); /* SvÏtle öed· barva öipky */
     font-size: 1.2rem;
     width: 50px;
     height: 50px;
@@ -653,12 +647,12 @@ p {
     flex-shrink: 0;
 }
 
-    /* Hover stav - jen m√≠rn√© zv√Ωrazn√¨n√≠ bez z√°√∏e */
+    /* Hover stav - jen mÌrnÈ zv˝raznÏnÌ bez z·¯e */
     .slider-arrow:hover {
-        border-color: #ff5500; /* Oran≈æov√° se objev√≠ jen na okraji p√∏i najet√≠ */
-        color: #ff5500; /* ≈†ipka zoran≈æov√≠ */
-        background: rgba(255, 85, 0, 0.05); /* Jen velmi jemn√Ω n√°dech */
-        box-shadow: none; /* TADY JSME ODSTRANILI TO SV√çCEN√ç */
+        border-color: #ff5500; /* Oranûov· se objevÌ jen na okraji p¯i najetÌ */
+        color: #ff5500; /* äipka zoranûovÌ */
+        background: rgba(255, 85, 0, 0.05); /* Jen velmi jemn˝ n·dech */
+        box-shadow: none; /* TADY JSME ODSTRANILI TO SVÕCENÕ */
         transform: scale(1.00);
     }
 
@@ -667,38 +661,38 @@ p {
     display: flex;
     justify-content: center;
     gap: 15px;
-    margin-bottom: 5px; /* V√¨t≈°√≠ mezera od slideru */
+    margin-bottom: 5px; /* VÏtöÌ mezera od slideru */
     flex-wrap: wrap;
     width: 100%;
 }
 
 .gear-tab-btn {
-    background: rgba(255, 255, 255, 0.05); /* Velmi jemn√© pozad√≠ v z√°kladu */
+    background: rgba(255, 255, 255, 0.05); /* Velmi jemnÈ pozadÌ v z·kladu */
     border: 1px solid rgba(255, 85, 0, 0.3);
     color: white;
     padding: 12px 30px;
     letter-spacing: 2px;
-    text-transform: uppercase; /* V≈°echna p√≠smena velk√° pro profi look */
+    text-transform: uppercase; /* Vöechna pÌsmena velk· pro profi look */
     cursor: pointer;
     transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     border-radius: 5px;
     font-size: 0.8rem;
-    opacity: 0.5; /* Neaktivn√≠ jsou potla√®en√° */
+    opacity: 0.5; /* NeaktivnÌ jsou potlaËen· */
     outline: none;
 }
 
-    /* AKTIVN√ç STAV A HOVER - Tady se vrac√≠ ten design */
+    /* AKTIVNÕ STAV A HOVER - Tady se vracÌ ten design */
     .gear-tab-btn:hover,
     .gear-tab-btn.active {
-        background: #ff5500; /* Pln√° oran≈æov√° */
+        background: #ff5500; /* Pln· oranûov· */
         border-color: #ff5500;
         color: white;
-        opacity: 1; /* Pln√° viditelnost */
-        box-shadow: 0 0 25px rgba(255, 85, 0, 0.6); /* V√Ωrazn√Ω oran≈æov√Ω glow */
+        opacity: 1; /* Pln· viditelnost */
+        box-shadow: 0 0 25px rgba(255, 85, 0, 0.6); /* V˝razn˝ oranûov˝ glow */
         
     }
 
-    /* Efekt p√∏i kliknut√≠ (zm√°√®knut√≠) */
+    /* Efekt p¯i kliknutÌ (zm·ËknutÌ) */
     .gear-tab-btn:active {
         transform: translateY(-1px);
     }
@@ -725,7 +719,7 @@ p {
 }
 
 .faq-item:hover .faq-question {
-    color: #ff3e3e; /* Tvoje akcentn√≠ barva */
+    color: #ff3e3e; /* Tvoje akcentnÌ barva */
 }
 
 .faq-answer {
@@ -746,9 +740,9 @@ p {
 }
 
 .faq-item.active .faq-question span {
-    transform: rotate(45deg); /* Zm√¨n√≠ + na x */
+    transform: rotate(45deg); /* ZmÏnÌ + na x */
 }
-/* --- KONTAKTN√ç SEKCE --- */
+/* --- KONTAKTNÕ SEKCE --- */
 .contact-section {
     padding: 80px 0;
     background: #0a0a0a;
@@ -811,44 +805,44 @@ p {
 }
 
 .contact-btn {
-    background: rgba(255, 255, 255, 0.05); /* Velmi jemn√© pozad√≠ v z√°kladu */
+    background: rgba(255, 255, 255, 0.05); /* Velmi jemnÈ pozadÌ v z·kladu */
     border: 1px solid rgba(255, 85, 0, 0.3);
     color: white;
     padding: 12px 30px;
     letter-spacing: 2px;
-    text-transform: uppercase; /* V≈°echna p√≠smena velk√° pro profi look */
+    text-transform: uppercase; /* Vöechna pÌsmena velk· pro profi look */
     cursor: pointer;
     transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     border-radius: 5px;
     font-size: 0.8rem;
-    opacity: 0.5; /* Neaktivn√≠ jsou potla√®en√° */
+    opacity: 0.5; /* NeaktivnÌ jsou potlaËen· */
     outline: none;
 }
 
 .contact-card:hover .contact-btn {
-    background: #ff5500; /* Pln√° oran≈æov√° */
+    background: #ff5500; /* Pln· oranûov· */
     border-color: #ff5500;
     color: white;
-    opacity: 1; /* Pln√° viditelnost */
-    box-shadow: 0 0 25px rgba(255, 85, 0, 0.6); /* V√Ωrazn√Ω oran≈æov√Ω glow */
+    opacity: 1; /* Pln· viditelnost */
+    box-shadow: 0 0 25px rgba(255, 85, 0, 0.6); /* V˝razn˝ oranûov˝ glow */
 }
 
-/* Kontejner pro kontaktn√≠ ikonu */
+/* Kontejner pro kontaktnÌ ikonu */
 .contact-icon {
-    width: 50px; /* Celkov√° ≈°√≠√∏ka prostoru pro ikonu */
-    height: 50px; /* Celkov√° v√Ω≈°ka prostoru */
+    width: 50px; /* Celkov· öÌ¯ka prostoru pro ikonu */
+    height: 50px; /* Celkov· v˝öka prostoru */
     display: flex;
     align-items: center;
     justify-content: center;
-    margin: 0 auto 15px; /* Vycentrov√°n√≠ a mezera pod ikonou */
+    margin: 0 auto 15px; /* Vycentrov·nÌ a mezera pod ikonou */
 }
 
-/* Samotn√Ω obr√°zek Instagramu */
+/* Samotn˝ obr·zek Instagramu */
 .contact-png-icon {
-    width: 64px; /* Tady ovl√°d√°≈° skute√®nou velikost ikony */
+    width: 64px; /* Tady ovl·d·ö skuteËnou velikost ikony */
     height: auto;
     transition: all 0.3s ease;
-    /* Stejn√Ω oran≈æov√Ω filtr, aby to ladilo */
+    /* Stejn˝ oranûov˝ filtr, aby to ladilo */
     filter: brightness(0) saturate(100%) invert(43%) sepia(96%) saturate(3000%) hue-rotate(1deg) brightness(101%) contrast(106%);
 }
 
@@ -886,21 +880,21 @@ p {
     font-weight: 700;
     letter-spacing: 3px;
     font-size: 1rem;
-    /* ≈Ω√°dn√© dal≈°√≠ marginy zde nejsou pot√∏eba, padding v contentu to vy√∏e≈°√≠ */
+    /* é·dnÈ dalöÌ marginy zde nejsou pot¯eba, padding v contentu to vy¯eöÌ */
 }
 
 .footer-info {
-    text-align: center; /* Vycentruje √∏√°dky textu pod sebou */
-    flex-grow: 1; /* Dovol√≠ bloku zabrat prostor uprost√∏ed */
+    text-align: center; /* Vycentruje ¯·dky textu pod sebou */
+    flex-grow: 1; /* DovolÌ bloku zabrat prostor uprost¯ed */
     display: flex;
     flex-direction: column;
-    align-items: center; /* Vycentruje obsah v r√°mci flexboxu */
+    align-items: center; /* Vycentruje obsah v r·mci flexboxu */
 }
 
     .footer-info p {
         margin: 5px 0;
         letter-spacing: 1px;
-        width: 100%; /* Zajist√≠, ≈æe se text nebude l√°mat d√∏√≠v ne≈æ mus√≠ */
+        width: 100%; /* ZajistÌ, ûe se text nebude l·mat d¯Ìv neû musÌ */
     }
 
 .footer-scroll a {
@@ -928,7 +922,7 @@ p {
     }
 }
 .about-content-centered {
-    max-width: 900px; /* Aby text nebyl p√∏es celou ≈°√≠√∏ku monitoru */
+    max-width: 900px; /* Aby text nebyl p¯es celou öÌ¯ku monitoru */
     margin: 0 auto;
     text-align: center;
 }
@@ -976,7 +970,7 @@ p {
         margin-top: 5px;
     }
 
-/* Jemn√° d√¨l√≠c√≠ √®√°ra mezi statistikami */
+/* Jemn· dÏlÌcÌ Ë·ra mezi statistikami */
 .stat-divider {
     width: 1px;
     height: 40px;
@@ -991,33 +985,24 @@ p {
     }
 
     .stat-divider {
-        display: none; /* Na mobilu √®√°ry schov√°me */
+        display: none; /* Na mobilu Ë·ry schov·me */
     }
 }
 
-/* --- Z√ÅKLADN√ç STYL (PC verze) --- */
+/* MOBILNÕ VERZE */
+/* --- Z¡KLADNÕ STYL (PC verze) --- */
 .menu-toggle {
-    display: none; 
+    display: none; /* Na PC je tlaËÌtko schovanÈ */
 }
 
-/* --- KOMPLETN√ç MOBILN√ç SEKCE (Do 768px) --- */
+/* --- VERZE PRO MOBIL (Aktivuje se pod 768px) --- */
 @media (max-width: 768px) {
-    .main-nav {
-        transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1), background-color 0.3s ease;
-        padding: 20px 30px; 
-    }
-
-    .nav-hidden {
-        transform: translateY(-100%) !important;
-    }
-
     .menu-toggle {
         display: flex;
         flex-direction: column;
         cursor: pointer;
         gap: 6px;
         z-index: 1001;
-        touch-action: manipulation;
     }
 
     .bar {
@@ -1027,60 +1012,102 @@ p {
         transition: 0.3s;
     }
 
-/* MOBILN√ç MENU ODKAZY */
-.nav-links {
-    position: fixed;
-    top: 0;
-    right: 0; /* Nech√°me na 0 a budeme h√Ωbat transformem */
-    width: 100%;
-    height: 100vh;
-    background-color: rgba(8, 8, 8, 0.98);
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    display: flex;
-    z-index: 1000;
-
-    /* Posuneme menu mimo obrazovku pomoc√≠ transform (v√Ωkonnƒõj≈°√≠ ne≈æ 'right') */
-    transform: translateX(100%);
-    transition: transform 0.4s ease-in-out, visibility 0.4s, opacity 0.4s;
-
-    /* KL√çƒåOV√Å OPRAVA: Menu je v z√°kladu √∫plnƒõ "mrtv√©" pro syst√©m */
-    visibility: hidden; 
-    pointer-events: none; 
-    opacity: 0;
-}
-
-/* Aktivn√≠ stav menu - kdy≈æ vyjede ven */
-.nav-links.active {
-    transform: translateX(0);
-    visibility: visible;
-    pointer-events: auto;
-    opacity: 1;
-}
-
-.nav-links a {
-    font-size: 1.8rem;
-    margin: 20px 0;
-    color: #fff;
-    opacity: 1;
-    text-decoration: none;
-    touch-action: manipulation; /* Odstra≈àuje prodlevu kliknut√≠ na mobilu */
-}
-    /* Animace hamburgeru na X */
-    .menu-toggle.active .bar:nth-child(2) {
-        opacity: 0;
+    /* Transformace seznamu odkaz˘ na mobilnÌ menu p¯es celou obrazovku */
+    .nav-links {
+        position: fixed;
+        top: 0;
+        right: -100%; /* VyhozenÈ mimo obrazovku vpravo */
+        width: 100%;
+        height: 100vh;
+        background-color: rgba(10, 10, 10, 0.98); /* TmavÈ pozadÌ webu */
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        transition: 0.4s ease-in-out;
+        z-index: 1000;
+        display: flex; /* Aby fungovalo centrov·nÌ pod sebou */
     }
 
-    .menu-toggle.active .bar:nth-child(1) {
-        transform: translateY(9px) rotate(45deg);
-    }
+        /* Stav, kdy je mobilnÌ menu otev¯enÈ */
+        .nav-links.active {
+            right: 0; /* Vyjede zprava na st¯ed */
+        }
 
-    .menu-toggle.active .bar:nth-child(3) {
-        transform: translateY(-9px) rotate(-45deg);
+        .nav-links a {
+            font-size: 1.8rem;
+            margin: 20px 0;
+            color: #fff;
+        }
+    /* --- KOMPLETNÕ MOBILNÕ SEKCE (Do 768px) --- */
+    @media (max-width: 768px) {
+
+        /* ZajiötÏnÌ plynulÈho pohybu pro skr˝v·nÌ */
+        .main-nav {
+            transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1), background-color 0.3s ease;
+            padding: 20px 30px; /* KompaktnÏjöÌ verze pro mobil */
+        }
+
+        /* Tato t¯Ìda se aktivuje skrze JS p¯i scrollu dol˘ */
+        .nav-hidden {
+            transform: translateY(-100%) !important;
+        }
+
+        .menu-toggle {
+            display: flex;
+            flex-direction: column;
+            cursor: pointer;
+            gap: 6px;
+            z-index: 1001;
+        }
+
+        .bar {
+            width: 25px;
+            height: 3px;
+            background-color: #ff5500;
+            transition: 0.3s;
+        }
+
+        /* Vnit¯ek mobilnÌho menu */
+        .nav-links {
+            position: fixed;
+            top: 0;
+            right: -100%;
+            width: 100%;
+            height: 100vh;
+            background-color: rgba(8, 8, 8, 0.98); /* TmavÈ pozadÌ tvÈho studia */
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            transition: 0.4s ease-in-out;
+            z-index: 1000;
+            display: flex;
+        }
+
+            .nav-links.active {
+                right: 0;
+            }
+
+            .nav-links a {
+                font-size: 1.8rem;
+                margin: 20px 0;
+                color: #fff;
+                opacity: 1; /* Na mobilu je chceme vidÏt jasnÏ */
+            }
+
+        /* Animace hamburgeru na X */
+        .menu-toggle.active .bar:nth-child(2) {
+            opacity: 0;
+        }
+
+        .menu-toggle.active .bar:nth-child(1) {
+            transform: translateY(9px) rotate(45deg);
+        }
+
+        .menu-toggle.active .bar:nth-child(3) {
+            transform: translateY(-9px) rotate(-45deg);
+        }
     }
-}
-    /* --- √öPRAVA SEKCE O MN√å (POUZE MOBIL) --- */
+    /* --- ⁄PRAVA SEKCE O MNÃ (POUZE MOBIL) --- */
     @media (max-width: 768px) {
         #about.services-section {
             padding: 60px 25px !important; /* Odstup od hran displeje */
@@ -1089,14 +1116,14 @@ p {
         .about-text-wrapper p {
             font-size: 1rem;
             line-height: 1.7;
-            text-align: left !important; /* Zarovn√°n√≠ v≈°ech odstavc√π doleva */
+            text-align: left !important; /* Zarovn·nÌ vöech odstavc˘ doleva */
             margin-bottom: 20px;
             color: rgba(255, 255, 255, 0.8);
         }
 
         .lead-text {
             font-size: 1.2rem !important;
-            text-align: left !important; /* Te√Ø u≈æ i lead-text l√≠cuje doleva */
+            text-align: left !important; /* TeÔ uû i lead-text lÌcuje doleva */
             margin-bottom: 30px !important;
             color: #fff !important;
         }
@@ -1105,7 +1132,7 @@ p {
             padding: 0 !important;
         }
     }
-    /* --- SHOWREEL MOBILN√ç √öPRAVY --- */
+    /* --- SHOWREEL MOBILNÕ ⁄PRAVY --- */
     @media (max-width: 768px) {
         .showreel-grid {
             gap: 20px;
@@ -1114,21 +1141,21 @@ p {
 
         .audio-card {
             padding: 20px !important;
-            flex-direction: column; /* V≈°echno pod sebe */
+            flex-direction: column; /* Vöechno pod sebe */
             align-items: center;
         }
 
         .audio-content {
-            flex-direction: column; /* Cover nahoru, text dol√π */
+            flex-direction: column; /* Cover nahoru, text dol˘ */
             width: 100%;
             gap: 20px;
         }
 
         .audio-cover {
-            width: 160px; /* Trochu ho na mobilu zv√¨t≈°√≠me, a¬ù je dominantn√≠ */
+            width: 160px; /* Trochu ho na mobilu zvÏtöÌme, aù je dominantnÌ */
             height: 160px;
             margin: 0 auto;
-            /* Na mobilu chceme play tla√®√≠tko vid√¨t po√∏√°d, hover tam nen√≠ */
+            /* Na mobilu chceme play tlaËÌtko vidÏt po¯·d, hover tam nenÌ */
         }
 
         .play-overlay {
@@ -1152,7 +1179,7 @@ p {
         }
 
         .waveform {
-            justify-content: center; /* Vlnka na st√∏ed */
+            justify-content: center; /* Vlnka na st¯ed */
             margin: 15px 0;
         }
 
@@ -1160,7 +1187,7 @@ p {
         .spotify-corner-link {
             top: 15px;
             right: 15px;
-            opacity: 1; /* Na mobilu mus√≠ b√Ωt vid√¨t po√∏√°d */
+            opacity: 1; /* Na mobilu musÌ b˝t vidÏt po¯·d */
         }
 
         .spotify-svg-icon {
@@ -1168,7 +1195,7 @@ p {
             height: 20px;
         }
 
-        /* Progress bar ud√¨l√°me tlust≈°√≠, aby se do n√¨j l√©pe trefovalo prstem */
+        /* Progress bar udÏl·me tlustöÌ, aby se do nÏj lÈpe trefovalo prstem */
         .progress-container {
             height: 6px;
             margin-top: 20px;
@@ -1189,7 +1216,7 @@ p {
             margin: 0 auto;
             padding: 0 !important;
             position: relative;
-            z-index: 1; /* Zaji≈°¬ùuje, ≈æe gear nep√∏ekryje navigaci */
+            z-index: 1; /* Zajiöùuje, ûe gear nep¯ekryje navigaci */
         }
 
         .gear-slider-container {
@@ -1198,7 +1225,7 @@ p {
             margin: 0 auto !important;
             display: block;
             position: relative;
-            /* Zmen≈°ili jsme min-height, aby pod kartou nebylo tolik pr√°zdna */
+            /* Zmenöili jsme min-height, aby pod kartou nebylo tolik pr·zdna */
             min-height: 380px;
             overflow: hidden;
             touch-action: pan-y;
@@ -1208,7 +1235,7 @@ p {
             display: flex;
             justify-content: center;
             gap: 15px;
-            margin-bottom: 15px; /* Zv√¨t≈°i tuhle hodnotu podle pot√∏eby */
+            margin-bottom: 15px; /* ZvÏtöi tuhle hodnotu podle pot¯eby */
             flex-wrap: wrap;
         }
 
@@ -1221,12 +1248,12 @@ p {
             transform: translateX(-50%);
             opacity: 0;
             visibility: hidden;
-            pointer-events: none; /* Neaktivn√≠ karta je "vzduch" */
+            pointer-events: none; /* NeaktivnÌ karta je "vzduch" */
             transition: opacity 0.3s ease, transform 0.3s ease;
         }
 
             .gear-card.active {
-                position: relative; /* Pouze aktivn√≠ karta dr≈æ√≠ v√Ω≈°ku kontejneru */
+                position: relative; /* Pouze aktivnÌ karta drûÌ v˝öku kontejneru */
                 opacity: 1;
                 visibility: visible;
                 pointer-events: auto; /* Pouze na tuhle lze klikat/swipovat */
@@ -1245,7 +1272,7 @@ p {
             display: flex;
             justify-content: center;
             gap: 12px;
-            /* Sn√≠≈æili jsme margin z 20px/25px na 5px nebo klidn√¨ 0 */
+            /* SnÌûili jsme margin z 20px/25px na 5px nebo klidnÏ 0 */
             margin-top: 0px;
             padding: 5px 0;
             width: 100%;
@@ -1270,18 +1297,18 @@ p {
     }
     /* FAQ */
     @media (max-width: 768px) {
-        /* 1. Zarovn√°n√≠ ot√°zek nalevo a √∫prava textu */
+        /* 1. Zarovn·nÌ ot·zek nalevo a ˙prava textu */
         .faq-question {
             text-align: left !important;
             justify-content: space-between;
             display: flex;
             align-items: center;
-            font-size: 1rem; /* Trochu men≈°√≠ p√≠smo, aby se ot√°zka ve≈°la */
+            font-size: 1rem; /* Trochu menöÌ pÌsmo, aby se ot·zka veöla */
             padding: 15px 5px;
             line-height: 1.4;
         }
 
-        /* 2. Zarovn√°n√≠ odpov√¨d√≠ nalevo */
+        /* 2. Zarovn·nÌ odpovÏdÌ nalevo */
         .faq-answer {
             text-align: left !important;
         }
@@ -1294,14 +1321,14 @@ p {
                 line-height: 1.6;
             }
 
-        /* 3. OPRAVA: Aby byla vid√¨t cel√° odpov√¨√Ø */
-        /* M√≠sto fixn√≠ v√Ω≈°ky (nap√∏. 200px) d√°me velkorysej≈°√≠ limit nebo auto */
+        /* 3. OPRAVA: Aby byla vidÏt cel· odpovÏÔ */
+        /* MÌsto fixnÌ v˝öky (nap¯. 200px) d·me velkorysejöÌ limit nebo auto */
         .faq-item.active .faq-answer {
-            max-height: 1000px; /* Dostate√®n√° rezerva pro dlouh√© texty na mobilu */
+            max-height: 1000px; /* DostateËn· rezerva pro dlouhÈ texty na mobilu */
             overflow: visible;
         }
 
-        /* √öprava kontejneru pro mobil, aby nebyl nalepen√Ω na kraje */
+        /* ⁄prava kontejneru pro mobil, aby nebyl nalepen˝ na kraje */
         .faq-container {
             padding: 0 20px;
         }
@@ -1309,7 +1336,7 @@ p {
     /* KONTAKT */
 
     @media (max-width: 768px) {
-        /* 1. Celkov√© odsazen√≠ sekce od okraj√π displeje */
+        /* 1. CelkovÈ odsazenÌ sekce od okraj˘ displeje */
         .contact-section {
             padding: 80px 25px !important;
         }
@@ -1319,19 +1346,19 @@ p {
             display: flex;
             flex-direction: column; /* Karty pod sebe */
             align-items: center;
-            gap: 30px; /* Po√∏√°dn√° mezera mezi e-mailem a Instagramem */
+            gap: 30px; /* Po¯·dn· mezera mezi e-mailem a Instagramem */
             width: 100%;
         }
 
-        /* 3. √öprava samotn√© karty */
+        /* 3. ⁄prava samotnÈ karty */
         .contact-card {
-            width: 100% !important; /* Karta na celou dostupnou ≈°√≠√∏ku */
-            max-width: 400px; /* Ale ne v√≠c, ne≈æ je zdr√°vo */
-            padding: 40px 20px !important; /* Vnit√∏n√≠ prostor karty */
+            width: 100% !important; /* Karta na celou dostupnou öÌ¯ku */
+            max-width: 400px; /* Ale ne vÌc, neû je zdr·vo */
+            padding: 40px 20px !important; /* Vnit¯nÌ prostor karty */
             box-sizing: border-box;
         }
 
-            /* 4. Texty uvnit√∏ karty */
+            /* 4. Texty uvnit¯ karty */
             .contact-card h3 {
                 font-size: 1.3rem;
                 letter-spacing: 2px;
@@ -1343,25 +1370,25 @@ p {
                 margin-bottom: 25px;
             }
 
-        /* 5. Tla√®√≠tko uvnit√∏ karty - ud√¨l√°me ho trochu v√Ωrazn√¨j≈°√≠ na dotyk */
+        /* 5. TlaËÌtko uvnit¯ karty - udÏl·me ho trochu v˝raznÏjöÌ na dotyk */
         .contact-btn {
-            width: 80%; /* Tla√®√≠tko na celou ≈°√≠√∏ku karty pro snadn√¨j≈°√≠ klik */
+            width: 80%; /* TlaËÌtko na celou öÌ¯ku karty pro snadnÏjöÌ klik */
             text-align: center;
             padding: 15px 0;
-            opacity: 1 !important; /* Na mobilu hned viditeln√© */
-            background: rgba(255, 85, 0, 0.1); /* Jemn√Ω n√°dech oran≈æov√© */
+            opacity: 1 !important; /* Na mobilu hned viditelnÈ */
+            background: rgba(255, 85, 0, 0.1); /* Jemn˝ n·dech oranûovÈ */
             border-color: #ff5500;
         }
     }
     /* FOOTER */
 
     @media (max-width: 768px) {
-        /* Skryt√≠ velk√©ho n√°pisu JAMES WELLS v pati√®ce */
+        /* SkrytÌ velkÈho n·pisu JAMES WELLS v patiËce */
         .footer-logo {
             display: none !important;
         }
 
-        /* Vycentrov√°n√≠ zbytku pati√®ky pod sebe */
+        /* Vycentrov·nÌ zbytku patiËky pod sebe */
         .footer-content {
             flex-direction: column;
             gap: 20px;
@@ -1374,25 +1401,7 @@ p {
             opacity: 0.6;
         }
 
-            .footer-scroll {
-            position: fixed; /* Mus√≠ b√Ωt fixn√≠, aby tƒõ doprov√°zelo */
-            bottom: 30px;
-            right: 30px;
-            z-index: 99999 !important; /* Maxim√°ln√≠ priorita */
-            cursor: pointer;
-            touch-action: manipulation;
-            margin-top: 0; /* Vyma≈æ ten margin, tady je k niƒçemu */
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-        
-        /* Pojistka pro mobil: pokud ho chce≈° m√≠t vƒõt≈°√≠ pro prsty */
-        @media (max-width: 768px) {
-            .footer-scroll {
-                bottom: 20px;
-                right: 20px;
-                padding: 10px;
-            }
+        .footer-scroll {
+            margin-top: 10px;
         }
     }
