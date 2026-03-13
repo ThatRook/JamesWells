@@ -1,3 +1,9 @@
+/* BUILD 03 - ODSTRANĚNÍ MODRÉHO ZÁVOJE */
+* {
+    -webkit-tap-highlight-color: transparent !important;
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0) !important;
+    outline: none !important; /* Odstraní i případný tečkovaný rámeček */
+}
 /* --- ZÁKLADNÍ NASTAVENÍ A RESET --- */
 body, html {
     margin: 0;
