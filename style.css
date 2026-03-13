@@ -1,8 +1,6 @@
-/* BUILD 03/02 - TOTÁLNÍ KILL MODRÉHO ZÁVOJE */
-html, body, a, button, div, span, input {
-    -webkit-tap-highlight-color: rgba(0,0,0,0) !important;
-    -webkit-tap-highlight-color: transparent !important;
-    -webkit-user-select: none; /* Zabrání nechtěnému označování textu při tapnutí */
+* {
+    -webkit-tap-highlight-color: rgba(255, 255, 255, 0) !important; 
+    -webkit-focus-ring-color: rgba(255, 255, 255, 0) !important; 
     outline: none !important;
 }
 
