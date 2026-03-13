@@ -1391,33 +1391,46 @@ p {
     }
     /* FOOTER */
 
-    @media (max-width: 768px) {
-        /* Skrytí velkého nápisu JAMES WELLS v patièce */
-        .footer-logo {
-            display: none !important;
-        }
-
-        /* Vycentrování zbytku patièky pod sebe */
-        .footer-content {
-            flex-direction: column;
-            gap: 20px;
-            text-align: center;
-        }
-
-        .footer-info p {
-            font-size: 0.75rem;
-            margin: 5px 0;
-            opacity: 0.6;
-        }
-
-.footer-scroll {
-        position: fixed; /* Přilepí tlačítko na obrazovku */
-        bottom: 25px;
-        right: 25px;
-        background: rgba(8, 8, 8, 0.9); /* Tmavé kolečko pod šipkou */
-        padding: 12px;
-        border-radius: 50%; /* Udělá z toho hezký kruh/čtverec */
-        border: 1px solid rgba(255, 85, 0, 0.3);
-        box-shadow: 0 4px 15px rgba(0,0,0,0.5);
+/* --- OPRAVENÁ MOBILNÍ PATIČKA --- */
+@media (max-width: 768px) {
+    /* Skrytí nápisu v patičce na mobilu */
+    .footer-logo {
+        display: none !important;
     }
+
+    /* Vycentrování obsahu pod sebe */
+    .footer-content {
+        flex-direction: column;
+        gap: 20px;
+        text-align: center;
+        padding: 0 20px;
+    }
+
+    .footer-info p {
+        font-size: 0.75rem;
+        margin: 5px 0;
+        opacity: 0.6;
+    }
+
+    /* Tlačítko BACK TO TOP přilepené k rohu */
+    .footer-scroll {
+        position: fixed !important; /* Vynutí fixní pozici */
+        bottom: 25px !important;
+        right: 25px !important;
+        background: rgba(8, 8, 8, 0.95) !important; 
+        padding: 12px 15px !important;
+        border-radius: 50px !important; 
+        border: 1px solid rgba(255, 85, 0, 0.5) !important;
+        box-shadow: 0 4px 15px rgba(0,0,0,0.5) !important;
+        z-index: 99999 !important; /* Musí být nad menu */
+        display: block !important;
+        width: auto !important;
+    }
+
+    /* Úprava textu/šipky uvnitř tlačítka na mobilu */
+    .footer-scroll a {
+        font-size: 0.7rem !important;
+        color: #ff5500 !important;
+    }
+} /* <--- TATO ZÁVORKA TI TAM CHYBĚLA A JE KLÍČOVÁ */
     
