@@ -1122,60 +1122,99 @@ p {
             margin-top: 20px;
         }
     }
-
     /* GEAR NA MOBILU */
-
     @media (max-width: 768px) {
-        /* Kontejner, kterı drí kartu a šipky */
-        .gear-slider-wrapper {
-            display: flex;
-            justify-content: center; /* Vycentruje obsah horizontálnì */
-            align-items: center;
-            width: 100%;
-            margin: 0 auto;
-            padding: 0 !important; /* Odstraní pøípadné boèní paddingy */
-        }
-
-        /* Samotná oblast, kde jsou karty */
-        .gear-slider-container {
-            width: 100%;
-            max-width: 100%; /* Zajistí, e nepøetéká */
-            margin: 0 auto !important;
-            display: flex;
-            justify-content: center;
-            padding: 0 !important;
-        }
-
-        /* Vnitøní karta gearu */
-        .gear-card {
-            width: 90%; /* Dáme jí 90 %, aby se nelepila úplnì na hrany displeje */
-            max-width: 350px; /* Nebo tvá preferovaná šíøka */
-            margin: 0 auto !important; /* Tohle je nejdùleitìjší pro vycentrování */
-            left: 0 !important; /* Resetuje pøípadné absolutní pozicování */
-        }
-
-            /* Ujistíme se, e service-card uvnitø nemá fixní šíøku */
-            .gear-card .service-card {
-                width: 100% !important;
-                margin: 0 auto;
-            }
-    }
-
-    @media (max-width: 768px) {
-        /* Schováme šipky na mobilu */
         #prevGear, #nextGear {
             display: none !important;
         }
 
-        /* Roztáhneme kontejner na celou šíøku, aby byl swipe pohodlnı */
         .gear-slider-wrapper {
-            padding: 0 10px;
-            touch-action: pan-y; /* Povolí vertikální scroll webu, ale zachytí horizontální swipe */
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+            margin: 0 auto;
+            padding: 0 !important;
+            position: relative;
+            z-index: 1; /* Zajišuje, e gear nepøekryje navigaci */
         }
 
         .gear-slider-container {
-            min-height: 420px; /* Trochu víc místa pro texty na vıšku */
+            width: 100%;
+            max-width: 100%;
+            margin: 0 auto !important;
+            display: block;
+            position: relative;
+            /* Zmenšili jsme min-height, aby pod kartou nebylo tolik prázdna */
+            min-height: 380px;
+            overflow: hidden;
+            touch-action: pan-y;
         }
+
+        .gear-tabs {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-bottom: 15px; /* Zvìtši tuhle hodnotu podle potøeby */
+            flex-wrap: wrap;
+        }
+
+        .gear-card {
+            width: 90%;
+            max-width: 350px;
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            opacity: 0;
+            visibility: hidden;
+            pointer-events: none; /* Neaktivní karta je "vzduch" */
+            transition: opacity 0.3s ease, transform 0.3s ease;
+        }
+
+            .gear-card.active {
+                position: relative; /* Pouze aktivní karta drí vıšku kontejneru */
+                opacity: 1;
+                visibility: visible;
+                pointer-events: auto; /* Pouze na tuhle lze klikat/swipovat */
+                left: 0;
+                transform: none;
+                margin: 0 auto;
+                z-index: 2;
+            }
+
+            .gear-card .service-card {
+                width: 100% !important;
+                margin: 0 auto;
+            }
+
+        .gear-dots {
+            display: flex;
+            justify-content: center;
+            gap: 12px;
+            /* Sníili jsme margin z 20px/25px na 5px nebo klidnì 0 */
+            margin-top: 0px;
+            padding: 5px 0;
+            width: 100%;
+            position: relative;
+            z-index: 3;
+        }
+
+        .dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.2);
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+            .dot.active {
+                background: #ff5500;
+                box-shadow: 0 0 10px rgba(255, 85, 0, 0.6);
+                transform: scale(1.2);
+            }
     }
     /* FAQ */
     @media (max-width: 768px) {
@@ -1260,5 +1299,30 @@ p {
             opacity: 1 !important; /* Na mobilu hned viditelné */
             background: rgba(255, 85, 0, 0.1); /* Jemnı nádech oranové */
             border-color: #ff5500;
+        }
+    }
+    /* FOOTER */
+
+    @media (max-width: 768px) {
+        /* Skrytí velkého nápisu JAMES WELLS v patièce */
+        .footer-logo {
+            display: none !important;
+        }
+
+        /* Vycentrování zbytku patièky pod sebe */
+        .footer-content {
+            flex-direction: column;
+            gap: 20px;
+            text-align: center;
+        }
+
+        .footer-info p {
+            font-size: 0.75rem;
+            margin: 5px 0;
+            opacity: 0.6;
+        }
+
+        .footer-scroll {
+            margin-top: 10px;
         }
     }

@@ -93,52 +93,109 @@
     // --- 3. GEAR FILTR + SLIDER ---
     const allGearCards = document.querySelectorAll('.gear-card');
     const gearTabBtns = document.querySelectorAll('.gear-tab-btn');
-    const nextGearBtn = document.getElementById('nextGear');
-    const prevGearBtn = document.getElementById('prevGear');
+    const gearDotsContainer = document.getElementById('gear-dots');
 
     let filteredCards = [];
     let currentCardIndex = 0;
 
+    // --- UPDATE FILTRU ---
     function updateGearFilter(category) {
         filteredCards = Array.from(allGearCards).filter(card => card.dataset.cat === category);
         currentCardIndex = 0;
         renderCard();
     }
-
+    // --- ZOBRAZENÍ KARTY ---
     function renderCard() {
+        if (filteredCards.length === 0) return;
+
+        // 1. KLÍČOVÁ OPRAVA: Odstranit .active ÚPLNĚ VŠEM kartám (allGearCards)
+        // Tím zajistíme, že karty z minulé kategorie nezůstanou viditelné
         allGearCards.forEach(card => card.classList.remove('active'));
-        if (filteredCards.length > 0 && filteredCards[currentCardIndex]) {
-            filteredCards[currentCardIndex].classList.add('active');
+
+        // Ošetření indexu
+        if (currentCardIndex >= filteredCards.length) currentCardIndex = 0;
+        if (currentCardIndex < 0) currentCardIndex = filteredCards.length - 1;
+
+        // 2. Aktivace aktuální vyfiltrované karty
+        filteredCards[currentCardIndex].classList.add('active');
+
+        // Aktualizace dot indikátorů
+        updateDots();
+    }
+
+    // --- DOT INDIKÁTORY ---
+    function updateDots() {
+        if (!gearDotsContainer) return;
+        gearDotsContainer.innerHTML = '';
+
+        if (filteredCards.length > 1) {
+            filteredCards.forEach((_, index) => {
+                const dot = document.createElement('div');
+                dot.className = (index === currentCardIndex) ? 'dot active' : 'dot';
+                dot.onclick = () => {
+                    currentCardIndex = index;
+                    renderCard();
+                };
+                gearDotsContainer.appendChild(dot);
+            });
         }
     }
 
+    // --- SWIPE jen na mobil ---
+    if (window.matchMedia("(max-width: 768px)").matches) {
+        const sliderArea = document.querySelector('.gear-slider-container');
+        let touchStartX = 0;
+
+        if (sliderArea) {
+            sliderArea.addEventListener('touchstart', e => {
+                touchStartX = e.touches[0].clientX;
+            }, { passive: true });
+
+            sliderArea.addEventListener('touchend', e => {
+                const touchEndX = e.changedTouches[0].clientX;
+                const diff = touchStartX - touchEndX;
+                const swipeThreshold = 50;
+
+                if (Math.abs(diff) > swipeThreshold && filteredCards.length > 1) {
+                    if (diff > 0) currentCardIndex = (currentCardIndex + 1) % filteredCards.length;
+                    else currentCardIndex = (currentCardIndex - 1 + filteredCards.length) % filteredCards.length;
+
+                    renderCard();
+                }
+            }, { passive: true });
+        }
+    }
+
+    // --- ŠIPKY pro desktop ---
+    const prevBtn = document.getElementById('prevGear');
+    const nextBtn = document.getElementById('nextGear');
+
+    if (prevBtn) {
+        prevBtn.addEventListener('click', () => {
+            currentCardIndex = (currentCardIndex - 1 + filteredCards.length) % filteredCards.length;
+            renderCard();
+        });
+    }
+
+    if (nextBtn) {
+        nextBtn.addEventListener('click', () => {
+            currentCardIndex = (currentCardIndex + 1) % filteredCards.length;
+            renderCard();
+        });
+    }
+
+    // --- TABY ---
     gearTabBtns.forEach(btn => {
-        btn.addEventListener('click', () => {
+        btn.onclick = (e) => {
+            e.preventDefault();
             gearTabBtns.forEach(b => b.classList.remove('active'));
             btn.classList.add('active');
             updateGearFilter(btn.getAttribute('data-category'));
-        });
+        };
     });
 
-    if (nextGearBtn) {
-        nextGearBtn.addEventListener('click', () => {
-            if (filteredCards.length > 0) {
-                currentCardIndex = (currentCardIndex + 1) % filteredCards.length;
-                renderCard();
-            }
-        });
-    }
-
-    if (prevGearBtn) {
-        prevGearBtn.addEventListener('click', () => {
-            if (filteredCards.length > 0) {
-                currentCardIndex = (currentCardIndex - 1 + filteredCards.length) % filteredCards.length;
-                renderCard();
-            }
-        });
-    }
-
-    if (allGearCards.length > 0) updateGearFilter('monitoring');
+    // --- INICIALIZACE ---
+    updateGearFilter('monitoring');
 
     // Funkce pro kopírování e-mailu do schránky
     const emailCard = document.getElementById('copy-email');
@@ -241,39 +298,5 @@
         });
     });
 
-    // --- LOGIKA SWIPOVÁNÍ PRO GEAR SLIDER ---
-    const gearContainer = document.querySelector('.gear-slider-container');
-    let touchStartX = 0;
-    let touchEndX = 0;
 
-    if (gearContainer) {
-        gearContainer.addEventListener('touchstart', e => {
-            touchStartX = e.changedTouches[0].screenX;
-        }, { passive: true });
-
-        gearContainer.addEventListener('touchend', e => {
-            touchEndX = e.changedTouches[0].screenX;
-            handleSwipe();
-        }, { passive: true });
-    }
-
-    function handleSwipe() {
-        const swipeThreshold = 50; // Minimální vzdálenost v px pro detekci swipu
-
-        // Swipe DOLEVA (další karta)
-        if (touchStartX - touchEndX > swipeThreshold) {
-            if (filteredCards.length > 0) {
-                currentCardIndex = (currentCardIndex + 1) % filteredCards.length;
-                renderCard();
-            }
-        }
-
-        // Swipe DOPRAVA (předchozí karta)
-        if (touchEndX - touchStartX > swipeThreshold) {
-            if (filteredCards.length > 0) {
-                currentCardIndex = (currentCardIndex - 1 + filteredCards.length) % filteredCards.length;
-                renderCard();
-            }
-        }
-    }
 });
