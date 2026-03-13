@@ -140,6 +140,33 @@
 
     if (allGearCards.length > 0) updateGearFilter('monitoring');
 
+    // Funkce pro kopírování e-mailu do schránky
+    const emailCard = document.getElementById('copy-email');
+
+    if (emailCard) {
+        emailCard.addEventListener('click', () => {
+            const email = document.getElementById('email-text').innerText;
+            const btnText = document.getElementById('copy-btn-text');
+
+            navigator.clipboard.writeText(email).then(() => {
+                // Uložíme si původní text, abychom ho mohli vrátit
+                const originalText = btnText.innerText;
+
+                // Změna textu na potvrzení
+                btnText.innerText = 'ZKOPIROVÁNO!';
+                btnText.style.color = '#ff5500';
+
+                // Po 2 sekundách vrátíme původní stav
+                setTimeout(() => {
+                    btnText.innerText = originalText;
+                    btnText.style.color = '';
+                }, 2000);
+            }).catch(err => {
+                console.error('Chyba při kopírování: ', err);
+            });
+        });
+    }
+
     // --- 4. ANIMACE PŘI SCROLLOVÁNÍ ---
     const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
