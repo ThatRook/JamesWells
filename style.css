@@ -1,10 +1,10 @@
-/* MODRÝ ZÁVOJ */
+/* MODRÝ ZÁVOJ - Globální reset */
 * {
     -webkit-tap-highlight-color: transparent;
-    -webkit-tap-highlight-color: rgba(0, 0, 0, 0); /* Pro jistotu pro starší systémy */
+    box-sizing: border-box;
 }
 
-/* --- ZÁKLADNÍ NASTAVENÍ A RESET --- */
+/* --- ZÁKLADNÍ NASTAVENÍ --- */
 body, html {
     margin: 0;
     padding: 0;
