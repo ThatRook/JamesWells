@@ -995,20 +995,29 @@ p {
     }
 }
 
-/* MOBILNÍ VERZE */
 /* --- ZÁKLADNÍ STYL (PC verze) --- */
 .menu-toggle {
-    display: none; /* Na PC je tlaèítko schované */
+    display: none; 
 }
 
-/* --- VERZE PRO MOBIL (Aktivuje se pod 768px) --- */
+/* --- KOMPLETNÍ MOBILNÍ SEKCE (Do 768px) --- */
 @media (max-width: 768px) {
+    .main-nav {
+        transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1), background-color 0.3s ease;
+        padding: 20px 30px; 
+    }
+
+    .nav-hidden {
+        transform: translateY(-100%) !important;
+    }
+
     .menu-toggle {
         display: flex;
         flex-direction: column;
         cursor: pointer;
         gap: 6px;
         z-index: 1001;
+        touch-action: manipulation;
     }
 
     .bar {
@@ -1018,101 +1027,54 @@ p {
         transition: 0.3s;
     }
 
-    /* Transformace seznamu odkazù na mobilní menu pøes celou obrazovku */
+    /* MOBILNÍ MENU ODKAZY */
     .nav-links {
         position: fixed;
         top: 0;
-        right: -100%; /* Vyhozené mimo obrazovku vpravo */
+        right: -100%; /* Schované vpravo */
         width: 100%;
         height: 100vh;
-        background-color: rgba(10, 10, 10, 0.98); /* Tmavé pozadí webu */
+        background-color: rgba(8, 8, 8, 0.98);
         flex-direction: column;
         align-items: center;
         justify-content: center;
         transition: 0.4s ease-in-out;
         z-index: 1000;
-        display: flex; /* Aby fungovalo centrování pod sebou */
+        display: flex;
+        
+        /* KLÍČOVÁ OPRAVA: */
+        visibility: hidden; 
+        pointer-events: none; 
     }
 
-        /* Stav, kdy je mobilní menu otevøené */
-        .nav-links.active {
-            right: 0; /* Vyjede zprava na støed */
-        }
-
-        .nav-links a {
-            font-size: 1.8rem;
-            margin: 20px 0;
-            color: #fff;
-        }
-    /* --- KOMPLETNÍ MOBILNÍ SEKCE (Do 768px) --- */
-    @media (max-width: 768px) {
-
-        /* Zajištìní plynulého pohybu pro skrývání */
-        .main-nav {
-            transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1), background-color 0.3s ease;
-            padding: 20px 30px; /* Kompaktnìjší verze pro mobil */
-        }
-
-        /* Tato tøída se aktivuje skrze JS pøi scrollu dolù */
-        .nav-hidden {
-            transform: translateY(-100%) !important;
-        }
-
-        .menu-toggle {
-            display: flex;
-            flex-direction: column;
-            cursor: pointer;
-            gap: 6px;
-            z-index: 1001;
-        }
-
-        .bar {
-            width: 25px;
-            height: 3px;
-            background-color: #ff5500;
-            transition: 0.3s;
-        }
-
-        /* Vnitøek mobilního menu */
-        .nav-links {
-            position: fixed;
-            top: 0;
-            right: -100%;
-            width: 100%;
-            height: 100vh;
-            background-color: rgba(8, 8, 8, 0.98); /* Tmavé pozadí tvého studia */
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            transition: 0.4s ease-in-out;
-            z-index: 1000;
-            display: flex;
-        }
-
-            .nav-links.active {
-                right: 0;
-            }
-
-            .nav-links a {
-                font-size: 1.8rem;
-                margin: 20px 0;
-                color: #fff;
-                opacity: 1; /* Na mobilu je chceme vidìt jasnì */
-            }
-
-        /* Animace hamburgeru na X */
-        .menu-toggle.active .bar:nth-child(2) {
-            opacity: 0;
-        }
-
-        .menu-toggle.active .bar:nth-child(1) {
-            transform: translateY(9px) rotate(45deg);
-        }
-
-        .menu-toggle.active .bar:nth-child(3) {
-            transform: translateY(-9px) rotate(-45deg);
-        }
+    /* Aktivní stav menu */
+    .nav-links.active {
+        right: 0;
+        visibility: visible;
+        pointer-events: auto;
     }
+
+    .nav-links a {
+        font-size: 1.8rem;
+        margin: 20px 0;
+        color: #fff;
+        opacity: 1;
+        touch-action: manipulation;
+    }
+
+    /* Animace hamburgeru na X */
+    .menu-toggle.active .bar:nth-child(2) {
+        opacity: 0;
+    }
+
+    .menu-toggle.active .bar:nth-child(1) {
+        transform: translateY(9px) rotate(45deg);
+    }
+
+    .menu-toggle.active .bar:nth-child(3) {
+        transform: translateY(-9px) rotate(-45deg);
+    }
+}
     /* --- ÚPRAVA SEKCE O MNÌ (POUZE MOBIL) --- */
     @media (max-width: 768px) {
         #about.services-section {
