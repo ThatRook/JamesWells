@@ -281,26 +281,27 @@
 
 
 
-    // MOBILNÍ VERZE SCRIPTU
+// OVLÁDÁNÍ MENU PRO MOBIL
+const menuBtn = document.querySelector('#mobile-menu');
+const navList = document.querySelector('#nav-list');
+const navLinks = document.querySelectorAll('.nav-links a');
+const overlay = document.querySelector('.overlay'); // Přidáno pro jistotu
 
-    // OVLÁDÁNÍ MENU PRO MOBIL
-    const menuBtn = document.querySelector('#mobile-menu');
-    const navList = document.querySelector('#nav-list');
-    const navLinks = document.querySelectorAll('.nav-links a');
+// Funkce pro otevření/zavření menu přes hamburger
+menuBtn.addEventListener('click', () => {
+    menuBtn.classList.toggle('active');
+    navList.classList.toggle('active');
+    if (overlay) overlay.classList.toggle('active');
+});
 
-    // Funkce pro otevření/zavření
-    menuBtn.addEventListener('click', () => {
-        menuBtn.classList.toggle('active');
-        navList.classList.toggle('active');
+// Zavření menu po kliknutí na odkaz (aby menu nezavazelo při skoku na sekci)
+navLinks.forEach(link => {
+    link.addEventListener('click', () => {
+        menuBtn.classList.remove('active');
+        navList.classList.remove('active');
+        if (overlay) overlay.classList.remove('active');
+        
+        // Bonus: Odstraní modrý focus/rámeček po kliknutí na mobilu
+        link.blur();
     });
-
-    // Zavření menu po kliknutí na odkaz (aby se člověk mohl posunout na sekci)
-    navLinks.forEach(link => {
-        link.addEventListener('click', () => {
-            menuBtn.classList.remove('active');
-            navList.classList.remove('active');
-        });
-    });
-
-
 });
