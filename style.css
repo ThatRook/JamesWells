@@ -1410,7 +1410,14 @@ p {
             opacity: 0.6;
         }
 
-        .footer-scroll {
-            margin-top: 10px;
-        }
+.footer-scroll {
+        position: fixed; /* Přilepí tlačítko na obrazovku */
+        bottom: 25px;
+        right: 25px;
+        background: rgba(8, 8, 8, 0.9); /* Tmavé kolečko pod šipkou */
+        padding: 12px;
+        border-radius: 50%; /* Udělá z toho hezký kruh/čtverec */
+        border: 1px solid rgba(255, 85, 0, 0.3);
+        box-shadow: 0 4px 15px rgba(0,0,0,0.5);
     }
+    
