@@ -34,7 +34,14 @@ body, html {
     padding: 30px 60px;
     box-sizing: border-box;
     z-index: 9999 !important;
-    background: linear-gradient(to bottom, rgba(0,0,0,0.5), transparent);
+    background: linear-gradient(to bottom, rgba(0,0,0,0.8) 0%, rgba(0,0,0,0) 100%);
+    /* Přidej tohle pro jistotu: */
+    pointer-events: none; 
+}
+
+/* Musíme povolit klikání na logo, hamburger a odkazy zpět */
+.nav-logo, .menu-toggle, .nav-links {
+    pointer-events: auto;
 }
 
 .nav-logo {
