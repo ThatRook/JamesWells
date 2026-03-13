@@ -218,4 +218,24 @@
         });
     });
 
+    // MOBILNÍ VERZE SCRIPTU
+
+    // OVLÁDÁNÍ MENU PRO MOBIL
+    const menuBtn = document.querySelector('#mobile-menu');
+    const navList = document.querySelector('#nav-list');
+    const navLinks = document.querySelectorAll('.nav-links a');
+
+    // Funkce pro otevření/zavření
+    menuBtn.addEventListener('click', () => {
+        menuBtn.classList.toggle('active');
+        navList.classList.toggle('active');
+    });
+
+    // Zavření menu po kliknutí na odkaz (aby se člověk mohl posunout na sekci)
+    navLinks.forEach(link => {
+        link.addEventListener('click', () => {
+            menuBtn.classList.remove('active');
+            navList.classList.remove('active');
+        });
+    });
 });
