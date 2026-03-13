@@ -1,3 +1,11 @@
+
+
+/* MODRÝ ZÁVOJ */
+* {
+    -webkit-tap-highlight-color: transparent;
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0); /* Pro jistotu pro starší systémy */
+}
+
 /* --- ZÁKLADNÍ NASTAVENÍ A RESET --- */
 body, html {
     margin: 0;
