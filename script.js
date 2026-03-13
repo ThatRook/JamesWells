@@ -206,11 +206,15 @@
             const btnText = document.getElementById('copy-btn-text');
 
             navigator.clipboard.writeText(email).then(() => {
-                // Uložíme si původní text, abychom ho mohli vrátit
+                // Uložíme si původní text
                 const originalText = btnText.innerText;
 
+                // Zkusíme vzít text z atributu data-success (pro EN verzi)
+                // Pokud tam není, dáme české ZKOPIROVÁNO
+                const successText = btnText.getAttribute('data-success') || 'ZKOPIROVÁNO!';
+
                 // Změna textu na potvrzení
-                btnText.innerText = 'ZKOPIROVÁNO!';
+                btnText.innerText = successText;
                 btnText.style.color = '#ff5500';
 
                 // Po 2 sekundách vrátíme původní stav

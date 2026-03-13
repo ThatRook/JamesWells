@@ -1,0 +1,89 @@
+﻿<!DOCTYPE html>
+<html lang="cs">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>404 - Track nenalezen | James Wells</title>
+    <link rel="icon" type="image/png" sizes="32x32" href="Media/FAVI.png">
+
+    <style>
+        .error-wrapper {
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            background-color: #080808;
+            color: white;
+            font-family: 'Inter', sans-serif;
+            text-align: center;
+            padding: 20px;
+        }
+
+        .error-num {
+            font-size: clamp(6rem, 15vw, 10rem);
+            font-weight: 800;
+            color: #ff5500;
+            line-height: 1;
+            margin-bottom: 20px;
+            letter-spacing: -5px;
+        }
+
+        .error-title {
+            font-size: 1.8rem;
+            letter-spacing: 4px;
+            margin-bottom: 15px;
+            text-transform: uppercase;
+        }
+
+        .error-text {
+            font-size: 1rem;
+            opacity: 0.6;
+            margin-bottom: 40px;
+            line-height: 1.6;
+        }
+
+        .en-sub {
+            display: block;
+            font-size: 0.85rem;
+            margin-top: 10px;
+            font-style: italic;
+        }
+
+        .cta-button {
+            display: inline-block;
+            padding: 15px 35px;
+            background-color: #ff5500;
+            color: white;
+            text-decoration: none;
+            font-weight: 700;
+            letter-spacing: 2px;
+            font-size: 0.8rem;
+            transition: all 0.3s ease;
+        }
+
+            .cta-button:hover {
+                transform: scale(1.05);
+                box-shadow: 0 0 20px rgba(255, 85, 0, 0.4);
+            }
+    </style>
+</head>
+<body>
+
+    <div class="error-wrapper">
+        <div class="error-content">
+            <div class="error-num">404</div>
+            <h1 class="error-title">TRACK NENALEZEN</h1>
+
+            <p class="error-text">
+                Vypad&aacute; to na &scaron;patn&yacute; routing. Tahle sekce v mixu chyb&iacute;.
+                <span class="en-sub">The track you're looking for is missing from the mix.</span>
+            </p>
+
+            <a href="index.html" class="cta-button">ZPĚT DO STUDIA / BACK TO STUDIO</a>
+        </div>
+    </div>
+
+</body>
+</html>
