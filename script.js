@@ -12,7 +12,7 @@
 
         if (!audio || !playBtn) return;
 
-        audio.volume = 0.1;
+        audio.volume = 0.4;
 
         // --- PLAY / PAUSE LOGIKA ---
         playBtn.addEventListener('click', () => {
@@ -217,4 +217,5 @@
             }
         });
     });
+
 });
