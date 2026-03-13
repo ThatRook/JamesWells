@@ -903,6 +903,15 @@ p {
         width: 100%; /* Zajistí, že se text nebude lámat døív než musí */
     }
 
+/* Samotný obal odkazu - zvětšíme plochu pro dotek a vytáhneme nad menu */
+.footer-scroll {
+    display: inline-block;
+    padding: 15px; /* Důležité: zvětší aktivní plochu pro prst na mobilu */
+    position: relative;
+    z-index: 1001; /* O 1 vyšší než menu (1000), aby bylo vždy v popředí */
+    touch-action: manipulation; /* Odstraňuje prodlevu kliknutí */
+}
+
 .footer-scroll a {
     color: #ff5500;
     text-decoration: none;
@@ -911,10 +920,10 @@ p {
     transition: all 0.3s ease;
 }
 
-    .footer-scroll a:hover {
-        color: white;
-        text-shadow: 0 0 10px rgba(255, 85, 0, 0.5);
-    }
+.footer-scroll a:hover {
+    color: white;
+    text-shadow: 0 0 10px rgba(255, 85, 0, 0.5);
+}
 
 .footer-scroll span {
     margin-left: 5px;
