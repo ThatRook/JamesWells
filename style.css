@@ -3,11 +3,6 @@
     -webkit-focus-ring-color: rgba(255, 255, 255, 0) !important; 
     outline: none !important;
 }
-
-/* Aby šlo text v těle webu normálně kopírovat, vrátíme mu možnost označení */
-p, h1, h2, h3, h4, li {
-    -webkit-user-select: text;
-}
 /* --- ZÁKLADNÍ NASTAVENÍ A RESET --- */
 body, html {
     margin: 0;
