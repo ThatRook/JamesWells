@@ -1,5 +1,3 @@
-alert("Script 08_01");
-
 document.addEventListener('DOMContentLoaded', () => {
 
     // --- 1. AUDIO PŘEHRÁVAČ ---
