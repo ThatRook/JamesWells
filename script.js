@@ -255,4 +255,20 @@ document.addEventListener('DOMContentLoaded', () => {
 
         lastScrollY = currentScrollY;
     }, { passive: true });
+
+    // --- 8. PRELOADER LOGIKA ---
+    window.addEventListener('load', () => {
+        const preloader = document.getElementById('preloader');
+        
+        // Malá pojistka: necháme preloader vidět aspoň 800ms, 
+        // i kdyby se web načetl bleskově, ať to nevypadá jako glitch
+        setTimeout(() => {
+            preloader.classList.add('preloader-hidden');
+            
+            // Po skončení animace (0.6s) můžeme preloader úplně smazat z kódu
+            setTimeout(() => {
+                preloader.style.display = 'none';
+            }, 600);
+        }, 800); 
+    });
 });
