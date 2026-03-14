@@ -1,4 +1,4 @@
-
+alert("Script 08_01");
 
 document.addEventListener('DOMContentLoaded', () => {
 
@@ -232,4 +232,29 @@ document.addEventListener('DOMContentLoaded', () => {
             navList.classList.toggle('active');
         });
     }
+    // --- 7. CHYTRÝ HEADER (PRO .main-nav) ---
+    let lastScrollY = window.pageYOffset;
+    const mainNav = document.querySelector('.main-nav');
+
+    window.addEventListener('scroll', () => {
+        const currentScrollY = window.pageYOffset;
+
+        // 1. Efekt pozadí (aktivuje se po 50px)
+        if (currentScrollY > 50) {
+            mainNav.classList.add('header-scrolled');
+        } else {
+            mainNav.classList.remove('header-scrolled');
+        }
+
+        // 2. Schovávání/Ukazování (aktivuje se po 200px, aby to v Hero sekci neblikalo)
+        if (currentScrollY > lastScrollY && currentScrollY > 200) {
+            // Jedu dolů -> Schovat
+            mainNav.classList.add('header-hidden');
+        } else {
+            // Jedu nahoru -> Ukázat
+            mainNav.classList.remove('header-hidden');
+        }
+
+        lastScrollY = currentScrollY;
+    }, { passive: true });
 });
