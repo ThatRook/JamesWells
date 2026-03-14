@@ -63,26 +63,34 @@
         });
     });
 
-    // --- 2. UNIVERZÁLNÍ SCROLL LOGIKA ---
+// --- 2. UNIVERZÁLNÍ SCROLL LOGIKA (OPRAVENO PRO BUILD 04) ---
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         anchor.addEventListener('click', function (e) {
             const targetId = this.getAttribute('href');
-
-            // Ignorujeme prázdné nebo jen mřížkové odkazy
             if (targetId === "#") return;
 
             e.preventDefault();
 
-            // Pokud klikneš na #top (včetně loga a patičky, pokud tam mají #top)
+            // ZAVŘENÍ MENU (pokud je otevřené)
+            const menuBtn = document.querySelector('#mobile-menu');
+            const navList = document.querySelector('#nav-list');
+            if (menuBtn && navList) {
+                menuBtn.classList.remove('active');
+                navList.classList.remove('active');
+            }
+
             if (targetId === '#top') {
-                window.scrollTo({
-                    top: 0,
-                    behavior: 'auto'
-                });
+                window.scrollTo({ top: 0, behavior: 'smooth' });
             } else {
                 const targetElement = document.querySelector(targetId);
                 if (targetElement) {
-                    targetElement.scrollIntoView({
+                    // Výpočet pozice s rezervou na horní lištu (80px)
+                    const headerOffset = 80;
+                    const elementPosition = targetElement.getBoundingClientRect().top;
+                    const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+
+                    window.scrollTo({
+                        top: offsetPosition,
                         behavior: 'smooth'
                     });
                 }
