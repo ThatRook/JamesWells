@@ -8,6 +8,7 @@
     box-sizing: border-box;
 }
 
+/* --- ZÁKLADNÍ NASTAVENÍ A RESET --- */
 body, html {
     margin: 0;
     padding: 0;
@@ -19,8 +20,12 @@ body, html {
     overflow-x: hidden;
 }
 
+/* --- SEM TO VLOŽ (BUILD 04 FIX) --- */
 #about, #services, #showreel, #gear, #faq, #contact {
     scroll-margin-top: 100px !important;
+    position: relative !important;
+    z-index: 1 !important;
+    pointer-events: auto !important;
 }
 
 /* --- JEMNÁ ANALOGOVÁ TEXTURA --- */
