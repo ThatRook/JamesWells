@@ -1,4 +1,4 @@
-alert("Script 03/08 nahrán!");
+alert("Script 03/07 nahrán!");
 
 document.addEventListener('DOMContentLoaded', () => {
 
@@ -59,7 +59,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-  // --- 2. UNIVERZÁLNÍ SCROLL LOGIKA (BUILD 04.3) ---
+    // --- 2. UNIVERZÁLNÍ SCROLL LOGIKA (FIXED BUILD 04.1) ---
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         anchor.addEventListener('click', function (e) {
             const targetId = this.getAttribute('href');
@@ -67,7 +67,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
             e.preventDefault();
 
-            // Zavření menu
+            // ZAVŘENÍ MENU (Pojistka pro mobil)
             const menuBtn = document.querySelector('#mobile-menu');
             const navList = document.querySelector('#nav-list');
             if (menuBtn && navList) {
@@ -75,28 +75,24 @@ document.addEventListener('DOMContentLoaded', () => {
                 navList.classList.remove('active');
             }
 
-            const targetElement = document.querySelector(targetId);
-            
-            // Výpočet pozice
-            let offsetPosition = 0;
-            if (targetId !== '#top' && targetElement) {
-                const headerOffset = 90;
-                const elementPosition = targetElement.getBoundingClientRect().top;
-                offsetPosition = elementPosition + window.pageYOffset - headerOffset;
-            }
+            if (targetId === '#top' || targetId === '#hero-top') {
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            } else {
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    // MALÝ TIMEOUT: Důležité pro mobilní prohlížeče
+                    setTimeout(() => {
+                        const headerOffset = 90;
+                        const elementPosition = targetElement.getBoundingClientRect().top;
+                        const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
 
-            // Samotný pohyb
-            window.scrollTo({
-                top: offsetPosition,
-                behavior: 'smooth'
-            });
-
-            // POJISTKA: Pokud se web do 50ms nepohne (smooth selhal), skočíme tam natvrdo
-            setTimeout(() => {
-                if (Math.abs(window.pageYOffset - offsetPosition) > 10) {
-                    window.scrollTo(0, offsetPosition);
+                        window.scrollTo({
+                            top: offsetPosition,
+                            behavior: 'smooth'
+                        });
+                    }, 15); // 15ms stačí na refresh layoutu
                 }
-            }, 100);
+            }
         });
     });
 
