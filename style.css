@@ -1083,31 +1083,32 @@ p {
         }
 
         /* Vnitøek mobilního menu */
+        /* Build 04 - Úprava mobilního menu */
         .nav-links {
             position: fixed;
             top: 0;
             right: -100%;
             width: 100%;
             height: 100vh;
-            background-color: rgba(8, 8, 8, 0.98); /* Tmavé pozadí tvého studia */
+            background-color: rgba(8, 8, 8, 0.98);
             flex-direction: column;
             align-items: center;
             justify-content: center;
             transition: 0.4s ease-in-out;
             z-index: 1000;
             display: flex;
+            
+            /* PŘIDÁNO: Menu je pro prohlížeč neviditelné, dokud není aktivní */
+            visibility: hidden;
+            pointer-events: none;
         }
-
-            .nav-links.active {
-                right: 0;
-            }
-
-            .nav-links a {
-                font-size: 1.8rem;
-                margin: 20px 0;
-                color: #fff;
-                opacity: 1; /* Na mobilu je chceme vidìt jasnì */
-            }
+        
+        .nav-links.active {
+            right: 0;
+            /* PŘIDÁNO: Menu se aktivuje */
+            visibility: visible;
+            pointer-events: auto;
+        }
 
         /* Animace hamburgeru na X */
         .menu-toggle.active .bar:nth-child(2) {
