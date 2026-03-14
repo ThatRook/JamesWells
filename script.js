@@ -301,14 +301,4 @@
         menuBtn.classList.toggle('active');
         navList.classList.toggle('active');
     });
-
-    // Zavření menu po kliknutí na odkaz (aby se člověk mohl posunout na sekci)
-    navLinks.forEach(link => {
-        link.addEventListener('click', () => {
-            menuBtn.classList.remove('active');
-            navList.classList.remove('active');
-        });
-    });
-
-
 });
