@@ -39,6 +39,24 @@ body {
     visibility: visible !important;
 }
 
+/* --- CHYTRÝ HEADER LOGIKA --- */
+.main-nav {
+    /* Zajistíme, že transition je plynulý */
+    transition: transform 0.4s ease-in-out, background-color 0.3s ease !important;
+}
+
+/* Třída pro schování lišty (vysune se nahoru o svou výšku) */
+.header-hidden {
+    transform: translateY(-100%);
+}
+
+/* Třída pro vzhled při scrollování (poloprůhledné pozadí) */
+.header-scrolled {
+    background-color: rgba(8, 8, 8, 0.9) !important;
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
 /* --- JEMNÁ ANALOGOVÁ TEXTURA --- */
 .overlay {
     position: fixed;
@@ -1075,6 +1093,8 @@ p {
             margin: 20px 0;
             color: #fff;
         }
+
+    
     /* --- KOMPLETNÍ MOBILNÍ SEKCE (Do 768px) --- */
     @media (max-width: 768px) {
 
