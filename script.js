@@ -1,7 +1,25 @@
 document.addEventListener('DOMContentLoaded', () => {
 
-    // --- 1. AUDIO PŘEHRÁVAČ ---
-    // (Ponecháno beze změny, funguje správně)
+    // --- 1. POMOCNÉ FUNKCE PRO MENU ---
+    const menuBtn = document.querySelector('#mobile-menu');
+    const navList = document.querySelector('#nav-list');
+    
+    const closeMenu = () => {
+        if (menuBtn && navList) {
+            menuBtn.classList.remove('active');
+            navList.classList.remove('active');
+        }
+    };
+
+    if (menuBtn && navList) {
+        menuBtn.addEventListener('click', (e) => {
+            e.preventDefault();
+            menuBtn.classList.toggle('active');
+            navList.classList.toggle('active');
+        });
+    }
+
+    // --- 2. AUDIO PŘEHRÁVAČ ---
     const audioCards = document.querySelectorAll('.js-audio-card');
     audioCards.forEach(card => {
         const audio = card.querySelector('.js-audio-element');
@@ -49,72 +67,40 @@ document.addEventListener('DOMContentLoaded', () => {
                 audio.currentTime = pos * audio.duration;
             });
         }
-
-        audio.addEventListener('ended', () => {
-            card.classList.remove('is-playing');
-            statusIcon.textContent = '▶';
-            progressFill.style.width = "0%";
-        });
     });
 
-    // --- 2. OVLÁDÁNÍ MOBILNÍHO MENU (Build 04/02 Fix) ---
-    const menuBtn = document.querySelector('#mobile-menu');
-    const navList = document.querySelector('#nav-list');
-    
-    // Funkce pro zavření menu (použijeme ji víckrát)
-    const closeMenu = () => {
-        if (menuBtn && navList) {
-            menuBtn.classList.remove('active');
-            navList.classList.remove('active');
-        }
-    };
+    // --- 3. UNIVERZÁLNÍ SCROLL LOGIKA (Build 04/04 Fix) ---
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function (e) {
+            const targetId = this.getAttribute('href');
+            if (targetId === "#" || targetId === "") return;
 
-    if (menuBtn && navList) {
-        menuBtn.addEventListener('click', () => {
-            menuBtn.classList.toggle('active');
-            navList.classList.toggle('active');
+            e.preventDefault();
+            closeMenu(); // Zavře menu na mobilu
+
+            const targetElement = document.querySelector(targetId);
+            if (targetElement) {
+                // Malý timeout, aby se stihlo zavřít menu před výpočtem pozice
+                setTimeout(() => {
+                    const headerOffset = 80; // Rezerva pro fixní menu
+                    const elementPosition = targetElement.getBoundingClientRect().top;
+                    const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+
+                    window.scrollTo({
+                        top: offsetPosition,
+                        behavior: 'smooth'
+                    });
+                }, 50);
+            }
         });
-    }
-
-// --- 3. UNIVERZÁLNÍ SCROLL LOGIKA + FIX PRO MENU (Build 04/03) ---
-document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-    anchor.addEventListener('click', function (e) {
-        const targetId = this.getAttribute('href');
-        if (targetId === "#") return;
-
-        e.preventDefault();
-        closeMenu(); // Zavřeme menu
-
-        const targetElement = document.querySelector(targetId);
-        if (targetElement) {
-            // Malý Timeout zajistí, že se menu stihne zavřít a uvolnit plochu
-            setTimeout(() => {
-                const headerOffset = 70; // Výška tvé fixní navigace
-                const elementPosition = targetElement.getBoundingClientRect().top;
-                const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
-
-                window.scrollTo({
-                    top: offsetPosition,
-                    behavior: 'smooth'
-                });
-            }, 50);
-        }
     });
-});
 
     // --- 4. GEAR FILTR + SLIDER ---
-    // (Ponecháno beze změny)
     const allGearCards = document.querySelectorAll('.gear-card');
     const gearTabBtns = document.querySelectorAll('.gear-tab-btn');
     const gearDotsContainer = document.getElementById('gear-dots');
     let filteredCards = [];
     let currentCardIndex = 0;
-
-    function updateGearFilter(category) {
-        filteredCards = Array.from(allGearCards).filter(card => card.dataset.cat === category);
-        currentCardIndex = 0;
-        renderCard();
-    }
 
     function renderCard() {
         if (filteredCards.length === 0) return;
@@ -138,42 +124,25 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         }
     }
 
-    // Swipe pro mobil
-    if (window.matchMedia("(max-width: 768px)").matches) {
-        const sliderArea = document.querySelector('.gear-slider-container');
-        let touchStartX = 0;
-        if (sliderArea) {
-            sliderArea.addEventListener('touchstart', e => { touchStartX = e.touches[0].clientX; }, { passive: true });
-            sliderArea.addEventListener('touchend', e => {
-                const touchEndX = e.changedTouches[0].clientX;
-                const diff = touchStartX - touchEndX;
-                if (Math.abs(diff) > 50 && filteredCards.length > 1) {
-                    if (diff > 0) currentCardIndex = (currentCardIndex + 1) % filteredCards.length;
-                    else currentCardIndex = (currentCardIndex - 1 + filteredCards.length) % filteredCards.length;
-                    renderCard();
-                }
-            }, { passive: true });
-        }
+    function updateGearFilter(category) {
+        filteredCards = Array.from(allGearCards).filter(card => card.dataset.cat === category);
+        currentCardIndex = 0;
+        renderCard();
     }
 
-    // Šipky pro desktop
-    const prevBtn = document.getElementById('prevGear');
-    const nextBtn = document.getElementById('nextGear');
-    if (prevBtn) prevBtn.addEventListener('click', () => { currentCardIndex = (currentCardIndex - 1 + filteredCards.length) % filteredCards.length; renderCard(); });
-    if (nextBtn) nextBtn.addEventListener('click', () => { currentCardIndex = (currentCardIndex + 1) % filteredCards.length; renderCard(); });
-
     gearTabBtns.forEach(btn => {
-        btn.onclick = (e) => {
+        btn.addEventListener('click', (e) => {
             e.preventDefault();
             gearTabBtns.forEach(b => b.classList.remove('active'));
             btn.classList.add('active');
             updateGearFilter(btn.getAttribute('data-category'));
-        };
+        });
     });
 
+    // Inicializace gearu
     updateGearFilter('monitoring');
 
-    // --- 5. OSTATNÍ (Email, Observer, FAQ) ---
+    // --- 5. OSTATNÍ FUNKCE (Email, FAQ, Observer) ---
     const emailCard = document.getElementById('copy-email');
     if (emailCard) {
         emailCard.addEventListener('click', () => {
@@ -181,8 +150,7 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             const btnText = document.getElementById('copy-btn-text');
             navigator.clipboard.writeText(email).then(() => {
                 const originalText = btnText.innerText;
-                const successText = btnText.getAttribute('data-success') || 'ZKOPIROVÁNO!';
-                btnText.innerText = successText;
+                btnText.innerText = btnText.getAttribute('data-success') || 'ZKOPIROVÁNO!';
                 btnText.style.color = '#ff5500';
                 setTimeout(() => { btnText.innerText = originalText; btnText.style.color = ''; }, 2000);
             });
