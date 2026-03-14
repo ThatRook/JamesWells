@@ -76,27 +76,31 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // --- 3. UNIVERZÁLNÍ SCROLL LOGIKA + FIX PRO MENU ---
-    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-        anchor.addEventListener('click', function (e) {
-            const targetId = this.getAttribute('href');
-            if (targetId === "#") return;
+// --- 3. UNIVERZÁLNÍ SCROLL LOGIKA + FIX PRO MENU (Build 04/03) ---
+document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function (e) {
+        const targetId = this.getAttribute('href');
+        if (targetId === "#") return;
 
-            // KLÍČOVÝ FIX: Pokud kliknu na odkaz v menu, nejdřív menu zavřu
-            closeMenu();
+        e.preventDefault();
+        closeMenu(); // Zavřeme menu
 
-            e.preventDefault();
+        const targetElement = document.querySelector(targetId);
+        if (targetElement) {
+            // Malý Timeout zajistí, že se menu stihne zavřít a uvolnit plochu
+            setTimeout(() => {
+                const headerOffset = 70; // Výška tvé fixní navigace
+                const elementPosition = targetElement.getBoundingClientRect().top;
+                const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
 
-            if (targetId === '#top') {
-                window.scrollTo({ top: 0, behavior: 'smooth' });
-            } else {
-                const targetElement = document.querySelector(targetId);
-                if (targetElement) {
-                    targetElement.scrollIntoView({ behavior: 'smooth' });
-                }
-            }
-        });
+                window.scrollTo({
+                    top: offsetPosition,
+                    behavior: 'smooth'
+                });
+            }, 50);
+        }
     });
+});
 
     // --- 4. GEAR FILTR + SLIDER ---
     // (Ponecháno beze změny)
