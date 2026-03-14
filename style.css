@@ -19,6 +19,10 @@ body, html {
     overflow-x: hidden;
 }
 
+#about, #services, #showreel, #gear, #faq, #contact {
+    scroll-margin-top: 100px !important;
+}
+
 /* --- JEMNÁ ANALOGOVÁ TEXTURA --- */
 .overlay {
     position: fixed;
