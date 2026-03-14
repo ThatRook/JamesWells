@@ -1,10 +1,13 @@
-*:focus {
-    -webkit-tap-highlight-color: transparent;
-    outline: none;
-    -ms-touch-action: manipulation;
-    touch-action: manipulation;
+/* BUILD 04_STABLE - KOMPLETNÍ REVIZE */
+
+/* --- 1. GLOBÁLNÍ FIXY (Modrý závoj a Focus) --- */
+* {
+    -webkit-tap-highlight-color: transparent !important;
+    -webkit-focus-ring-color: transparent !important;
+    outline: none !important;
+    box-sizing: border-box;
 }
-/* --- ZÁKLADNÍ NASTAVENÍ A RESET --- */
+
 body, html {
     margin: 0;
     padding: 0;
@@ -14,7 +17,6 @@ body, html {
     color: white;
     font-family: 'Inter', sans-serif;
     overflow-x: hidden;
- /* Plynulé scrollování po kliknutí na menu */
 }
 
 /* --- JEMNÁ ANALOGOVÁ TEXTURA --- */
@@ -1082,141 +1084,139 @@ p {
             transition: 0.3s;
         }
 
-        /* Vnitøek mobilního menu */
-        /* Build 04 - Úprava mobilního menu */
-        .nav-links {
-            position: fixed;
-            top: 0;
-            right: -100%;
-            width: 100%;
-            height: 100vh;
-            background-color: rgba(8, 8, 8, 0.98);
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            transition: 0.4s ease-in-out;
-            z-index: 1000;
-            display: flex;
-            
-            /* PŘIDÁNO: Menu je pro prohlížeč neviditelné, dokud není aktivní */
-            visibility: hidden;
-            pointer-events: none;
-        }
+/* --- MOBILNÍ NAVIGACE A MENU --- */
+@media (max-width: 768px) {
+    .nav-links {
+        position: fixed;
+        top: 0;
+        right: -100%;
+        width: 100%;
+        height: 100vh;
+        background-color: rgba(8, 8, 8, 0.98);
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        transition: 0.4s ease-in-out;
+        z-index: 1000;
+        display: flex;
         
-        .nav-links.active {
-            right: 0;
-            /* PŘIDÁNO: Menu se aktivuje */
-            visibility: visible;
-            pointer-events: auto;
-        }
-
-        /* Animace hamburgeru na X */
-        .menu-toggle.active .bar:nth-child(2) {
-            opacity: 0;
-        }
-
-        .menu-toggle.active .bar:nth-child(1) {
-            transform: translateY(9px) rotate(45deg);
-        }
-
-        .menu-toggle.active .bar:nth-child(3) {
-            transform: translateY(-9px) rotate(-45deg);
-        }
+        /* FIX: Menu neblokuje zbytek webu, když je zavřené */
+        visibility: hidden;
+        pointer-events: none;
     }
-    /* --- ÚPRAVA SEKCE O MNÌ (POUZE MOBIL) --- */
-    @media (max-width: 768px) {
-        #about.services-section {
-            padding: 60px 25px !important; /* Odstup od hran displeje */
-        }
-
-        .about-text-wrapper p {
-            font-size: 1rem;
-            line-height: 1.7;
-            text-align: left !important; /* Zarovnání všech odstavcù doleva */
-            margin-bottom: 20px;
-            color: rgba(255, 255, 255, 0.8);
-        }
-
-        .lead-text {
-            font-size: 1.2rem !important;
-            text-align: left !important; /* Teï už i lead-text lícuje doleva */
-            margin-bottom: 30px !important;
-            color: #fff !important;
-        }
-
-        .about-content-centered {
-            padding: 0 !important;
-        }
+    
+    .nav-links.active {
+        right: 0;
+        visibility: visible;
+        pointer-events: auto;
     }
-    /* --- SHOWREEL MOBILNÍ ÚPRAVY --- */
-    @media (max-width: 768px) {
-        .showreel-grid {
-            gap: 20px;
-            padding: 0 10px;
-        }
 
-        .audio-card {
-            padding: 20px !important;
-            flex-direction: column; /* Všechno pod sebe */
-            align-items: center;
-        }
-
-        .audio-content {
-            flex-direction: column; /* Cover nahoru, text dolù */
-            width: 100%;
-            gap: 20px;
-        }
-
-        .audio-cover {
-            width: 160px; /* Trochu ho na mobilu zvìtšíme, a je dominantní */
-            height: 160px;
-            margin: 0 auto;
-            /* Na mobilu chceme play tlaèítko vidìt poøád, hover tam není */
-        }
-
-        .play-overlay {
-            opacity: 1 !important;
-            background: rgba(0, 0, 0, 0.3);
-        }
-
-        .audio-info {
-            text-align: center; /* Vycentrujeme texty */
-            width: 100%;
-        }
-
-            .audio-info h3 {
-                font-size: 1.2rem;
-                margin: 10px 0;
-            }
-
-        .track-tag {
-            font-size: 0.6rem;
-            letter-spacing: 1px;
-        }
-
-        .waveform {
-            justify-content: center; /* Vlnka na støed */
-            margin: 15px 0;
-        }
-
-        /* Spotify ikona v rohu */
-        .spotify-corner-link {
-            top: 15px;
-            right: 15px;
-            opacity: 1; /* Na mobilu musí být vidìt poøád */
-        }
-
-        .spotify-svg-icon {
-            width: 20px;
-            height: 20px;
-        }
-
-        /* Progress bar udìláme tlustší, aby se do nìj lépe trefovalo prstem */
-        .progress-container {
-            height: 6px;
-            margin-top: 20px;
-        }
+    /* Animace hamburgeru na X */
+    .menu-toggle.active .bar:nth-child(2) {
+        opacity: 0;
     }
+
+    .menu-toggle.active .bar:nth-child(1) {
+        transform: translateY(9px) rotate(45deg);
+    }
+
+    .menu-toggle.active .bar:nth-child(3) {
+        transform: translateY(-9px) rotate(-45deg);
+    }
+} /* <--- Tady končí blok navigace */
+
+/* --- ÚPRAVA SEKCE O MNĚ (POUZE MOBIL) --- */
+@media (max-width: 768px) {
+    #about.services-section {
+        padding: 60px 25px !important;
+    }
+
+    .about-text-wrapper p {
+        font-size: 1rem;
+        line-height: 1.7;
+        text-align: left !important;
+        margin-bottom: 20px;
+        color: rgba(255, 255, 255, 0.8);
+    }
+
+    .lead-text {
+        font-size: 1.2rem !important;
+        text-align: left !important;
+        margin-bottom: 30px !important;
+        color: #fff !important;
+    }
+
+    .about-content-centered {
+        padding: 0 !important;
+    }
+}
+
+/* --- SHOWREEL MOBILNÍ ÚPRAVY --- */
+@media (max-width: 768px) {
+    .showreel-grid {
+        gap: 20px;
+        padding: 0 10px;
+    }
+
+    .audio-card {
+        padding: 20px !important;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .audio-content {
+        flex-direction: column;
+        width: 100%;
+        gap: 20px;
+    }
+
+    .audio-cover {
+        width: 160px;
+        height: 160px;
+        margin: 0 auto;
+    }
+
+    .play-overlay {
+        opacity: 1 !important;
+        background: rgba(0, 0, 0, 0.3);
+    }
+
+    .audio-info {
+        text-align: center;
+        width: 100%;
+    }
+
+    .audio-info h3 {
+        font-size: 1.2rem;
+        margin: 10px 0;
+    }
+
+    .track-tag {
+        font-size: 0.6rem;
+        letter-spacing: 1px;
+    }
+
+    .waveform {
+        justify-content: center;
+        margin: 15px 0;
+    }
+
+    .spotify-corner-link {
+        top: 15px;
+        right: 15px;
+        opacity: 1;
+    }
+
+    .spotify-svg-icon {
+        width: 20px;
+        height: 20px;
+    }
+
+    .progress-container {
+        height: 6px;
+        margin-top: 20px;
+    }
+}
     /* GEAR NA MOBILU */
     @media (max-width: 768px) {
         #prevGear, #nextGear {
