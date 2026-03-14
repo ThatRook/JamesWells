@@ -1,3 +1,5 @@
+alert("Script 03/06 nahrán!");
+
 document.addEventListener('DOMContentLoaded', () => {
 
     // --- 1. AUDIO PŘEHRÁVAČ ---
