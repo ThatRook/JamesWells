@@ -905,17 +905,24 @@ p {
 }
 
 .contact-btn {
-    background: rgba(255, 255, 255, 0.05); /* Velmi jemné pozadí v základu */
+    background: rgba(255, 255, 255, 0.05);
     border: 1px solid rgba(255, 85, 0, 0.3);
     color: white;
     padding: 12px 30px;
+    
+    /* --- PŘIDANÉ ŘÁDKY PRO STABILITU --- */
+    display: inline-block;      /* Nutné pro správné fungování šířky */
+    min-width: 200px;           /* Rezervuje prostor, aby se karty nehýbaly */
+    text-align: center;         /* Text zůstane uprostřed */
+    /* ---------------------------------- */
+
     letter-spacing: 2px;
-    text-transform: uppercase; /* Všechna písmena velká pro profi look */
+    text-transform: uppercase;
     cursor: pointer;
     transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     border-radius: 5px;
     font-size: 0.8rem;
-    opacity: 0.5; /* Neaktivní jsou potlaèená */
+    opacity: 0.5;
     outline: none;
 }
 
