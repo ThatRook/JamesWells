@@ -1,4 +1,4 @@
-alert("Script 03/07 nahrán!");
+alert("Script 03/07.1 nahrán!");
 
 document.addEventListener('DOMContentLoaded', () => {
 
