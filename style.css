@@ -665,8 +665,32 @@ p {
 .spotify-corner-link:hover {
     filter: drop-shadow(0 0 8px #ff5500); /* Oranžová záøe pøi hoveru */
 }
+/* KARTA COMINGSOON */
+/* Styl pro Coming Soon kartu */
+.coming-soon-card {
+    opacity: 0.5;
+    cursor: default !important;
+    pointer-events: none; /* Úplně vypne interakci */
+}
 
+.coming-soon-text {
+    font-weight: 800;
+    letter-spacing: 3px;
+    font-size: 1rem;
+    color: white;
+    border: 1px solid rgba(255, 255, 255, 0.4);
+    padding: 8px 15px;
+    background: rgba(0, 0, 0, 0.6);
+}
 
+.gray-scale img {
+    filter: grayscale(1) brightness(0.3); /* Udělá obrázek černobílý a velmi tmavý */
+}
+
+.waveform.disabled .bar {
+    background: rgba(255, 255, 255, 0.05) !important;
+    animation: none !important; /* Zastaví pohyb vlnovky */
+}
 /* --- GEAR SEKCE - FILTR A SLIDER --- */
 
 .gear-slider-wrapper {
