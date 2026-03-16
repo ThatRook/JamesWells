@@ -665,52 +665,62 @@ p {
 .spotify-corner-link:hover {
     filter: drop-shadow(0 0 8px #ff5500); /* Oranžová záøe pøi hoveru */
 }
-/* KARTA COMING SOON - SE ZÁMKEM */
+/* --- COMING SOON / LOCKED CARD STYLY --- */
+
+/* Celá karta se chová jako ostatní, jen je vizuálně utlumená */
 .coming-soon-card {
-    opacity: 0.6;
+    opacity: 0.5;
     cursor: default !important;
-    pointer-events: none; /* Úplně vypne interakci */
+    pointer-events: none;
 }
 
-/* Kontejner pro zámek místo obrázku */
+/* Tento kontejner nahrazuje tvůj .audio-cover s obrázkem */
 .lock-cover {
-    background: rgba(255, 255, 255, 0.02) !important;
-    display: flex;
+    width: 120px;          /* Stejné jako u tvojí funkční karty */
+    height: 120px;         /* Stejné jako u tvojí funkční karty */
+    flex-shrink: 0;
+    border-radius: 10px;
+    overflow: hidden;
+    position: relative;
+    background: #111;      /* O něco tmavší než pozadí karty */
+    display: flex;         /* Pro vycentrování zámku */
     justify-content: center;
     align-items: center;
-    min-height: 200px; /* Drží výšku karty */
-    position: relative;
-    border-radius: 8px;
+    border: 1px solid rgba(255, 85, 0, 0.1); /* Jemný oranžový nádech */
 }
 
 /* Ikona zámku */
 .lock-icon {
-    width: 50px;
-    height: 50px;
+    width: 40px;           /* Velikost tak akorát do 120px čtverce */
+    height: auto;
     opacity: 0.8;
-    /* Jemné pulzování pro oživení */
     animation: lockPulse 3s infinite ease-in-out;
 }
 
+/* Nápis BRZY - menší a decentnější přes zámek */
 .coming-soon-text {
-    font-weight: 800;
-    letter-spacing: 3px;
-    font-size: 1rem;
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    background: rgba(255, 85, 0, 0.2);
     color: white;
-    border: 1px solid rgba(255, 255, 255, 0.4);
-    padding: 8px 15px;
-    background: rgba(0, 0, 0, 0.6);
-    backdrop-filter: blur(5px);
+    font-size: 0.6rem;
+    text-align: center;
+    padding: 4px 0;
+    letter-spacing: 2px;
+    font-weight: 800;
+    text-transform: uppercase;
 }
 
+/* Zajištění, že vlnovka u coming soon karty je statická */
 .waveform.disabled .bar {
     background: rgba(255, 255, 255, 0.05) !important;
-    animation: none !important; /* Zastaví pohyb vlnovky */
+    animation: none !important;
 }
 
-/* Animace pulzování zámku */
+/* Jemné pulzování zámku */
 @keyframes lockPulse {
-    0%, 100% { opacity: 0.5; transform: scale(0.95); }
+    0%, 100% { opacity: 0.4; transform: scale(0.95); }
     50% { opacity: 0.8; transform: scale(1.05); }
 }
 /* --- GEAR SEKCE - FILTR A SLIDER --- */
