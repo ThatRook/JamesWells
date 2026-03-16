@@ -665,12 +665,31 @@ p {
 .spotify-corner-link:hover {
     filter: drop-shadow(0 0 8px #ff5500); /* Oranžová záøe pøi hoveru */
 }
-/* KARTA COMINGSOON */
-/* Styl pro Coming Soon kartu */
+/* KARTA COMING SOON - SE ZÁMKEM */
 .coming-soon-card {
-    opacity: 0.5;
+    opacity: 0.6;
     cursor: default !important;
     pointer-events: none; /* Úplně vypne interakci */
+}
+
+/* Kontejner pro zámek místo obrázku */
+.lock-cover {
+    background: rgba(255, 255, 255, 0.02) !important;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 200px; /* Drží výšku karty */
+    position: relative;
+    border-radius: 8px;
+}
+
+/* Ikona zámku */
+.lock-icon {
+    width: 50px;
+    height: 50px;
+    opacity: 0.8;
+    /* Jemné pulzování pro oživení */
+    animation: lockPulse 3s infinite ease-in-out;
 }
 
 .coming-soon-text {
@@ -681,15 +700,18 @@ p {
     border: 1px solid rgba(255, 255, 255, 0.4);
     padding: 8px 15px;
     background: rgba(0, 0, 0, 0.6);
-}
-
-.gray-scale img {
-    filter: grayscale(1) brightness(0.3); /* Udělá obrázek černobílý a velmi tmavý */
+    backdrop-filter: blur(5px);
 }
 
 .waveform.disabled .bar {
     background: rgba(255, 255, 255, 0.05) !important;
     animation: none !important; /* Zastaví pohyb vlnovky */
+}
+
+/* Animace pulzování zámku */
+@keyframes lockPulse {
+    0%, 100% { opacity: 0.5; transform: scale(0.95); }
+    50% { opacity: 0.8; transform: scale(1.05); }
 }
 /* --- GEAR SEKCE - FILTR A SLIDER --- */
 
