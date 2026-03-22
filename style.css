@@ -662,7 +662,7 @@ p {
 .soundcloud-corner-link {
     position: absolute;
     top: 20px;    /* Stejná výška jako Spotify */
-    right: 52px;  /* Posunuto doleva (20px mezera + šířka ikony + rezerva) */
+    right: 70px;  /* Posunuto doleva (20px mezera + šířka ikony + rezerva) */
     z-index: 10;
     transition: transform 0.3s ease, opacity 0.3s ease;
     opacity: 0.6;
