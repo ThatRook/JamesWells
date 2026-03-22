@@ -647,14 +647,36 @@ p {
     right: 20px;
     z-index: 10;
     transition: transform 0.3s ease, opacity 0.3s ease;
-    opacity: 0.6; /* Decentní vzhled, dokud na kartu nenajedeš */
+    opacity: 0.6;
 }
 
 .spotify-svg-icon {
     width: 22px;
     height: 22px;
-    /* Pokud je tvé SVG èerné, tento filtr ho obarví do tvé oranžové */
     filter: invert(48%) sepia(79%) saturate(2476%) hue-rotate(346deg) brightness(101%) contrast(101%);
+}
+
+/* Styling pro SoundCloud ikonu v rohu (STEJNÝ STYL) */
+.soundcloud-corner-link {
+    position: absolute;
+    top: 55px; /* Posunuto níž, aby nebyly přes sebe */
+    right: 20px;
+    z-index: 10;
+    transition: transform 0.3s ease, opacity 0.3s ease;
+    opacity: 0.6;
+}
+
+.soundcloud-svg-icon {
+    width: 22px;
+    height: 22px;
+    /* Stejný filtr pro tvou oranžovou */
+    filter: invert(48%) sepia(79%) saturate(2476%) hue-rotate(346deg) brightness(101%) contrast(101%);
+}
+
+/* Hover efekty pro obě */
+.spotify-corner-link:hover, .soundcloud-corner-link:hover {
+    transform: scale(1.15);
+    opacity: 1;
 }
 
 .audio-card:hover .spotify-corner-link {
