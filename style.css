@@ -1384,6 +1384,9 @@ p {
         margin: 15px 0;
     }
 
+/* --- MOBILNÍ FIX PRO IKONY V SHOWREELU --- */
+@media (max-width: 768px) {
+    /* Spotify - tvoje stávající nastavení */
     .spotify-corner-link {
         top: 15px;
         right: 15px;
@@ -1394,6 +1397,23 @@ p {
         width: 20px;
         height: 20px;
     }
+
+    /* SoundCloud - upraveno, aby byl hned vedle Spotify */
+    .soundcloud-corner-link {
+        top: 15px;      /* Stejná výška jako Spotify */
+        /* Výpočet: 15px (okraj) + 20px (šířka spotify) + 10px (mezera) = 45px */
+        right: 45px;    
+        opacity: 1;
+    }
+
+    .soundcloud-svg-icon {
+        width: 20px;
+        height: 20px;
+        /* Na mobilu snížíme scale, aby to "nefackovalo" název projektu */
+        transform: scale(1.2); 
+        transform-origin: center;
+    }
+}
 
     .progress-container {
         height: 6px;
