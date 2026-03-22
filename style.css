@@ -640,11 +640,13 @@ p {
     /* Neonová záøe kolem linek PNG */
     filter: brightness(0) saturate(100%) invert(43%) sepia(96%) saturate(3000%) hue-rotate(1deg) brightness(101%) contrast(106%) drop-shadow(0 0 10px rgba(255, 85, 0, 0.8));
 }
-/* Styling pro Spotify ikonu v rohu */
+/* --- IKONY V ROHU KARTY (VEDLE SEBE) --- */
+
+/* Styling pro Spotify ikonu */
 .spotify-corner-link {
     position: absolute;
     top: 20px;
-    right: 20px;
+    right: 20px; /* Zůstává v úplném rohu */
     z-index: 10;
     transition: transform 0.3s ease, opacity 0.3s ease;
     opacity: 0.6;
@@ -656,39 +658,36 @@ p {
     filter: invert(48%) sepia(79%) saturate(2476%) hue-rotate(346deg) brightness(101%) contrast(101%);
 }
 
-/* Styling pro SoundCloud ikonu v rohu (PNG verze) */
+/* Styling pro SoundCloud ikonu (VEDLE Spotify) */
 .soundcloud-corner-link {
     position: absolute;
-    top: 55px; /* Pod Spotify ikonou */
-    right: 20px;
+    top: 20px;    /* Stejná výška jako Spotify */
+    right: 52px;  /* Posunuto doleva (20px mezera + šířka ikony + rezerva) */
     z-index: 10;
     transition: transform 0.3s ease, opacity 0.3s ease;
     opacity: 0.6;
 }
 
 .soundcloud-svg-icon {
-    width: 22px;
+    width: 25px;  /* SoundCloud logo je přirozeně placatější, 25px vypadá opticky lépe k 22px Spotify */
     height: 22px;
-    object-fit: contain; /* Důležité pro PNG, aby se nedeformovalo */
-    
-    /* VYLEPŠENÝ FILTR: brightness(0) udělá z jakékoliv barvy černou, 
-       zbytek filtru ji pak přebartví na tvou oranžovou #ff5500 */
-    filter: brightness(0) invert(48%) sepia(79%) saturate(2476%) hue-rotate(346deg) brightness(101%) contrast(101%);
+    object-fit: contain;
+    /* Stejný filtr jako u Spotify */
+    filter: invert(48%) sepia(79%) saturate(2476%) hue-rotate(346deg) brightness(101%) contrast(101%);
 }
 
-/* Společný hover pro obě */
-.spotify-corner-link:hover, .soundcloud-corner-link:hover {
+/* Společný hover pro obě ikony při najetí na KARTU */
+.audio-card:hover .spotify-corner-link,
+.audio-card:hover .soundcloud-corner-link {
+    opacity: 1;
+}
+
+/* Hover efekt přímo na IKONY (Zvětšení a Záře) */
+.spotify-corner-link:hover, 
+.soundcloud-corner-link:hover {
     transform: scale(1.15);
-    opacity: 1;
-}
-
-.audio-card:hover .spotify-corner-link {
-    opacity: 1;
-    transform: scale(1.1);
-}
-
-.spotify-corner-link:hover {
-    filter: drop-shadow(0 0 8px #ff5500); /* Oranžová záøe pøi hoveru */
+    opacity: 1 !important;
+    filter: drop-shadow(0 0 8px #ff5500); /* Oranžová záře při hoveru */
 }
 /* --- COMING SOON / LOCKED CARD STYLY --- */
 
