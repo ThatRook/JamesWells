@@ -674,6 +674,8 @@ p {
     object-fit: contain;
     /* Stejný filtr jako u Spotify */
     filter: invert(48%) sepia(79%) saturate(2476%) hue-rotate(346deg) brightness(101%) contrast(101%);
+    transform: scale(1.4); 
+    transform-origin: center;
 }
 
 /* Společný hover pro obě ikony při najetí na KARTU */
