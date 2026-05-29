@@ -1,274 +1,289 @@
-document.addEventListener('DOMContentLoaded', () => {
+// Kontrolní výpis do konzole pro ovìøení správného propojení souboru
+console.log("LOG: script.js je úspìšnì propojen a naèten.");
 
-    // --- 1. AUDIO PÅ˜EHRÃVAÄŒ ---
+// Globální datový objekt pro hardwarový rack studia
+const studioRackData = {
+    workstation: { protocol: "BUS_01 // NODE_AUDIO_CORE // ONLINE", title: "CORE" },
+    capture: { protocol: "BUS_02 // NODE_GEAR_ARSENAL // ONLINE", title: "GEAR" },
+    chill: { protocol: "BUS_03 // NODE_LOUNGE // ONLINE", title: "CHILL" },
+    minibar: { protocol: "BUS_04 // NODE_REFRESH // ONLINE", title: "MINIBAR" }
+};
+
+window.addEventListener("DOMContentLoaded", () => {
+
+    // ==========================================================================
+    // 1. MECHANIKA ROZJÍŽDÌNÍ KARET (GSAP)
+    // ==========================================================================
+    const container = document.querySelector('.music-container .container');
+
+    if (container) {
+        const containerW = container.clientWidth;
+        const cards = document.querySelectorAll('.card');
+        const cardsLength = cards.length;
+        const cardContent = document.querySelectorAll('.card .content');
+        let currentPortion = 0;
+
+        cards.forEach(card => {
+            gsap.set(card, {
+                xPercent: (Math.random() - 0.5) * 15,
+                yPercent: (Math.random() - 0.5) * 15,
+                rotation: (Math.random() - 0.5) * 15,
+            });
+        });
+
+        container.addEventListener("mousemove", e => {
+            const mouseX = e.clientX - container.getBoundingClientRect().left;
+            const percentage = mouseX / containerW;
+            const activePortion = Math.ceil(percentage * cardsLength);
+
+            if (activePortion !== currentPortion && activePortion > 0 && activePortion <= cardsLength) {
+                if (currentPortion !== 0) { resetPortion(currentPortion - 1); }
+                currentPortion = activePortion;
+                newPortion(currentPortion - 1);
+            }
+        });
+
+        container.addEventListener("mouseleave", () => {
+            resetPortion(currentPortion - 1);
+            currentPortion = 0;
+            gsap.to(cardContent, {
+                xPercent: 0,
+                ease: 'elastic.out(1, 0.75)',
+                duration: 0.8
+            });
+        });
+
+        function resetPortion(index) {
+            if (cards[index]) {
+                gsap.to(cards[index], {
+                    xPercent: (Math.random() - 0.5) * 10,
+                    yPercent: (Math.random() - 0.5) * 10,
+                    rotation: (Math.random() - 0.5) * 15,
+                    scale: 1,
+                    duration: 0.8,
+                    ease: 'elastic.out(1, 0.75)',
+                });
+            }
+        }
+
+        function newPortion(i) {
+            if (cards[i]) {
+                gsap.to(cards[i], {
+                    xPercent: 0,
+                    yPercent: 0,
+                    rotation: 0,
+                    duration: 0.8,
+                    scale: 1.1,
+                    ease: 'elastic.out(1, 0.75)'
+                });
+            }
+
+            cardContent.forEach((content, index) => {
+                if (index !== i) {
+                    gsap.to(content, {
+                        xPercent: 75 / (index - i),
+                        ease: 'elastic.out(1, 0.75)',
+                        duration: 0.8
+                    });
+                } else {
+                    gsap.to(content, { xPercent: 0, ease: 'elastic.out(1, 0.75)', duration: 0.8 });
+                }
+            });
+        }
+    }
+
+    // ==========================================================================
+    // 2. LOGIKA AUDIO PØEHRÁVAÈE
+    // ==========================================================================
     const audioCards = document.querySelectorAll('.js-audio-card');
 
     audioCards.forEach(card => {
         const audio = card.querySelector('.js-audio-element');
-        const playBtn = card.querySelector('.js-play-trigger');
-        const statusIcon = card.querySelector('.play-status-icon');
-        const progressContainer = card.querySelector('.js-progress-container');
-        const progressFill = card.querySelector('.js-progress-fill');
+        const playTrigger = card.querySelector('.js-play-trigger');
+        const playText = card.querySelector('.js-play-text');
 
-        if (!audio || !playBtn) return;
-        audio.volume = 0.4;
+        if (audio && playTrigger) {
+            audio.volume = 0.4;
 
-        playBtn.addEventListener('click', () => {
-            audioCards.forEach(otherCard => {
-                const otherAudio = otherCard.querySelector('.js-audio-element');
-                if (otherAudio && otherAudio !== audio) {
-                    otherAudio.pause();
-                    otherCard.classList.remove('is-playing');
-                    const otherIcon = otherCard.querySelector('.play-status-icon');
-                    if (otherIcon) otherIcon.textContent = 'â–¶';
+            playTrigger.addEventListener('click', (e) => {
+                e.stopPropagation();
+
+                if (audio.paused) {
+                    audio.play();
+                    if (playText) playText.textContent = 'PAUSE';
+                } else {
+                    audio.pause();
+                    audio.currentTime = 0; // Pøetoèí stopu okamžitì na zaèátek
+                    if (playText) playText.textContent = 'PLAY';
                 }
             });
 
-            if (audio.paused) {
-                audio.play();
-                card.classList.add('is-playing');
-                statusIcon.textContent = 'II';
-            } else {
-                audio.pause();
-                card.classList.remove('is-playing');
-                statusIcon.textContent = 'â–¶';
-            }
-        });
-
-        audio.addEventListener('timeupdate', () => {
-            if (audio.duration && progressFill) {
-                const percentage = (audio.currentTime / audio.duration) * 100;
-                progressFill.style.width = percentage + "%";
-            }
-        });
-
-        if (progressContainer) {
-            progressContainer.addEventListener('click', (e) => {
-                const rect = progressContainer.getBoundingClientRect();
-                const pos = (e.clientX - rect.left) / rect.width;
-                audio.currentTime = pos * audio.duration;
+            audio.addEventListener('ended', () => {
+                if (playText) playText.textContent = 'PLAY';
             });
         }
-
-        audio.addEventListener('ended', () => {
-            card.classList.remove('is-playing');
-            statusIcon.textContent = 'â–¶';
-            progressFill.style.width = "0%";
-        });
     });
 
-    // --- 2. UNIVERZÃLNÃ SCROLL LOGIKA (FIXED BUILD 04.1) ---
-    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-        anchor.addEventListener('click', function (e) {
-            const targetId = this.getAttribute('href');
-            if (targetId === "#" || targetId === "") return;
+    // ==========================================================================
+    // 3. INTERAKTIVNÍ KOPÍROVÁNÍ EMAILU DO SCHRÁNKY
+    // ==========================================================================
+    const emailBtn = document.getElementById("copy-email-btn");
+    const emailAddress = "james@jameswells.uk";
 
-            e.preventDefault();
+    if (emailBtn) {
+        emailBtn.addEventListener("click", () => {
+            navigator.clipboard.writeText(emailAddress).then(() => {
+                emailBtn.innerText = "[ COPIED! ]";
+                emailBtn.style.color = "#f248b6"; // Svítící rùžová
+                emailBtn.style.opacity = "1";
 
-            // ZAVÅ˜ENÃ MENU (Pojistka pro mobil)
-            const menuBtn = document.querySelector('#mobile-menu');
-            const navList = document.querySelector('#nav-list');
-            if (menuBtn && navList) {
-                menuBtn.classList.remove('active');
-                navList.classList.remove('active');
-            }
-
-            if (targetId === '#top' || targetId === '#hero-top') {
-                window.scrollTo({ top: 0, behavior: 'smooth' });
-            } else {
-                const targetElement = document.querySelector(targetId);
-                if (targetElement) {
-                    // MALÃ TIMEOUT: DÅ¯leÅ¾itÃ© pro mobilnÃ­ prohlÃ­Å¾eÄe
-                    setTimeout(() => {
-                        const headerOffset = 90;
-                        const elementPosition = targetElement.getBoundingClientRect().top;
-                        const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
-
-                        window.scrollTo({
-                            top: offsetPosition,
-                            behavior: 'smooth'
-                        });
-                    }, 15); // 15ms staÄÃ­ na refresh layoutu
-                }
-            }
-        });
-    });
-
-    // --- 3. GEAR FILTR + SLIDER ---
-    const allGearCards = document.querySelectorAll('.gear-card');
-    const gearTabBtns = document.querySelectorAll('.gear-tab-btn');
-    const gearDotsContainer = document.getElementById('gear-dots');
-
-    let filteredCards = [];
-    let currentCardIndex = 0;
-
-    function updateGearFilter(category) {
-        filteredCards = Array.from(allGearCards).filter(card => card.dataset.cat === category);
-        currentCardIndex = 0;
-        renderCard();
-    }
-
-    function renderCard() {
-        if (filteredCards.length === 0) return;
-        allGearCards.forEach(card => card.classList.remove('active'));
-        if (currentCardIndex >= filteredCards.length) currentCardIndex = 0;
-        if (currentCardIndex < 0) currentCardIndex = filteredCards.length - 1;
-        filteredCards[currentCardIndex].classList.add('active');
-        updateDots();
-    }
-
-    function updateDots() {
-        if (!gearDotsContainer) return;
-        gearDotsContainer.innerHTML = '';
-        if (filteredCards.length > 1) {
-            filteredCards.forEach((_, index) => {
-                const dot = document.createElement('div');
-                dot.className = (index === currentCardIndex) ? 'dot active' : 'dot';
-                dot.onclick = () => {
-                    currentCardIndex = index;
-                    renderCard();
-                };
-                gearDotsContainer.appendChild(dot);
-            });
-        }
-    }
-
-    // SWIPE jen na mobil
-    if (window.matchMedia("(max-width: 768px)").matches) {
-        const sliderArea = document.querySelector('.gear-slider-container');
-        let touchStartX = 0;
-        if (sliderArea) {
-            sliderArea.addEventListener('touchstart', e => {
-                touchStartX = e.touches[0].clientX;
-            }, { passive: true });
-            sliderArea.addEventListener('touchend', e => {
-                const touchEndX = e.changedTouches[0].clientX;
-                const diff = touchStartX - touchEndX;
-                if (Math.abs(diff) > 50 && filteredCards.length > 1) {
-                    if (diff > 0) currentCardIndex = (currentCardIndex + 1) % filteredCards.length;
-                    else currentCardIndex = (currentCardIndex - 1 + filteredCards.length) % filteredCards.length;
-                    renderCard();
-                }
-            }, { passive: true });
-        }
-    }
-
-    const prevBtn = document.getElementById('prevGear');
-    const nextBtn = document.getElementById('nextGear');
-    if (prevBtn) {
-        prevBtn.addEventListener('click', () => {
-            currentCardIndex = (currentCardIndex - 1 + filteredCards.length) % filteredCards.length;
-            renderCard();
-        });
-    }
-    if (nextBtn) {
-        nextBtn.addEventListener('click', () => {
-            currentCardIndex = (currentCardIndex + 1) % filteredCards.length;
-            renderCard();
-        });
-    }
-
-    gearTabBtns.forEach(btn => {
-        btn.onclick = (e) => {
-            e.preventDefault();
-            gearTabBtns.forEach(b => b.classList.remove('active'));
-            btn.classList.add('active');
-            updateGearFilter(btn.getAttribute('data-category'));
-        };
-    });
-
-    updateGearFilter('monitoring');
-
-    // EMAIL COPY
-    const emailCard = document.getElementById('copy-email');
-    if (emailCard) {
-        emailCard.addEventListener('click', () => {
-            const email = document.getElementById('email-text').innerText;
-            const btnText = document.getElementById('copy-btn-text');
-            navigator.clipboard.writeText(email).then(() => {
-                const originalText = btnText.innerText;
-                const successText = btnText.getAttribute('data-success') || 'ZKOPÃROVÃNO!';
-                btnText.innerText = successText;
-                btnText.style.color = '#ff5500';
                 setTimeout(() => {
-                    btnText.innerText = originalText;
-                    btnText.style.color = '';
-                }, 2000);
+                    emailBtn.innerText = "EMAIL";
+                    emailBtn.style.color = "";
+                    emailBtn.style.opacity = "";
+                }, 1200);
+            }).catch(err => {
+                console.error("Chyba pøi kopírování: ", err);
             });
         });
     }
 
-    // --- 4. ANIMACE PÅ˜I SCROLLOVÃNÃ ---
-    const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                entry.target.classList.add('appear');
-            }
-        });
-    }, { threshold: 0.1 });
+    // ==========================================================================
+    // 4. INTERAKTIVNÍ HARDWAROVÝ RACK 6x2M - LOGIKA S BOOTEM A LOGOUTEM
+    // ==========================================================================
+    const hotspots = document.querySelectorAll('.js-hotspot');
+    const imageContainer = document.querySelector('.studio-image-container');
 
-    document.querySelectorAll('.service-card, .section-title, .audio-card, .gear-tabs, .contact-wrapper').forEach(el => {
-        observer.observe(el);
-    });
+    const pProto = document.getElementById('st-protocol');
+    const pTitle = document.getElementById('st-title');
 
-    // --- 5. FAQ ACCORDION ---
-    document.querySelectorAll('.faq-item').forEach(item => {
-        item.addEventListener('click', () => {
-            const isActive = item.classList.contains('active');
-            document.querySelectorAll('.faq-item').forEach(el => el.classList.remove('active'));
-            if (!isActive) item.classList.add('active');
-        });
-    });
+    const bootScreen = document.getElementById('boot-screen');
+    const startBtn = document.getElementById('start-boot-btn');
+    const progressContainer = document.getElementById('progress-container');
+    const progressBar = document.getElementById('boot-progress-bar');
+    const percentageText = document.getElementById('boot-percentage-text');
+    const terminalContent = document.getElementById('terminal-content');
+    const terminalFooter = document.getElementById('terminal-footer');
+    const logoutBtn = document.getElementById('stop-logout-btn');
 
-    // --- 6. OVLÃDÃNÃ MENU PRO MOBIL ---
-    const menuBtn = document.querySelector('#mobile-menu');
-    const navList = document.querySelector('#nav-list');
-    if (menuBtn && navList) {
-        menuBtn.addEventListener('click', (e) => {
-            e.preventDefault();
-            menuBtn.classList.toggle('active');
-            navList.classList.toggle('active');
+    let isSystemOnline = false;
+
+    if (imageContainer) {
+        imageContainer.classList.add('locked-nodes');
+    }
+
+    // SPUŠTÌNÍ SYSTÉMU (BOOT SEQUENCE)
+    if (startBtn) {
+        startBtn.addEventListener('click', () => {
+            startBtn.style.display = 'none';
+            if (progressContainer) progressContainer.style.display = 'block';
+
+            let progress = 0;
+            const bootInterval = setInterval(() => {
+                progress += Math.floor(Math.random() * 8) + 4;
+
+                if (progress >= 100) {
+                    progress = 100;
+                    clearInterval(bootInterval);
+
+                    setTimeout(() => {
+                        if (bootScreen) {
+                            bootScreen.style.opacity = '0';
+                            setTimeout(() => bootScreen.style.display = 'none', 500);
+                        }
+
+                        if (terminalContent) terminalContent.classList.add('system-ready');
+                        if (terminalFooter) terminalFooter.classList.add('system-ready');
+
+                        if (imageContainer) {
+                            imageContainer.classList.remove('locked-nodes');
+                        }
+
+                        isSystemOnline = true;
+                    }, 300);
+                }
+
+                if (progressBar) progressBar.style.width = `${progress}%`;
+                if (percentageText) percentageText.innerText = `${progress}%`;
+            }, 60);
         });
     }
-    // --- 7. CHYTRÃ HEADER (PRO .main-nav) ---
-    let lastScrollY = window.pageYOffset;
-    const mainNav = document.querySelector('.main-nav');
 
-    window.addEventListener('scroll', () => {
-        const currentScrollY = window.pageYOffset;
+    // UKONÈENÍ SYSTÉMU (LOGOUT SEQUENCE)
+    if (logoutBtn) {
+        logoutBtn.addEventListener('click', () => {
+            isSystemOnline = false;
 
-        // 1. Efekt pozadÃ­ (aktivuje se po 50px)
-        if (currentScrollY > 50) {
-            mainNav.classList.add('header-scrolled');
-        } else {
-            mainNav.classList.remove('header-scrolled');
-        }
+            if (terminalContent) terminalContent.classList.remove('system-ready');
+            if (terminalFooter) terminalFooter.classList.remove('system-ready');
 
-        // 2. SchovÃ¡vÃ¡nÃ­/UkazovÃ¡nÃ­ (aktivuje se po 200px, aby to v Hero sekci neblikalo)
-        if (currentScrollY > lastScrollY && currentScrollY > 200) {
-            // Jedu dolÅ¯ -> Schovat
-            mainNav.classList.add('header-hidden');
-        } else {
-            // Jedu nahoru -> UkÃ¡zat
-            mainNav.classList.remove('header-hidden');
-        }
+            if (imageContainer) {
+                imageContainer.classList.add('locked-nodes');
+            }
 
-        lastScrollY = currentScrollY;
-    }, { passive: true });
+            if (progressBar) progressBar.style.width = '0%';
+            if (percentageText) percentageText.innerText = '0%';
 
-    // --- 8. PRELOADER LOGIKA ---
-    window.addEventListener('load', () => {
-        const preloader = document.getElementById('preloader');
-        
-        // MalÃ¡ pojistka: nechÃ¡me preloader vidÄ›t aspoÅˆ 800ms, 
-        // i kdyby se web naÄetl bleskovÄ›, aÅ¥ to nevypadÃ¡ jako glitch
-        setTimeout(() => {
-            preloader.classList.add('preloader-hidden');
-            
-            // Po skonÄenÃ­ animace (0.6s) mÅ¯Å¾eme preloader ÃºplnÄ› smazat z kÃ³du
             setTimeout(() => {
-                preloader.style.display = 'none';
-            }, 600);
-        }, 800); 
+                if (bootScreen) {
+                    bootScreen.style.display = 'flex';
+                    setTimeout(() => {
+                        bootScreen.style.opacity = '1';
+                        if (startBtn) startBtn.style.display = 'block';
+                        if (progressContainer) progressContainer.style.display = 'none';
+                    }, 50);
+                }
+            }, 400);
+        });
+    }
+
+    // LOGIKA HOVERU NA HOTSPOTY
+    if (hotspots.length > 0) {
+        hotspots.forEach(hotspot => {
+            hotspot.addEventListener('mouseenter', () => {
+                if (isSystemOnline) {
+                    const spaceType = hotspot.getAttribute('data-space');
+                    const data = studioRackData[spaceType];
+
+                    if (data) {
+                        hotspots.forEach(h => h.classList.remove('active-hotspot'));
+                        hotspot.classList.add('active-hotspot');
+
+                        if (pProto) pProto.textContent = data.protocol;
+                        if (pTitle) pTitle.textContent = data.title;
+
+                        document.querySelectorAll('.studio-promo-text').forEach(p => {
+                            p.style.display = 'none';
+                        });
+                        const activePromoElement = document.getElementById(`promo-${spaceType}`);
+                        if (activePromoElement) {
+                            activePromoElement.style.display = 'block';
+                        }
+
+                        document.querySelectorAll('.studio-gear-specs').forEach(specBox => {
+                            specBox.style.display = 'none';
+                        });
+                        const activeSpecsElement = document.getElementById(`specs-${spaceType}`);
+                        if (activeSpecsElement) {
+                            activeSpecsElement.style.display = 'flex';
+                        }
+                    }
+                }
+            });
+        });
+    }
+
+    // ==========================================================================
+    // 5. CUSTOM VIDEO LOOP TIMING ENGINE (RESET AT 8.50s)
+    // ==========================================================================
+    const loopVideos = document.querySelectorAll('.js-custom-loop');
+
+    loopVideos.forEach(video => {
+        video.addEventListener('timeupdate', () => {
+            if (video.currentTime >= 8.50) {
+                video.currentTime = 0;
+                video.play();
+            }
+        });
     });
 });
