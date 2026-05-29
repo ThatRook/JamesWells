@@ -3,85 +3,193 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style.css">
-    <title>404 - Track nenalezen | James Wells</title>
-    <link rel="icon" type="image/png" sizes="32x32" href="Media/FAVI.png">
+    <title>CRITICAL_ERROR // 404</title>
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;700&display=swap" rel="stylesheet">
 
     <style>
-        .error-wrapper {
-            height: 100vh;
+        /* ==========================================================================
+           ART_404_ERROR_PAGE_STYLES (CRITICAL SYSTEM FAILURE)
+           ========================================================================== */
+        .error-body {
+            background-color: #000000;
+            color: #ff3333; /* Agresivní hackerská červená */
+            font-family: 'IBM Plex Mono', monospace;
             display: flex;
-            flex-direction: column;
-            justify-content: center;
             align-items: center;
-            background-color: #080808;
-            color: white;
-            font-family: 'Inter', sans-serif;
-            text-align: center;
+            justify-content: center;
+            min-height: 100vh;
+            margin: 0;
             padding: 20px;
+            box-sizing: border-box;
+            overflow: hidden;
         }
 
-        .error-num {
-            font-size: clamp(6rem, 15vw, 10rem);
-            font-weight: 800;
-            color: #ff5500;
-            line-height: 1;
-            margin-bottom: 20px;
-            letter-spacing: -5px;
+        .error-terminal {
+            width: 100%;
+            max-width: 650px;
+            background: #050505;
+            border: 1px solid #ff3333;
+            padding: 30px;
+            box-shadow: 0 0 30px rgba(255, 51, 51, 0.15), inset 0 0 20px rgba(255, 51, 51, 0.05);
+            position: relative;
         }
 
-        .error-title {
-            font-size: 1.8rem;
-            letter-spacing: 4px;
-            margin-bottom: 15px;
-            text-transform: uppercase;
+            /* CRT scanlines efekt integrovaný přímo v boxu */
+            .error-terminal::before {
+                content: '';
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.4) 50%);
+                background-size: 100% 4px;
+                pointer-events: none;
+            }
+
+        .error-header {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 11px;
+            letter-spacing: 2px;
+            border-bottom: 1px solid rgba(255, 51, 51, 0.2);
+            padding-bottom: 15px;
+            margin-bottom: 25px;
+            font-weight: bold;
+        }
+
+        .error-dot {
+            width: 6px;
+            height: 6px;
+            background-color: #ff3333;
+            border-radius: 50%;
+            box-shadow: 0 0 8px #ff3333;
+            animation: blinkText 1s infinite steps(2);
+        }
+
+        .error-code {
+            font-weight: bold;
+            font-size: 14px;
+            margin: 0 0 15px 0;
+            letter-spacing: 1px;
         }
 
         .error-text {
-            font-size: 1rem;
-            opacity: 0.6;
-            margin-bottom: 40px;
+            color: rgba(255, 255, 255, 0.7); /* Čitelný text popisu */
+            font-size: 13px;
             line-height: 1.6;
+            margin: 0 0 25px 0;
         }
 
-        .en-sub {
-            display: block;
-            font-size: 0.85rem;
-            margin-top: 10px;
-            font-style: italic;
+        .error-logs {
+            background: rgba(255, 51, 51, 0.03);
+            border: 1px dashed rgba(255, 51, 51, 0.2);
+            padding: 15px;
+            font-size: 11px;
+            color: rgba(255, 51, 51, 0.6);
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+            margin-bottom: 30px;
         }
 
-        .cta-button {
-            display: inline-block;
-            padding: 15px 35px;
-            background-color: #ff5500;
-            color: white;
-            text-decoration: none;
-            font-weight: 700;
-            letter-spacing: 2px;
-            font-size: 0.8rem;
-            transition: all 0.3s ease;
+        .error-action {
+            margin-bottom: 20px;
         }
 
-            .cta-button:hover {
-                transform: scale(1.05);
-                box-shadow: 0 0 20px rgba(255, 85, 0, 0.4);
+            .error-action p {
+                font-size: 12px;
+                color: rgba(255, 255, 255, 0.5);
+                margin: 0 0 15px 0;
             }
+
+        .error-btn {
+            display: inline-block;
+            color: #ff3333;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 14px;
+            border: 1px solid #ff3333;
+            padding: 12px 20px;
+            transition: all 0.2s ease;
+            background: transparent;
+        }
+
+            .error-btn:hover {
+                background: #ff3333;
+                color: #000000;
+                box-shadow: 0 0 15px rgba(255, 51, 51, 0.4);
+            }
+
+        .error-footer {
+            border-top: 1px solid rgba(255, 51, 51, 0.1);
+            padding-top: 15px;
+            margin-top: 25px;
+            font-size: 11px;
+            color: rgba(255, 51, 51, 0.4);
+        }
+
+        /* Animace blikání kurzoru a diody */
+        @keyframes blinkText {
+            from {
+                opacity: 1;
+            }
+
+            to {
+                opacity: 0;
+            }
+        }
+
+        .blink-cursor {
+            animation: blinkText 0.8s infinite steps(2);
+        }
+
+        /* Jednoduchá responzivita pro menší telefony */
+        @media (max-width: 480px) {
+            .error-terminal {
+                padding: 20px;
+            }
+
+            .error-code {
+                font-size: 12px;
+            }
+
+            .error-text {
+                font-size: 12px;
+            }
+        }
     </style>
 </head>
-<body>
+<body class="error-body">
 
-    <div class="error-wrapper">
+    <div class="error-terminal">
+        <div class="error-header">
+            <span class="error-dot"></span>
+            <span>CRITICAL_SYSTEM_FAILURE // ERROR_404</span>
+        </div>
+
         <div class="error-content">
-            <div class="error-num">404</div>
-            <h1 class="error-title">TRACK NENALEZEN</h1>
+            <p class="error-code">>>> CODE_0x00404: TARGET_NODE_NOT_FOUND</p>
 
             <p class="error-text">
-                Vypad&aacute; to na &scaron;patn&yacute; routing. Tahle sekce v mixu chyb&iacute;.
-                <span class="en-sub">The track you're looking for is missing from the mix.</span>
+                Požadovaná stopa nebo digitální uzel v této pustině neexistuje. Buď jsi zadal špatnou frekvenci, nebo byl signál kompletně smazán ze serveru.
             </p>
 
-            <a href="index.html" class="cta-button">ZPĚT DO STUDIA / BACK TO STUDIO</a>
+            <div class="error-logs">
+                <div>[LOG] Searching directory... FAILED</div>
+                <div>[LOG] Re-routing signal... FAILED</div>
+                <div>[LOG] Human presence detected... TRUE</div>
+            </div>
+
+            <div class="error-action">
+                <p>Nahoď systém znovu z hlavního uzlu:</p>
+                <a href="index.html" class="error-btn">[ REBOOT_SYSTEM ]</a>
+            </div>
+        </div>
+
+        <div class="error-footer">
+            <span>james_wells_studio:~# <span class="blink-cursor">_</span></span>
         </div>
     </div>
 
