@@ -287,3 +287,56 @@ window.addEventListener("DOMContentLoaded", () => {
         });
     });
 });
+
+// ==========================================================================
+// 12. LOGIKA ZÁMKU STRÁNKY (PASSWORD GATE)
+// ==========================================================================
+(function () {
+    // Nastav si své tajné heslo zde:
+    const CONFIG_ACCESS_KEY = "studio2026";
+
+    // Kontrola, zda uživatel zadal heslo správnì už v minulosti (aby nemusel zadávat poøád dokola)
+    if (sessionStorage.getItem("node_decrypted") === "true") {
+        document.addEventListener("DOMContentLoaded", () => {
+            const overlay = document.getElementById("site-lock-overlay");
+            if (overlay) overlay.style.display = "none";
+        });
+        return;
+    }
+
+    document.addEventListener("DOMContentLoaded", () => {
+        const overlay = document.getElementById("site-lock-overlay");
+        const input = document.getElementById("site-password-input");
+        const btn = document.getElementById("lock-submit-btn");
+        const error = document.getElementById("lock-error-msg");
+
+        if (!overlay || !input || !btn) return;
+
+        function checkPassword() {
+            if (input.value === CONFIG_ACCESS_KEY) {
+                // Heslo je správné - uložíme stav do session a skryjeme zámek
+                sessionStorage.setItem("node_decrypted", "true");
+                overlay.style.opacity = "0";
+                overlay.style.transition = "opacity 0.4s ease";
+                setTimeout(() => {
+                    overlay.style.display = "none";
+                }, 400);
+            } else {
+                // Špatné heslo - ukážeme chybu a vyèistíme input
+                if (error) error.style.display = "block";
+                input.value = "";
+                input.focus();
+            }
+        }
+
+        // Spuštìní kliknutím na tlaèítko
+        btn.addEventListener("click", checkPassword);
+
+        // Spuštìní stisknutím klávesy Enter uvnitø inputu
+        input.addEventListener("keydown", (e) => {
+            if (e.key === "Enter") {
+                checkPassword();
+            }
+        });
+    });
+})();

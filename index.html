@@ -29,6 +29,28 @@
 </head>
 <body>
 
+    <div id="site-lock-overlay">
+        <div class="lock-terminal">
+            <div class="lock-header">
+                <span class="lock-dot"></span>
+                <span>SYSTEM_SECURITY // ONLINE</span>
+            </div>
+            <div class="lock-content">
+                <h1 class="lock-title">VSTUP ZAKÁZÁN</h1>
+                <p class="lock-subtitle">>>> ENTER ACCESS KEY</p>
+
+                <div class="lock-input-wrapper">
+                    <span>james_wells_studio login: _</span>
+                    <input type="password" id="site-password-input" placeholder="••••••••" autocomplete="off" autofocus>
+                </div>
+
+                <p id="lock-error-msg" style="display: none;">[ ERROR: INVALID_ACCESS_KEY ]</p>
+
+                <button id="lock-submit-btn">[ LOGIN ]</button>
+            </div>
+        </div>
+    </div>
+
     <nav class="fixed-menu-corner">
         <div class="fixed-menu-trigger">
             <a href="#projects" class="fixed-menu-link">PROJEKTY</a>
