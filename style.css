@@ -32,6 +32,11 @@ body {
     z-index: -3;
 }
 
+/* 🎯 TADY JE TO SPRÁVNÉ MÍSTO PRO POJISTKU: */
+.carousel-indicators {
+    display: none;
+}
+
 /* ==========================================================================
    🎛️ HIGH-TECH MINIMALISTICKÝ LOADER
    ========================================================================== */
@@ -1289,9 +1294,9 @@ p.log-text {
         min-width: 100% !important;
         top: 50% !important;
         left: 50% !important;
-        /* 🎯 UPRAVENO: Přidali jsme scale(0.85), které video s nadpisem čistě zmenší. 
-           Pokud to bude pořád moc velké, změň 0.85 třeba na 0.75 nebo 0.80 podle oka. */
-        transform: translate(-50%, -50%) scale(0.85) !important;
+        /* 🎯 UPRAVENO: Změnili jsme -50% na -58%, což video elegantně vytlačí nahoru.
+           Kdyby to bylo pořád málo, zkus tam dát -60% nebo -62%. */
+        transform: translate(-50%, -58%) scale(0.85) !important;
         object-fit: cover !important;
         margin-top: 0 !important;
     }
@@ -1301,83 +1306,148 @@ p.log-text {
         display: none !important;
     }
 
-    /* --- 1. SEKCE: PROJEKTY --- */
+    /* --- 1. SEKCE: PROJEKTY (MODERNÍ MAGNETICKÝ CAROUSEL) --- */
     .music-container {
         height: auto !important;
         min-height: 100vh !important;
-        padding: 60px 20px !important; /* Čisté horní a dolní odsazení */
-        margin-top: 0 !important; /* 🎯 OPRAVENO: Už žádné tlačení karet nahoru do videa */
+        padding: 40px 0 60px 0 !important;
+        margin-top: 0 !important;
         overflow: hidden !important;
         width: 100% !important;
         box-sizing: border-box !important;
+        display: flex !important;
+        flex-direction: column !important;
+        align-items: center !important;
     }
 
     .section-title-video {
-        width: 80vw;
-        height: 120px;
-        object-fit: cover;
-        margin-top: -60px;
-        margin-bottom: 10px;
-        transform: scale(1.1) translateX(-30px) rotate(2deg);
+        width: 80vw !important;
+        height: 120px !important;
+        object-fit: cover !important;
+        margin-top: 0px !important;
+        margin-bottom: 20px !important;
+        transform: scale(1.1) translateX(-10px) rotate(2deg) !important;
     }
 
+    /* 📦 KONTEJNER: Drží plynulý vodorovný pás */
     .music-container .container {
-        position: relative;
-        width: 100%;
-        height: 450px;
-        display: block;
-        margin: 20px auto 0 auto;
+        position: relative !important;
+        width: 100% !important;
+        height: auto !important;
+        display: flex !important;
+        flex-direction: row !important;
+        gap: 24px !important; /* Mezera mezi kartami */
+        overflow-x: auto !important;
+        overflow-y: hidden !important;
+        scroll-snap-type: x mandatory !important;
+        scroll-behavior: smooth !important;
+        padding: 30px 40px 30px 40px !important; /* Prostor kolem celého balíku */
+        box-sizing: border-box !important;
+        margin: 0 !important;
+        -webkit-overflow-scrolling: touch !important;
     }
 
+        .music-container .container::-webkit-scrollbar {
+            display: none !important;
+        }
+
+    /* 🃏 KARTA: Stabilní, samostatný obdélník v řadě za sebou */
     .music-container .card {
-        position: absolute;
-        top: 0;
-        left: 50%;
-        transform: translateX(-50%);
-        width: 85vw;
-        max-width: 340px;
-        aspect-ratio: 0.8;
-        cursor: grab;
-        touch-action: none;
-        transition: transform 0.3s ease, opacity 0.3s ease;
+        position: relative !important;
+        top: auto !important;
+        left: auto !important;
+        transform: none !important;
+        width: 80vw !important;
+        max-width: 310px !important;
+        flex-shrink: 0 !important;
+        aspect-ratio: 0.72 !important;
+        scroll-snap-align: center !important;
+        opacity: 0.3 !important;
+        transition: opacity 0.4s ease, transform 0.4s ease !important;
+        pointer-events: auto !important;
+        /* 🎯 NOVÉ: Kompletně zrušíme vrstvení z desktopu, aby karty ležely vedle sebe */
+        z-index: 1 !important;
+        margin: 0 !important;
     }
 
+        /* 🎯 NOVÉ: Natvrdo vymažeme to desktopové tahání karet přes sebe! */
         .music-container .card:not(:first-child) {
-            margin: 0;
+            margin: 0 !important;
         }
 
-        .music-container .card .content .top {
-            font-size: 24px;
-            line-height: 1.0;
+        /* 🎯 NOVÉ: Totální destrukce specifických desktopových z-indexů */
+        .music-container .card:nth-child(1),
+        .music-container .card:nth-child(2),
+        .music-container .card:nth-child(3),
+        .music-container .card:nth-child(4) {
+            z-index: 1 !important;
         }
 
-        /* 🎯 OPRAVENO: Pouze držíme overlay viditelný na mobilu, na barvy nesaháme */
-        .music-container .card .content .play-overlay {
+        /* 🌟 AKTIVNÍ KARTA: Ta uprostřed vystoupí dopředu */
+        .music-container .card.carousel-active {
             opacity: 1 !important;
-            visibility: visible !important;
-            background: rgba(0, 0, 0, 0.1) !important; /* Tvoje původní průhlednost z desktopu */
-            display: flex !important;
-            align-items: center !important;
-            justify-content: center !important;
+            transform: scale(1.04) !important;
+            z-index: 2 !important; /* Aby byla mírně nad neaktivními sousedy */
         }
 
-    /* Písmo bude stabilní, ale barvu si bere z tvých card-orange, card-pink atd. */
-    .play-text-in-cover {
-        transform: scale(1) !important;
-        opacity: 1 !important;
-        color: var(--card-accent) !important; /* Drží tvoji barvu karty */
-        /* 🎯 TADY ZVĚTŠUJEŠ PÍSMO: Nastav si klidně 24px, 26px nebo 28px podle oka */
-        font-size: 40px !important;
+        /* 🌟 AKTIVNÍ KARTA: Ta uprostřed vystoupí dopředu a plně se rozsvítí */
+        .music-container .card.carousel-active {
+            opacity: 1 !important;
+            transform: scale(1.04) !important;
+        }
+
+        /* 🛠️ VNITŘNÍ OBSAH KARTY: Oprava zborceného desktopového paddingu */
+        .music-container .card .content {
+            padding: 24px !important; /* Pevný vnitřní okraj v pixelech */
+            border-radius: 12px !important;
+        }
+
+            /* 🎤 HORNÍ NÁPIS: Resetujeme legrační desktopové jednotky vw */
+            .music-container .card .content .top {
+                font-family: 'Inter', sans-serif;
+                font-size: 24px !important; /* Pevná, obří a čitelná velikost */
+                font-weight: 900 !important;
+                letter-spacing: -0.02em !important;
+                line-height: 1.0 !important;
+            }
+
+    /* 🖼️ OBAL UVNITŘ KARTY: Vynutíme, aby přebal hrdě obsadil střed karty */
+    .card-cover-wrap {
+        margin: 15px auto !important;
+        width: 100% !important;
+        max-width: 100% !important; /* Roztáhne se na plnou dostupnou šířku karty */
+        aspect-ratio: 1 !important;
     }
 
+    /* 📱 VÝRAZNÝ TEXT "PLAY" PŘES CELÝ PŘEBAL */
+    .play-text-in-cover {
+        font-size: 26px !important; /* Pevná velikost nápisu PLAY na mobilu */
+        transform: scale(1) !important; /* Zrušíme drobné smrštění */
+    }
+
+    /* ⚡ FIX PRO OVERLAY VRSTVU NA MOBILU: Drží stabilní, jemně ztmavený podklad */
+    .music-container .card .content .play-overlay {
+        opacity: 1 !important;
+        visibility: visible !important;
+        background: rgba(0, 0, 0, 0.35) !important; /* Sytější kontrast pro nápis PLAY */
+    }
+
+    /* 🎼 SPODNÍ TECHNICKÁ LIŠTA */
     .music-container .card .content .bottom {
-        font-size: 14px;
-        padding-top: 15px;
+        font-family: 'Inter', sans-serif;
+        font-size: 13px !important; /* Čitelná velikost popisku */
+        font-weight: 800 !important;
+        padding: 12px 0 0 0 !important;
+        line-height: 1.1 !important;
     }
 
     .music-container .card .content .job {
-        font-size: 11px;
+        font-family: 'IBM Plex Mono', monospace;
+        font-size: 10px !important; /* Drobný technický font na spodku */
+        line-height: normal !important;
     }
+
+
 
     /* --- 2. SEKCE: CO DELAM (SLUŽBY) --- */
     .services-section {

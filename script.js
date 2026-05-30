@@ -395,137 +395,66 @@ window.addEventListener("DOMContentLoaded", () => {
     // ⛔ STOPKA PRO VELKÁ OKNA (VŠE POD TÍMTO REZERVUJE MÍSTO POUZE PRO MOBILNÍ SWIPE KARTY)
     if (window.innerWidth > 1024) return;
 
-    const mCardsContainer = document.querySelector(".music-container .container");
-    if (mCardsContainer) {
-        let cards = Array.from(mCardsContainer.querySelectorAll(".music-container .card"));
+    // --- B. MODERNÍ NATIVNÍ CAROUSEL ENGINE PRO MOBILY (BEZ ČÍSEL) ---
+    const carouselContainer = document.querySelector(".music-container .container");
+    const carouselCards = document.querySelectorAll(".music-container .card");
 
-        function updateStack() {
-            cards.forEach((card, index) => {
-                card.style.zIndex = cards.length - index;
-                if (index === 0) {
-                    card.style.transform = "translateX(-50%) translateY(0) scale(1)";
-                    card.style.opacity = "1";
-                    card.style.pointerEvents = "auto";
-                } else if (index <= 3) {
-                    const depth = index;
-                    card.style.transform = `translateX(-50%) translateY(${depth * 12}px) scale(${1 - depth * 0.04})`;
-                    card.style.opacity = "1";
-                    card.style.pointerEvents = "none";
-                } else {
-                    card.style.opacity = "0";
-                    card.style.pointerEvents = "none";
+    if (carouselContainer && carouselCards.length > 0) {
+
+        const carouselOptions = {
+            root: carouselContainer,
+            rootMargin: "0px -40% 0px -40%", // Hlídá kartu přesně ve středovém výřezu displeje
+            threshold: 0.1
+        };
+
+        const carouselObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    // 1. Zhasneme všechny ostatní karty
+                    carouselCards.forEach(c => c.classList.remove("carousel-active"));
+
+                    // 2. Rozsvítíme pouze tu kartu, která je přesně uprostřed obrazovky
+                    entry.target.classList.add("carousel-active");
                 }
             });
-        }
+        }, carouselOptions);
 
-        if (cards.length > 0) {
-            updateStack();
+        // Aktivujeme sledování pozice pro každou kartu zvlášť
+        carouselCards.forEach(card => carouselObserver.observe(card));
 
-            setTimeout(() => {
-                const topCard = cards[0];
-                if (topCard) {
-                    topCard.style.transition = "transform 0.4s ease-out";
-                    topCard.style.transform = "translateX(calc(-50% - 40px)) rotate(-3deg)";
-                    setTimeout(() => {
-                        topCard.style.transition = "transform 0.5s ease-in-out";
-                        topCard.style.transform = "translateX(-50%)";
-                        setTimeout(() => { topCard.style.transition = ""; }, 500);
-                    }, 450);
-                }
-            }, 1000);
+        // INTERAKCE: Přehrávání hudby na mobilní kliknutí
+        carouselCards.forEach(card => {
+            card.addEventListener('click', () => {
+                const audio = card.querySelector('.js-audio-element');
+                const playText = card.querySelector('.js-play-text');
 
-            let startX = 0;
-            let currentX = 0;
-            let isDragging = false;
-            let activeCard = null;
+                if (audio) {
+                    audio.volume = 0.4;
 
-            mCardsContainer.addEventListener("touchstart", (e) => {
-                activeCard = cards[0];
-                if (activeCard) {
-                    isDragging = true;
-                    startX = e.touches[0].clientX;
-                    activeCard.style.transition = "none";
-                }
-            }, { passive: true });
-
-            mCardsContainer.addEventListener("touchmove", (e) => {
-                if (!isDragging || !activeCard) return;
-                currentX = e.touches[0].clientX - startX;
-                if (e.cancelable) e.preventDefault();
-                activeCard.style.transform = `translateX(calc(-50% + ${currentX}px)) rotate(${currentX * 0.05}deg)`;
-            });
-
-            mCardsContainer.addEventListener("touchend", (e) => {
-                if (!isDragging || !activeCard) return;
-                isDragging = false;
-
-                const swipeDistance = Math.abs(currentX);
-
-                if (swipeDistance < 10) {
-                    if (e && e.cancelable) {
-                        e.preventDefault();
-                    }
-
-                    activeCard.style.transition = "transform 0.1s ease";
-                    activeCard.style.transform = "translateX(-50%)";
-
-                    const audio = activeCard.querySelector('.js-audio-element');
-                    const playText = activeCard.querySelector('.js-play-text');
-
-                    if (audio) {
-                        audio.volume = 0.4;
-
-                        document.querySelectorAll('.js-audio-element').forEach(el => {
-                            if (el !== audio) {
-                                el.pause();
-                                const otherCard = el.closest('.card');
-                                if (otherCard) {
-                                    const otherText = otherCard.querySelector('.js-play-text');
-                                    if (otherText) otherText.textContent = 'PLAY';
-                                }
+                    // Stopneme ostatní případně hrající skladby na webu
+                    document.querySelectorAll('.js-audio-element').forEach(el => {
+                        if (el !== audio) {
+                            el.pause();
+                            const otherCard = el.closest('.card');
+                            if (otherCard) {
+                                const otherText = otherCard.querySelector('.js-play-text');
+                                if (otherText) otherText.textContent = 'PLAY';
                             }
-                        });
-
-                        if (audio.paused) {
-                            audio.play().then(() => {
-                                if (playText) playText.textContent = 'PAUSE';
-                            }).catch(err => console.error("Audio block: ", err));
-                        } else {
-                            audio.pause();
-                            if (playText) playText.textContent = 'PLAY';
                         }
+                    });
+
+                    // Přepínáme stav hraje / nehraje
+                    if (audio.paused) {
+                        audio.play().then(() => {
+                            if (playText) playText.textContent = 'PAUSE';
+                        }).catch(err => console.error("Audio block:", err));
+                    } else {
+                        audio.pause();
+                        if (playText) playText.textContent = 'PLAY';
                     }
-                    currentX = 0;
-                    activeCard = null;
-                    return;
                 }
-
-                if (currentX < -80 || currentX > 80) {
-                    activeCard.style.transition = "transform 0.3s ease, opacity 0.3s ease";
-                    activeCard.style.transform = currentX < 0 ? "translateX(-200%) rotate(-20deg)" : "translateX(200%) rotate(20deg)";
-                    activeCard.style.opacity = "0";
-
-                    setTimeout(() => {
-                        const movedCard = cards.shift();
-                        movedCard.style.zIndex = 0;
-                        movedCard.style.transform = "translateX(-50%) translateY(30px) scale(0.9)";
-                        cards.push(movedCard);
-
-                        requestAnimationFrame(() => {
-                            movedCard.style.transition = "transform 0.4s ease, opacity 0.4s ease";
-                            movedCard.style.opacity = "1";
-                            updateStack();
-                        });
-                    }, 300);
-                } else {
-                    activeCard.style.transition = "transform 0.3s ease";
-                    activeCard.style.transform = "translateX(-50%)";
-                }
-
-                currentX = 0;
-                activeCard = null;
             });
-        }
+        });
     }
 
     const serviceCards = document.querySelectorAll(".services-section .service-card");
