@@ -114,6 +114,26 @@ body {
 }
 
 /* ==========================================================================
+   📺 GLOBÁLNÍ ANALOGOVÝ ŠUM JAKO FILTR PŘES NAPROSTO CELÝ WEB
+   ========================================================================== */
+.global-site-noise {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    height: 100dvh;
+    object-fit: cover;
+    z-index: 9999999;
+    pointer-events: none;
+    mix-blend-mode: screen;
+    /* 🎯 UPRAVENO: Zvednuto z 0.06 na 0.12 pro světlejší a výraznější zrno */
+    opacity: 0.12;
+    transform: scale(1.15);
+    transform-origin: center center;
+}
+
+/* ==========================================================================
    2. SEZNAČENÍ MAINU A ANIMACE (ODSCROLLOVÁVÁ PRYČ)
    ========================================================================== */
 .main-content {
@@ -359,18 +379,7 @@ body {
    4. AUTORSKÝ ŠUM Z AFTER EFFECTS (NAVYŠŠÍ VRSTVA KARTY)
    ========================================================================== */
 .card-ae-noise {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    mix-blend-mode: screen;
-    opacity: 0.2;
-    z-index: 10;
-    pointer-events: none;
-    transform: scale(2);
-    transform-origin: center center;
+    display: none !important; /* Kompletně lokální šum z karet vymaže */
 }
 
 /* ==========================================================================
@@ -1326,7 +1335,7 @@ p.log-text {
         object-fit: cover !important;
         margin-top: 0px !important;
         margin-bottom: 20px !important;
-        transform: scale(1.1) translateX(-10px) rotate(2deg) !important;
+        transform: scale(1.5) translateX(-10px) rotate(5deg) !important;
     }
 
     /* 📦 KONTEJNER: Drží plynulý vodorovný pás */
@@ -1471,7 +1480,7 @@ p.log-text {
         object-fit: cover;
         margin-top: 0;
         margin-bottom: 40px;
-        transform: scale(1.1) translateX(30px) rotate(-3deg);
+        transform: scale(1.5) translateX(15px) rotate(-5deg);
     }
 
     .services-grid {
@@ -1553,7 +1562,7 @@ p.log-text {
     }
 
     .header-bg-video {
-        transform: translate(-50%, -50%) scale(0.9) rotate(2deg);
+        transform: translate(-50%, -50%) scale(1.5) rotate(2deg);
     }
 
     /* 🎯 OPRAVENO: Kontejner roztáhneme na plnou šířku a vymažeme boční tlačení */
