@@ -10,6 +10,60 @@ const studioRackData = {
 };
 
 // ==========================================================================
+// 🎛️ GLOBÁLNÍ LOGIKA MINIMALISTICKÉHO LOADERU (PRO VŠECHNY DISPLEJE)
+// ==========================================================================
+(function () {
+    const percentEl = document.getElementById('loader-percentage');
+    const fillEl = document.getElementById('loader-line-fill');
+    const loaderEl = document.getElementById('site-loader');
+
+    let currentPercent = 0;
+
+    // Umělá plynulá animace startu (aby čísla hned skočila a nestála na nule)
+    const fastProgress = setInterval(() => {
+        if (currentPercent < 75) {
+            currentPercent += Math.floor(Math.random() * 5) + 1;
+            if (currentPercent > 75) currentPercent = 75;
+            updateLoader(currentPercent);
+        }
+    }, 80);
+
+    // 🎯 TADY JE TA JEDINÁ ZMĚNA UVNITŘ:
+    function updateLoader(percent) {
+        if (percentEl) {
+            percentEl.textContent = String(percent).padStart(2, '0') + ' %';
+
+            // 🛠️ Propisujeme už jen čisté procento pro výpočet opacity v CSS
+            percentEl.style.setProperty('--progress', percent);
+        }
+        if (fillEl) fillEl.style.width = percent + '%';
+    }
+
+    // Jakmile prohlížeč ohlásí: "Mám komplet stažený celý web, videa i styly"
+    window.addEventListener('load', () => {
+        clearInterval(fastProgress);
+
+        // Skočíme bleskově do finále (100 %)
+        let finalPercent = currentPercent;
+        const finishProgress = setInterval(() => {
+            if (finalPercent < 100) {
+                finalPercent += 5;
+                if (finalPercent > 100) finalPercent = 100;
+                updateLoader(finalPercent);
+            } else {
+                clearInterval(finishProgress);
+
+                // Krátká pauza na 100% pro vizuální uspokojení a plynulé zhasnutí
+                setTimeout(() => {
+                    if (loaderEl) {
+                        loaderEl.classList.add('loader-fade-out');
+                    }
+                }, 400);
+            }
+        }, 30);
+    });
+})();
+// ==========================================================================
 // ⚡ JEDNOTNÝ SKRIPT PRO CELÝ WEB (ZÁKLADNÍ DOM NAČTENÍ)
 // ==========================================================================
 window.addEventListener("DOMContentLoaded", () => {
@@ -160,12 +214,8 @@ window.addEventListener("DOMContentLoaded", () => {
     const terminalContent = document.getElementById('terminal-content');
     const terminalFooter = document.getElementById('terminal-footer');
 
-
-    // 🎯 NOVÉ: Globální definice pořadí uzlů pro správný reset při Logoutu
     const nodeOrder = ["workstation", "capture", "chill", "minibar"];
     let currentNodeIndex = 0;
-
-    window.isStudioSystemOnline = false;
 
     window.isStudioSystemOnline = false;
 
@@ -173,7 +223,6 @@ window.addEventListener("DOMContentLoaded", () => {
         imageContainer.classList.add('locked-nodes');
     }
 
-    // UNIVERZÁLNÍ SPOUŠTĚČ BOOTU (SPOLEHLIVÝ PRO DESKTOP I PRO MOBILNÍ DOTYK)
     if (globalStartBtn) {
         const executeBootSequence = (e) => {
             if (e) {
@@ -204,7 +253,6 @@ window.addEventListener("DOMContentLoaded", () => {
 
                         window.isStudioSystemOnline = true;
 
-                        // 🎯 TADY: Hned po odemčení systému rozsvítíme výchozí uzel (CORE)
                         const defaultHotspot = document.querySelector('.js-hotspot[data-space="workstation"]');
                         if (defaultHotspot) {
                             activateRackNode(defaultHotspot);
@@ -221,9 +269,6 @@ window.addEventListener("DOMContentLoaded", () => {
         globalStartBtn.addEventListener('touchstart', executeBootSequence, { passive: false });
     }
 
-
-
-    // SPOLEČNÁ FUNKCE PRO AKTIVACI UZLU
     function activateRackNode(hotspot) {
         const spaceType = hotspot.getAttribute('data-space');
         const data = studioRackData[spaceType];
@@ -245,12 +290,8 @@ window.addEventListener("DOMContentLoaded", () => {
         }
     }
 
-    // INTERAKCE UZLŮ (HOVER PRO DESKTOP, SWIPE PRO MOBIL)
-
-
     if (hotspots.length > 0) {
         hotspots.forEach(hotspot => {
-            // Desktop hover – zůstává plně funkční pro počítače s myší
             hotspot.addEventListener('mouseenter', () => {
                 if (window.isStudioSystemOnline && window.innerWidth > 1024) {
                     activateRackNode(hotspot);
@@ -259,19 +300,16 @@ window.addEventListener("DOMContentLoaded", () => {
         });
     }
 
-    // 🌟 NOVÝ MOBILNÍ SWIPE ENGINE PRO TEXTOVÝ TERMINÁL
     const terminalZone = document.getElementById('studio-terminal-zone');
     let touchStartX = 0;
     let touchEndX = 0;
 
     if (terminalZone) {
-        // Zaznamenáme, kde se prst dotkl displeje
         terminalZone.addEventListener('touchstart', (e) => {
             if (!window.isStudioSystemOnline || window.innerWidth > 1024) return;
             touchStartX = e.changedTouches[0].screenX;
         }, { passive: true });
 
-        // Zaznamenáme, kde prst z displeje odešel
         terminalZone.addEventListener('touchend', (e) => {
             if (!window.isStudioSystemOnline || window.innerWidth > 1024) return;
             touchEndX = e.changedTouches[0].screenX;
@@ -280,17 +318,15 @@ window.addEventListener("DOMContentLoaded", () => {
     }
 
     function handleTerminalSwipe() {
-        const swipeThreshold = 50; // Minimální vzdálenost v pixelech pro uznání swipu
+        const swipeThreshold = 50;
         const diffX = touchStartX - touchEndX;
 
-        // SWIPE DOLEVA (Prst jede doleva -> chceme DALŠÍ text)
         if (diffX > swipeThreshold) {
             if (currentNodeIndex < nodeOrder.length - 1) {
                 currentNodeIndex++;
                 triggerNodeChange();
             }
         }
-        // SWIPE DOPRAVA (Prst jede doprava -> chceme PŘEDCHOZÍ text)
         else if (diffX < -swipeThreshold) {
             if (currentNodeIndex > 0) {
                 currentNodeIndex--;
@@ -299,7 +335,6 @@ window.addEventListener("DOMContentLoaded", () => {
         }
     }
 
-    // Pomocná funkce, která vyhledá správný hotspot podle indexu a aktivuje ho
     function triggerNodeChange() {
         const targetSpace = nodeOrder[currentNodeIndex];
         const targetHotspot = document.querySelector(`.js-hotspot[data-space="${targetSpace}"]`);
@@ -309,7 +344,6 @@ window.addEventListener("DOMContentLoaded", () => {
         }
     }
 
-    // 5. CUSTOM VIDEO LOOP TIMING ENGINE
     const loopVideos = document.querySelectorAll('.js-custom-loop');
     loopVideos.forEach(video => {
         video.addEventListener('timeupdate', () => {
@@ -320,7 +354,6 @@ window.addEventListener("DOMContentLoaded", () => {
         });
     });
 
-    // 5. CUSTOM VIDEO LOOP TIMING ENGINE
     const menuToggle = document.querySelector(".js-menu-toggle");
     const menuNav = document.querySelector(".js-menu-navigation");
     const menuLinks = document.querySelectorAll(".fixed-menu-link");
@@ -359,10 +392,9 @@ window.addEventListener("DOMContentLoaded", () => {
         }
     }
 
-    // ⛔ STOPKA PRO VELKÁ OKNA (VŠE POD TÍMTO ŘÁDKEM BĚŽÍ POUZE NA MOBILU)
+    // ⛔ STOPKA PRO VELKÁ OKNA (VŠE POD TÍMTO REZERVUJE MÍSTO POUZE PRO MOBILNÍ SWIPE KARTY)
     if (window.innerWidth > 1024) return;
 
-    // --- B. TINDER/SPOTIFY SWIPE CARD EFFECT FOR MOBILE ---
     const mCardsContainer = document.querySelector(".music-container .container");
     if (mCardsContainer) {
         let cards = Array.from(mCardsContainer.querySelectorAll(".music-container .card"));
@@ -423,17 +455,13 @@ window.addEventListener("DOMContentLoaded", () => {
                 activeCard.style.transform = `translateX(calc(-50% + ${currentX}px)) rotate(${currentX * 0.05}deg)`;
             });
 
-            // 🎯 UPRAVENO: Přidali jsme sem "e", abychom mohli zastavit falešný klik
-            // 🎯 UPRAVENO: Přidali jsme sem "e", abychom mohli zastavit falešný klik
             mCardsContainer.addEventListener("touchend", (e) => {
                 if (!isDragging || !activeCard) return;
                 isDragging = false;
 
                 const swipeDistance = Math.abs(currentX);
 
-                // Pokud uživatel na kartu jen klepnul prstem (žádný velký swipe)
                 if (swipeDistance < 10) {
-                    // 🎯 KLÍČOVÁ POJISTKA: Zastaví emulaci desktopového kliku na mobilech!
                     if (e && e.cancelable) {
                         e.preventDefault();
                     }
@@ -447,7 +475,6 @@ window.addEventListener("DOMContentLoaded", () => {
                     if (audio) {
                         audio.volume = 0.4;
 
-                        // Zastavíme všechny ostatní hrající karty na webu
                         document.querySelectorAll('.js-audio-element').forEach(el => {
                             if (el !== audio) {
                                 el.pause();
@@ -459,7 +486,6 @@ window.addEventListener("DOMContentLoaded", () => {
                             }
                         });
 
-                        // Precizní přepínání PLAY / PAUSE na dotyk
                         if (audio.paused) {
                             audio.play().then(() => {
                                 if (playText) playText.textContent = 'PAUSE';
@@ -502,7 +528,6 @@ window.addEventListener("DOMContentLoaded", () => {
         }
     }
 
-    // --- C. AUTOMATICKÉ SPOUŠTĚNÍ ASCII VIDEÍ ---
     const serviceCards = document.querySelectorAll(".services-section .service-card");
 
     if (serviceCards.length > 0) {
@@ -528,5 +553,4 @@ window.addEventListener("DOMContentLoaded", () => {
             serviceCards.forEach(card => serviceObserver.observe(card));
         }
     }
-
-}); // 👈 TATO JEDINÁ ZÁVORKA TEĎ ČISTĚ UZAVÍRÁ CELÝ SOUBOR SCRIPT.JS
+});
