@@ -423,13 +423,21 @@ window.addEventListener("DOMContentLoaded", () => {
                 activeCard.style.transform = `translateX(calc(-50% + ${currentX}px)) rotate(${currentX * 0.05}deg)`;
             });
 
-            mCardsContainer.addEventListener("touchend", () => {
+            // 🎯 UPRAVENO: Přidali jsme sem "e", abychom mohli zastavit falešný klik
+            // 🎯 UPRAVENO: Přidali jsme sem "e", abychom mohli zastavit falešný klik
+            mCardsContainer.addEventListener("touchend", (e) => {
                 if (!isDragging || !activeCard) return;
                 isDragging = false;
 
                 const swipeDistance = Math.abs(currentX);
 
+                // Pokud uživatel na kartu jen klepnul prstem (žádný velký swipe)
                 if (swipeDistance < 10) {
+                    // 🎯 KLÍČOVÁ POJISTKA: Zastaví emulaci desktopového kliku na mobilech!
+                    if (e && e.cancelable) {
+                        e.preventDefault();
+                    }
+
                     activeCard.style.transition = "transform 0.1s ease";
                     activeCard.style.transform = "translateX(-50%)";
 
@@ -438,21 +446,26 @@ window.addEventListener("DOMContentLoaded", () => {
 
                     if (audio) {
                         audio.volume = 0.4;
+
+                        // Zastavíme všechny ostatní hrající karty na webu
                         document.querySelectorAll('.js-audio-element').forEach(el => {
                             if (el !== audio) {
                                 el.pause();
-                                const otherText = el.closest('.card').querySelector('.js-play-text');
-                                if (otherText) otherText.textContent = 'PLAY';
+                                const otherCard = el.closest('.card');
+                                if (otherCard) {
+                                    const otherText = otherCard.querySelector('.js-play-text');
+                                    if (otherText) otherText.textContent = 'PLAY';
+                                }
                             }
                         });
 
+                        // Precizní přepínání PLAY / PAUSE na dotyk
                         if (audio.paused) {
                             audio.play().then(() => {
                                 if (playText) playText.textContent = 'PAUSE';
                             }).catch(err => console.error("Audio block: ", err));
                         } else {
                             audio.pause();
-                            audio.currentTime = 0;
                             if (playText) playText.textContent = 'PLAY';
                         }
                     }

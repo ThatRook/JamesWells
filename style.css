@@ -1264,8 +1264,23 @@ p.log-text {
             line-height: 1.0;
         }
 
+        /* 🎯 OPRAVENO: Pouze držíme overlay viditelný na mobilu, na barvy nesaháme */
+        .music-container .card .content .play-overlay {
+            opacity: 1 !important;
+            visibility: visible !important;
+            background: rgba(0, 0, 0, 0.1) !important; /* Tvoje původní průhlednost z desktopu */
+            display: flex !important;
+            align-items: center !important;
+            justify-content: center !important;
+        }
+
+    /* Písmo bude stabilní, ale barvu si bere z tvých card-orange, card-pink atd. */
     .play-text-in-cover {
-        font-size: 28px;
+        transform: scale(1) !important;
+        opacity: 1 !important;
+        color: var(--card-accent) !important; /* Drží tvoji barvu karty */
+        /* 🎯 TADY ZVĚTŠUJEŠ PÍSMO: Nastav si klidně 24px, 26px nebo 28px podle oka */
+        font-size: 40px !important;
     }
 
     .music-container .card .content .bottom {
