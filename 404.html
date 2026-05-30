@@ -4,208 +4,132 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>404 // STRÁNKA NENALEZENA</title>
-    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;700&family=Inter:wght@900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;900&family=IBM+Plex+Mono&display=swap" rel="stylesheet">
 
     <style>
         /* ==========================================================================
-           ČISTÝ & SROZUMITELNÝ 404 DESIGN
+           🎛️ HIGH-TECH MINIMALISTICKÁ 404 STRÁNKA (CSS)
            ========================================================================== */
-        body {
-            background-color: #000000;
-            color: #ffffff; /* Čistá bílá namísto agresivní červené */
-            font-family: 'IBM Plex Mono', monospace;
+        html, body {
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            height: 100vh;
+            height: 100dvh;
+            background-color: #050505; /* Čistá temná černá jako loader */
+            overflow: hidden;
+        }
+
+        .error-page-body {
             display: flex;
             align-items: center;
             justify-content: center;
-            min-height: 100vh;
-            margin: 0;
-            padding: 20px;
+        }
+
+        .error-wrapper {
+            width: 100%;
+            padding: 0 20px;
             box-sizing: border-box;
-            overflow: hidden;
-            position: relative;
-        }
-
-        /* JEMNÝ DEKORATIVNÍ PODKRES (Lebka jako decentní watermark v pozadí) */
-        .bg-skull-wrapper {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            width: 40vw;
-            min-width: 300px;
-            max-width: 600px;
-            aspect-ratio: 1;
-            opacity: 0.04; /* Téměř neviditelné, extrémně vkusné */
-            pointer-events: none;
-            z-index: 1;
-        }
-
-        .bg-skull-video {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            filter: grayscale(100%);
-        }
-
-        /* KLASICKÝ STUDIOVÝ TERMINÁL */
-        .error-terminal {
-            width: 100%;
-            max-width: 600px;
-            background: linear-gradient(135deg, #050505 0%, #0d0d0d 100%);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            padding: 40px;
-            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.8);
-            position: relative;
-            z-index: 10;
-        }
-
-            /* CRT scanlines efekt z tvého hlavního webu */
-            .error-terminal::before {
-                content: '';
-                position: absolute;
-                top: 0;
-                left: 0;
-                width: 100%;
-                height: 100%;
-                background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.3) 50%);
-                background-size: 100% 4px;
-                pointer-events: none;
-            }
-
-        .error-header {
             display: flex;
-            align-items: center;
-            gap: 10px;
-            font-size: 10px;
-            color: rgba(255, 255, 255, 0.4);
+            justify-content: center;
+        }
+
+        .error-inner {
+            width: 100%;
+            max-width: 320px; /* Ostrý, kompaktní blok přesně na střed */
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+        }
+
+        .error-code {
+            font-family: 'Inter', sans-serif;
+            font-size: 64px;
+            font-weight: 900;
             letter-spacing: 2px;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
-            padding-bottom: 15px;
-            margin-bottom: 30px;
+            line-height: 1;
+            color: #ffffff;
+            opacity: 0.35; /* Tlumený tón jako u tvého menu */
+            mix-blend-mode: difference;
+            margin-bottom: 15px;
+        }
+
+        .error-line-track {
+            width: 100%;
+            height: 1px; /* Ultra tenká linka z loaderu */
+            background: rgba(255, 255, 255, 0.1);
+            position: relative;
+            overflow: hidden;
+            margin-bottom: 12px;
+        }
+
+        .error-line-fill {
+            position: absolute;
+            top: 0;
+            left: 0;
+            height: 100%;
+            width: 100%;
+            background-color: #ffffff;
+            opacity: 0.2;
+        }
+
+        .error-status {
+            color: #ff3333; /* Ostrá červená ze studia */
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 10px;
+            font-weight: bold;
+            letter-spacing: 1px;
+            margin-bottom: 20px;
             text-transform: uppercase;
         }
 
-        .error-dot {
-            width: 5px;
-            height: 5px;
-            background-color: rgba(255, 255, 255, 0.4);
-            border-radius: 50%;
-            animation: blinkText 1s infinite steps(2);
-        }
-
-        /* DOMINANTNÍ ČITELNÉ ÚSTŘEDNÍ INFO */
-        .error-title {
-            font-family: 'Inter', sans-serif;
-            font-size: 48px;
-            font-weight: 900;
-            margin: 0 0 10px 0;
-            letter-spacing: -0.03em;
-            color: #ffffff;
-        }
-
-        .error-subtitle {
-            font-size: 13px;
+        .error-desc {
             color: rgba(255, 255, 255, 0.5);
-            margin: 0 0 25px 0;
-            letter-spacing: 1px;
-        }
-
-        .error-text {
-            color: rgba(255, 255, 255, 0.7);
-            font-size: 14px;
-            line-height: 1.6;
-            margin: 0 0 35px 0;
             font-family: 'Inter', sans-serif;
+            font-size: 13px;
+            line-height: 1.6;
+            margin: 0 0 30px 0;
+            font-weight: 400;
         }
 
-        /* TLAČÍTKO V DESIGNU WEBU */
-        .error-btn {
-            display: inline-block;
-            color: #ffffff;
-            text-decoration: none;
+        .error-return-btn {
             font-family: 'IBM Plex Mono', monospace;
             font-size: 12px;
             font-weight: bold;
-            border: 1px dashed rgba(255, 255, 255, 0.3);
-            padding: 15px 25px;
-            transition: all 0.2s ease;
-            background: transparent;
-            letter-spacing: 1px;
-        }
-
-            .error-btn:hover {
-                background: rgba(255, 255, 255, 0.05);
-                border-color: #ffffff;
-                box-shadow: 0 0 15px rgba(255, 255, 255, 0.1);
-            }
-
-        .error-footer {
-            border-top: 1px solid rgba(255, 255, 255, 0.08);
-            padding-top: 15px;
-            margin-top: 35px;
-            font-size: 11px;
-            color: rgba(255, 255, 255, 0.25);
-        }
-
-        @keyframes blinkText {
-            from {
-                opacity: 1;
-            }
-
-            to {
-                opacity: 0;
-            }
-        }
-
-        .blink-cursor {
-            animation: blinkText 1s infinite steps(2);
             color: #ffffff;
+            text-decoration: none;
+            letter-spacing: 1px;
+            opacity: 0.5;
+            transition: opacity 0.2s ease, color 0.2s ease;
+            padding: 5px 0;
+            cursor: pointer;
+            display: inline-block;
         }
 
-        @media (max-width: 768px) {
-            .error-terminal {
-                padding: 25px;
+            /* Čistá interaktivní reakce při hoveru */
+            .error-return-btn:hover {
+                opacity: 1;
+                color: #ffffff;
             }
-
-            .error-title {
-                font-size: 36px;
-            }
-
-            .error-text {
-                font-size: 13px;
-            }
-        }
     </style>
 </head>
-<body class="error-body">
+<body class="error-page-body">
 
-    <div class="bg-skull-wrapper">
-        <video autoplay loop muted playsinline class="bg-skull-video">
-            <source src="MEDIA/SKULL.mp4" type="video/mp4">
-        </video>
-    </div>
+    <div class="error-wrapper">
+        <div class="error-inner">
+            <div class="error-code">404</div>
 
-    <div class="error-terminal">
-        <div class="error-header">
-            <span class="error-dot"></span>
-            <span>STATUS_CODE: 404 // NOT_FOUND</span>
-        </div>
+            <div class="error-line-track">
+                <div class="error-line-fill"></div>
+            </div>
 
-        <div class="error-content">
-            <h1 class="error-title">Uzel nenalezen.</h1>
-            <p class="error-subtitle">>>> ERROR_404: TARGET_NOT_FOUND</p>
+            <div class="error-status">PAGE_NOT_FOUND</div>
 
-            <p class="error-text">
-                Požadovaná stránka, stopa nebo soubor na této adrese neexistuje. Buď jsi zadal neplatnou frekvenci, nebo byl digitální uzel kompletně smazán.
+            <p class="error-desc">
+                Požadovaná stránka neexistuje nebo byla přesunuta. Pokračuj zpět na úvodní stranu.
             </p>
 
-            <div class="error-action">
-                <a href="index.html" class="error-btn">[ NAVRÁTIT_SE_NA_ZÁKLADNU ]</a>
-            </div>
-        </div>
-
-        <div class="error-footer">
-            <span>james_wells_studio:~# <span class="blink-cursor">_</span></span>
+            <a href="index.html" class="error-return-btn">[ ZPĚT NA ÚVOD ]</a>
         </div>
     </div>
 
