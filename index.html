@@ -29,34 +29,28 @@
 </head>
 <body>
 
-    <div id="site-lock-overlay">
-        <div class="lock-terminal">
-            <div class="lock-header">
-                <span class="lock-dot"></span>
-                <span>SYSTEM_SECURITY // ONLINE</span>
-            </div>
-            <div class="lock-content">
-                <h1 class="lock-title">VSTUP ZAKÁZÁN</h1>
-                <p class="lock-subtitle">>>> ENTER ACCESS KEY</p>
-
-                <div class="lock-input-wrapper">
-                    <span>james_wells_studio login: _</span>
-                    <input type="password" id="site-password-input" placeholder="••••••••" autocomplete="off" autofocus>
-                </div>
-
-                <p id="lock-error-msg" style="display: none;">[ ERROR: INVALID_ACCESS_KEY ]</p>
-
-                <button id="lock-submit-btn">[ LOGIN ]</button>
-            </div>
-        </div>
-    </div>
-
     <nav class="fixed-menu-corner">
-        <div class="fixed-menu-trigger">
+        <button class="menu-toggle-btn js-menu-toggle" aria-label="Menu">
+            <span class="bar"></span>
+            <span class="bar"></span>
+            <span class="bar"></span>
+        </button>
+
+        <div class="fixed-menu-trigger js-menu-navigation">
             <a href="#projects" class="fixed-menu-link">PROJEKTY</a>
             <a href="#services" class="fixed-menu-link">CO DELAM</a>
             <a href="#studio" class="fixed-menu-link">STUDIO</a>
             <a href="#statement" class="fixed-menu-link">STATEMENT</a>
+
+            <div class="mobile-menu-socials">
+                <a href="https://www.instagram.com/that_james_wells/" target="_blank" class="mobile-social-link">INSTAGRAM</a>
+                <span class="divider">//</span>
+                <a href="https://www.tiktok.com/@that_james_wells" target="_blank" class="mobile-social-link">TIKTOK</a>
+                <span class="divider">//</span>
+                <a href="https://soundcloud.com/james-wells-201773280" target="_blank" class="mobile-social-link">SOUNDCLOUD</a>
+                <span class="divider">//</span>
+                <span id="mobile-copy-email-btn" class="mobile-social-link" style="cursor: pointer;">EMAIL</span>
+            </div>
         </div>
     </nav>
 
@@ -368,7 +362,6 @@
                     <div class="panel-footer system-locked" id="terminal-footer">
                         <div class="hud-terminal-line">
                             <span>james_wells_studio:~# <span class="blink-cursor">_</span></span>
-                            <button class="terminal-logout-btn" id="stop-logout-btn">[ LOGOUT ]</button>
                         </div>
                     </div>
 

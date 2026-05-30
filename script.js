@@ -1,7 +1,7 @@
-// KontrolnÌ v˝pis do konzole pro ovÏ¯enÌ spr·vnÈho propojenÌ souboru
-console.log("LOG: script.js je ˙spÏönÏ propojen a naËten.");
+Ôªø// Kontroln√≠ v√Ωpis do konzole pro ovƒõ≈ôen√≠ spr√°vn√©ho propojen√≠ souboru
+console.log("LOG: script.js je √∫spƒõ≈°nƒõ propojen a naƒçten.");
 
-// Glob·lnÌ datov˝ objekt pro hardwarov˝ rack studia
+// Glob√°ln√≠ datov√Ω objekt pro hardwarov√Ω rack studia
 const studioRackData = {
     workstation: { protocol: "BUS_01 // NODE_AUDIO_CORE // ONLINE", title: "CORE" },
     capture: { protocol: "BUS_02 // NODE_GEAR_ARSENAL // ONLINE", title: "GEAR" },
@@ -9,92 +9,93 @@ const studioRackData = {
     minibar: { protocol: "BUS_04 // NODE_REFRESH // ONLINE", title: "MINIBAR" }
 };
 
+// ==========================================================================
+// ‚ö° JEDNOTN√ù SKRIPT PRO CEL√ù WEB (Z√ÅKLADN√ç DOM NAƒåTEN√ç)
+// ==========================================================================
 window.addEventListener("DOMContentLoaded", () => {
 
-    // ==========================================================================
-    // 1. MECHANIKA ROZJÕéDÃNÕ KARET (GSAP)
-    // ==========================================================================
+    // 1. MECHANIKA ROZJ√ç≈ΩDƒöN√ç KARET (GSAP) - POUZE DESKTOP
     const container = document.querySelector('.music-container .container');
 
     if (container) {
-        const containerW = container.clientWidth;
-        const cards = document.querySelectorAll('.card');
-        const cardsLength = cards.length;
-        const cardContent = document.querySelectorAll('.card .content');
-        let currentPortion = 0;
+        if (window.innerWidth > 1024) {
+            const containerW = container.clientWidth;
+            const cards = document.querySelectorAll('.card');
+            const cardsLength = cards.length;
+            const cardContent = document.querySelectorAll('.card .content');
+            let currentPortion = 0;
 
-        cards.forEach(card => {
-            gsap.set(card, {
-                xPercent: (Math.random() - 0.5) * 15,
-                yPercent: (Math.random() - 0.5) * 15,
-                rotation: (Math.random() - 0.5) * 15,
-            });
-        });
-
-        container.addEventListener("mousemove", e => {
-            const mouseX = e.clientX - container.getBoundingClientRect().left;
-            const percentage = mouseX / containerW;
-            const activePortion = Math.ceil(percentage * cardsLength);
-
-            if (activePortion !== currentPortion && activePortion > 0 && activePortion <= cardsLength) {
-                if (currentPortion !== 0) { resetPortion(currentPortion - 1); }
-                currentPortion = activePortion;
-                newPortion(currentPortion - 1);
-            }
-        });
-
-        container.addEventListener("mouseleave", () => {
-            resetPortion(currentPortion - 1);
-            currentPortion = 0;
-            gsap.to(cardContent, {
-                xPercent: 0,
-                ease: 'elastic.out(1, 0.75)',
-                duration: 0.8
-            });
-        });
-
-        function resetPortion(index) {
-            if (cards[index]) {
-                gsap.to(cards[index], {
-                    xPercent: (Math.random() - 0.5) * 10,
-                    yPercent: (Math.random() - 0.5) * 10,
+            cards.forEach(card => {
+                gsap.set(card, {
+                    xPercent: (Math.random() - 0.5) * 15,
+                    yPercent: (Math.random() - 0.5) * 15,
                     rotation: (Math.random() - 0.5) * 15,
-                    scale: 1,
-                    duration: 0.8,
-                    ease: 'elastic.out(1, 0.75)',
                 });
-            }
-        }
+            });
 
-        function newPortion(i) {
-            if (cards[i]) {
-                gsap.to(cards[i], {
-                    xPercent: 0,
-                    yPercent: 0,
-                    rotation: 0,
-                    duration: 0.8,
-                    scale: 1.1,
-                    ease: 'elastic.out(1, 0.75)'
-                });
-            }
+            container.addEventListener("mousemove", e => {
+                const mouseX = e.clientX - container.getBoundingClientRect().left;
+                const percentage = mouseX / containerW;
+                const activePortion = Math.ceil(percentage * cardsLength);
 
-            cardContent.forEach((content, index) => {
-                if (index !== i) {
-                    gsap.to(content, {
-                        xPercent: 75 / (index - i),
-                        ease: 'elastic.out(1, 0.75)',
-                        duration: 0.8
-                    });
-                } else {
-                    gsap.to(content, { xPercent: 0, ease: 'elastic.out(1, 0.75)', duration: 0.8 });
+                if (activePortion !== currentPortion && activePortion > 0 && activePortion <= cardsLength) {
+                    if (currentPortion !== 0) { resetPortion(currentPortion - 1); }
+                    currentPortion = activePortion;
+                    newPortion(currentPortion - 1);
                 }
             });
+
+            container.addEventListener("mouseleave", () => {
+                resetPortion(currentPortion - 1);
+                currentPortion = 0;
+                gsap.to(cardContent, {
+                    xPercent: 0,
+                    ease: 'elastic.out(1, 0.75)',
+                    duration: 0.8
+                });
+            });
+
+            function resetPortion(index) {
+                if (cards[index]) {
+                    gsap.to(cards[index], {
+                        xPercent: (Math.random() - 0.5) * 10,
+                        yPercent: (Math.random() - 0.5) * 10,
+                        rotation: (Math.random() - 0.5) * 15,
+                        scale: 1,
+                        duration: 0.8,
+                        ease: 'elastic.out(1, 0.75)',
+                    });
+                }
+            }
+
+            function newPortion(i) {
+                if (cards[i]) {
+                    gsap.to(cards[i], {
+                        xPercent: 0,
+                        yPercent: 0,
+                        rotation: 0,
+                        duration: 0.8,
+                        scale: 1.1,
+                        ease: 'elastic.out(1, 0.75)'
+                    });
+                }
+
+                cardContent.forEach((content, index) => {
+                    if (index !== i) {
+                        gsap.to(content, {
+                            xPercent: 75 / (index - i),
+                            ease: 'elastic.out(1, 0.75)',
+                            duration: 0.8
+                        });
+                    } else {
+                        gsap.to(content, { xPercent: 0, ease: 'elastic.out(1, 0.75)', duration: 0.8 });
+                    }
+                });
+            }
         }
     }
 
-    // ==========================================================================
-    // 2. LOGIKA AUDIO PÿEHR¡VA»E
-    // ==========================================================================
+    // 2. LOGIKA AUDIO P≈òEHR√ÅVAƒåE (DESKTOP)
     const audioCards = document.querySelectorAll('.js-audio-card');
 
     audioCards.forEach(card => {
@@ -113,7 +114,7 @@ window.addEventListener("DOMContentLoaded", () => {
                     if (playText) playText.textContent = 'PAUSE';
                 } else {
                     audio.pause();
-                    audio.currentTime = 0; // P¯etoËÌ stopu okamûitÏ na zaË·tek
+                    audio.currentTime = 0;
                     if (playText) playText.textContent = 'PLAY';
                 }
             });
@@ -124,9 +125,7 @@ window.addEventListener("DOMContentLoaded", () => {
         }
     });
 
-    // ==========================================================================
-    // 3. INTERAKTIVNÕ KOPÕROV¡NÕ EMAILU DO SCHR¡NKY
-    // ==========================================================================
+    // 3. INTERAKTIVN√ç KOP√çROV√ÅN√ç EMAILU (DESKTOP)
     const emailBtn = document.getElementById("copy-email-btn");
     const emailAddress = "james@jameswells.uk";
 
@@ -134,7 +133,7 @@ window.addEventListener("DOMContentLoaded", () => {
         emailBtn.addEventListener("click", () => {
             navigator.clipboard.writeText(emailAddress).then(() => {
                 emailBtn.innerText = "[ COPIED! ]";
-                emailBtn.style.color = "#f248b6"; // SvÌtÌcÌ r˘ûov·
+                emailBtn.style.color = "#f248b6";
                 emailBtn.style.opacity = "1";
 
                 setTimeout(() => {
@@ -142,40 +141,47 @@ window.addEventListener("DOMContentLoaded", () => {
                     emailBtn.style.color = "";
                     emailBtn.style.opacity = "";
                 }, 1200);
-            }).catch(err => {
-                console.error("Chyba p¯i kopÌrov·nÌ: ", err);
-            });
+            }).catch(err => console.error("Chyba: ", err));
         });
     }
 
     // ==========================================================================
-    // 4. INTERAKTIVNÕ HARDWAROV› RACK 6x2M - LOGIKA S BOOTEM A LOGOUTEM
+    // 4. INTERAKTIVN√ç HARDWAROV√ù RACK - SPOLEƒåN√â ELEMENTY A UNIVERZ√ÅLN√ç ENGINE
     // ==========================================================================
     const hotspots = document.querySelectorAll('.js-hotspot');
     const imageContainer = document.querySelector('.studio-image-container');
-
     const pProto = document.getElementById('st-protocol');
     const pTitle = document.getElementById('st-title');
-
     const bootScreen = document.getElementById('boot-screen');
-    const startBtn = document.getElementById('start-boot-btn');
+    const globalStartBtn = document.getElementById('start-boot-btn');
     const progressContainer = document.getElementById('progress-container');
     const progressBar = document.getElementById('boot-progress-bar');
     const percentageText = document.getElementById('boot-percentage-text');
     const terminalContent = document.getElementById('terminal-content');
     const terminalFooter = document.getElementById('terminal-footer');
-    const logoutBtn = document.getElementById('stop-logout-btn');
 
-    let isSystemOnline = false;
+
+    // üéØ NOV√â: Glob√°ln√≠ definice po≈ôad√≠ uzl≈Ø pro spr√°vn√Ω reset p≈ôi Logoutu
+    const nodeOrder = ["workstation", "capture", "chill", "minibar"];
+    let currentNodeIndex = 0;
+
+    window.isStudioSystemOnline = false;
+
+    window.isStudioSystemOnline = false;
 
     if (imageContainer) {
         imageContainer.classList.add('locked-nodes');
     }
 
-    // SPUäTÃNÕ SYST…MU (BOOT SEQUENCE)
-    if (startBtn) {
-        startBtn.addEventListener('click', () => {
-            startBtn.style.display = 'none';
+    // UNIVERZ√ÅLN√ç SPOU≈†Tƒöƒå BOOTU (SPOLEHLIV√ù PRO DESKTOP I PRO MOBILN√ç DOTYK)
+    if (globalStartBtn) {
+        const executeBootSequence = (e) => {
+            if (e) {
+                e.preventDefault();
+                e.stopPropagation();
+            }
+
+            globalStartBtn.style.display = 'none';
             if (progressContainer) progressContainer.style.display = 'block';
 
             let progress = 0;
@@ -194,90 +200,117 @@ window.addEventListener("DOMContentLoaded", () => {
 
                         if (terminalContent) terminalContent.classList.add('system-ready');
                         if (terminalFooter) terminalFooter.classList.add('system-ready');
+                        if (imageContainer) imageContainer.classList.remove('locked-nodes');
 
-                        if (imageContainer) {
-                            imageContainer.classList.remove('locked-nodes');
+                        window.isStudioSystemOnline = true;
+
+                        // üéØ TADY: Hned po odemƒçen√≠ syst√©mu rozsv√≠t√≠me v√Ωchoz√≠ uzel (CORE)
+                        const defaultHotspot = document.querySelector('.js-hotspot[data-space="workstation"]');
+                        if (defaultHotspot) {
+                            activateRackNode(defaultHotspot);
                         }
-
-                        isSystemOnline = true;
                     }, 300);
                 }
 
                 if (progressBar) progressBar.style.width = `${progress}%`;
                 if (percentageText) percentageText.innerText = `${progress}%`;
-            }, 60);
-        });
+            }, 45);
+        };
+
+        globalStartBtn.addEventListener('click', executeBootSequence);
+        globalStartBtn.addEventListener('touchstart', executeBootSequence, { passive: false });
     }
 
-    // UKON»ENÕ SYST…MU (LOGOUT SEQUENCE)
-    if (logoutBtn) {
-        logoutBtn.addEventListener('click', () => {
-            isSystemOnline = false;
 
-            if (terminalContent) terminalContent.classList.remove('system-ready');
-            if (terminalFooter) terminalFooter.classList.remove('system-ready');
 
-            if (imageContainer) {
-                imageContainer.classList.add('locked-nodes');
-            }
+    // SPOLEƒåN√Å FUNKCE PRO AKTIVACI UZLU
+    function activateRackNode(hotspot) {
+        const spaceType = hotspot.getAttribute('data-space');
+        const data = studioRackData[spaceType];
 
-            if (progressBar) progressBar.style.width = '0%';
-            if (percentageText) percentageText.innerText = '0%';
+        if (data) {
+            hotspots.forEach(h => h.classList.remove('active-hotspot'));
+            hotspot.classList.add('active-hotspot');
 
-            setTimeout(() => {
-                if (bootScreen) {
-                    bootScreen.style.display = 'flex';
-                    setTimeout(() => {
-                        bootScreen.style.opacity = '1';
-                        if (startBtn) startBtn.style.display = 'block';
-                        if (progressContainer) progressContainer.style.display = 'none';
-                    }, 50);
-                }
-            }, 400);
-        });
+            if (pProto) pProto.textContent = data.protocol;
+            if (pTitle) pTitle.textContent = data.title;
+
+            document.querySelectorAll('.studio-promo-text').forEach(p => { p.style.display = 'none'; });
+            const activePromoElement = document.getElementById(`promo-${spaceType}`);
+            if (activePromoElement) activePromoElement.style.display = 'block';
+
+            document.querySelectorAll('.studio-gear-specs').forEach(specBox => { specBox.style.display = 'none'; });
+            const activeSpecsElement = document.getElementById(`specs-${spaceType}`);
+            if (activeSpecsElement) activeSpecsElement.style.display = 'flex';
+        }
     }
 
-    // LOGIKA HOVERU NA HOTSPOTY
+    // INTERAKCE UZL≈Æ (HOVER PRO DESKTOP, SWIPE PRO MOBIL)
+
+
     if (hotspots.length > 0) {
         hotspots.forEach(hotspot => {
+            // Desktop hover ‚Äì z≈Øst√°v√° plnƒõ funkƒçn√≠ pro poƒç√≠taƒçe s my≈°√≠
             hotspot.addEventListener('mouseenter', () => {
-                if (isSystemOnline) {
-                    const spaceType = hotspot.getAttribute('data-space');
-                    const data = studioRackData[spaceType];
-
-                    if (data) {
-                        hotspots.forEach(h => h.classList.remove('active-hotspot'));
-                        hotspot.classList.add('active-hotspot');
-
-                        if (pProto) pProto.textContent = data.protocol;
-                        if (pTitle) pTitle.textContent = data.title;
-
-                        document.querySelectorAll('.studio-promo-text').forEach(p => {
-                            p.style.display = 'none';
-                        });
-                        const activePromoElement = document.getElementById(`promo-${spaceType}`);
-                        if (activePromoElement) {
-                            activePromoElement.style.display = 'block';
-                        }
-
-                        document.querySelectorAll('.studio-gear-specs').forEach(specBox => {
-                            specBox.style.display = 'none';
-                        });
-                        const activeSpecsElement = document.getElementById(`specs-${spaceType}`);
-                        if (activeSpecsElement) {
-                            activeSpecsElement.style.display = 'flex';
-                        }
-                    }
+                if (window.isStudioSystemOnline && window.innerWidth > 1024) {
+                    activateRackNode(hotspot);
                 }
             });
         });
     }
 
-    // ==========================================================================
-    // 5. CUSTOM VIDEO LOOP TIMING ENGINE (RESET AT 8.50s)
-    // ==========================================================================
-    const loopVideos = document.querySelectorAll('.js-custom-loop');
+    // üåü NOV√ù MOBILN√ç SWIPE ENGINE PRO TEXTOV√ù TERMIN√ÅL
+    const terminalZone = document.getElementById('studio-terminal-zone');
+    let touchStartX = 0;
+    let touchEndX = 0;
 
+    if (terminalZone) {
+        // Zaznamen√°me, kde se prst dotkl displeje
+        terminalZone.addEventListener('touchstart', (e) => {
+            if (!window.isStudioSystemOnline || window.innerWidth > 1024) return;
+            touchStartX = e.changedTouches[0].screenX;
+        }, { passive: true });
+
+        // Zaznamen√°me, kde prst z displeje ode≈°el
+        terminalZone.addEventListener('touchend', (e) => {
+            if (!window.isStudioSystemOnline || window.innerWidth > 1024) return;
+            touchEndX = e.changedTouches[0].screenX;
+            handleTerminalSwipe();
+        }, { passive: true });
+    }
+
+    function handleTerminalSwipe() {
+        const swipeThreshold = 50; // Minim√°ln√≠ vzd√°lenost v pixelech pro uzn√°n√≠ swipu
+        const diffX = touchStartX - touchEndX;
+
+        // SWIPE DOLEVA (Prst jede doleva -> chceme DAL≈†√ç text)
+        if (diffX > swipeThreshold) {
+            if (currentNodeIndex < nodeOrder.length - 1) {
+                currentNodeIndex++;
+                triggerNodeChange();
+            }
+        }
+        // SWIPE DOPRAVA (Prst jede doprava -> chceme P≈òEDCHOZ√ç text)
+        else if (diffX < -swipeThreshold) {
+            if (currentNodeIndex > 0) {
+                currentNodeIndex--;
+                triggerNodeChange();
+            }
+        }
+    }
+
+    // Pomocn√° funkce, kter√° vyhled√° spr√°vn√Ω hotspot podle indexu a aktivuje ho
+    function triggerNodeChange() {
+        const targetSpace = nodeOrder[currentNodeIndex];
+        const targetHotspot = document.querySelector(`.js-hotspot[data-space="${targetSpace}"]`);
+
+        if (targetHotspot) {
+            activateRackNode(targetHotspot);
+        }
+    }
+
+    // 5. CUSTOM VIDEO LOOP TIMING ENGINE
+    const loopVideos = document.querySelectorAll('.js-custom-loop');
     loopVideos.forEach(video => {
         video.addEventListener('timeupdate', () => {
             if (video.currentTime >= 8.50) {
@@ -286,57 +319,201 @@ window.addEventListener("DOMContentLoaded", () => {
             }
         });
     });
-});
 
-// ==========================================================================
-// 12. LOGIKA Z¡MKU STR¡NKY (PASSWORD GATE)
-// ==========================================================================
-(function () {
-    // Nastav si svÈ tajnÈ heslo zde:
-    const CONFIG_ACCESS_KEY = "studio2026";
+    // 5. CUSTOM VIDEO LOOP TIMING ENGINE
+    const menuToggle = document.querySelector(".js-menu-toggle");
+    const menuNav = document.querySelector(".js-menu-navigation");
+    const menuLinks = document.querySelectorAll(".fixed-menu-link");
+    const mobileEmailBtn = document.getElementById("mobile-copy-email-btn");
 
-    // Kontrola, zda uûivatel zadal heslo spr·vnÏ uû v minulosti (aby nemusel zad·vat po¯·d dokola)
-    if (sessionStorage.getItem("node_decrypted") === "true") {
-        document.addEventListener("DOMContentLoaded", () => {
-            const overlay = document.getElementById("site-lock-overlay");
-            if (overlay) overlay.style.display = "none";
+    if (menuToggle && menuNav) {
+        menuToggle.addEventListener("click", () => {
+            menuToggle.classList.toggle("menu-open");
+            menuNav.classList.toggle("nav-open");
         });
-        return;
+
+        menuLinks.forEach(link => {
+            link.addEventListener("click", () => {
+                menuToggle.classList.remove("menu-open");
+                menuNav.classList.remove("nav-open");
+            });
+        });
+
+        if (mobileEmailBtn) {
+            mobileEmailBtn.addEventListener("click", (e) => {
+                e.preventDefault();
+                e.stopPropagation();
+
+                navigator.clipboard.writeText(emailAddress).then(() => {
+                    mobileEmailBtn.innerText = "[ COPIED! ]";
+                    mobileEmailBtn.style.color = "#f248b6";
+                    mobileEmailBtn.style.opacity = "1";
+
+                    setTimeout(() => {
+                        mobileEmailBtn.innerText = "EMAIL";
+                        mobileEmailBtn.style.color = "";
+                        mobileEmailBtn.style.opacity = "";
+                    }, 2000);
+                }).catch(err => console.error("Chyba kop√≠rov√°n√≠: ", err));
+            });
+        }
     }
 
-    document.addEventListener("DOMContentLoaded", () => {
-        const overlay = document.getElementById("site-lock-overlay");
-        const input = document.getElementById("site-password-input");
-        const btn = document.getElementById("lock-submit-btn");
-        const error = document.getElementById("lock-error-msg");
+    // ‚õî STOPKA PRO VELK√Å OKNA (V≈†E POD T√çMTO ≈ò√ÅDKEM Bƒö≈Ω√ç POUZE NA MOBILU)
+    if (window.innerWidth > 1024) return;
 
-        if (!overlay || !input || !btn) return;
+    // --- B. TINDER/SPOTIFY SWIPE CARD EFFECT FOR MOBILE ---
+    const mCardsContainer = document.querySelector(".music-container .container");
+    if (mCardsContainer) {
+        let cards = Array.from(mCardsContainer.querySelectorAll(".music-container .card"));
 
-        function checkPassword() {
-            if (input.value === CONFIG_ACCESS_KEY) {
-                // Heslo je spr·vnÈ - uloûÌme stav do session a skryjeme z·mek
-                sessionStorage.setItem("node_decrypted", "true");
-                overlay.style.opacity = "0";
-                overlay.style.transition = "opacity 0.4s ease";
-                setTimeout(() => {
-                    overlay.style.display = "none";
-                }, 400);
-            } else {
-                // äpatnÈ heslo - uk·ûeme chybu a vyËistÌme input
-                if (error) error.style.display = "block";
-                input.value = "";
-                input.focus();
-            }
+        function updateStack() {
+            cards.forEach((card, index) => {
+                card.style.zIndex = cards.length - index;
+                if (index === 0) {
+                    card.style.transform = "translateX(-50%) translateY(0) scale(1)";
+                    card.style.opacity = "1";
+                    card.style.pointerEvents = "auto";
+                } else if (index <= 3) {
+                    const depth = index;
+                    card.style.transform = `translateX(-50%) translateY(${depth * 12}px) scale(${1 - depth * 0.04})`;
+                    card.style.opacity = "1";
+                    card.style.pointerEvents = "none";
+                } else {
+                    card.style.opacity = "0";
+                    card.style.pointerEvents = "none";
+                }
+            });
         }
 
-        // SpuötÏnÌ kliknutÌm na tlaËÌtko
-        btn.addEventListener("click", checkPassword);
+        if (cards.length > 0) {
+            updateStack();
 
-        // SpuötÏnÌ stisknutÌm kl·vesy Enter uvnit¯ inputu
-        input.addEventListener("keydown", (e) => {
-            if (e.key === "Enter") {
-                checkPassword();
-            }
+            setTimeout(() => {
+                const topCard = cards[0];
+                if (topCard) {
+                    topCard.style.transition = "transform 0.4s ease-out";
+                    topCard.style.transform = "translateX(calc(-50% - 40px)) rotate(-3deg)";
+                    setTimeout(() => {
+                        topCard.style.transition = "transform 0.5s ease-in-out";
+                        topCard.style.transform = "translateX(-50%)";
+                        setTimeout(() => { topCard.style.transition = ""; }, 500);
+                    }, 450);
+                }
+            }, 1000);
+
+            let startX = 0;
+            let currentX = 0;
+            let isDragging = false;
+            let activeCard = null;
+
+            mCardsContainer.addEventListener("touchstart", (e) => {
+                activeCard = cards[0];
+                if (activeCard) {
+                    isDragging = true;
+                    startX = e.touches[0].clientX;
+                    activeCard.style.transition = "none";
+                }
+            }, { passive: true });
+
+            mCardsContainer.addEventListener("touchmove", (e) => {
+                if (!isDragging || !activeCard) return;
+                currentX = e.touches[0].clientX - startX;
+                if (e.cancelable) e.preventDefault();
+                activeCard.style.transform = `translateX(calc(-50% + ${currentX}px)) rotate(${currentX * 0.05}deg)`;
+            });
+
+            mCardsContainer.addEventListener("touchend", () => {
+                if (!isDragging || !activeCard) return;
+                isDragging = false;
+
+                const swipeDistance = Math.abs(currentX);
+
+                if (swipeDistance < 10) {
+                    activeCard.style.transition = "transform 0.1s ease";
+                    activeCard.style.transform = "translateX(-50%)";
+
+                    const audio = activeCard.querySelector('.js-audio-element');
+                    const playText = activeCard.querySelector('.js-play-text');
+
+                    if (audio) {
+                        audio.volume = 0.4;
+                        document.querySelectorAll('.js-audio-element').forEach(el => {
+                            if (el !== audio) {
+                                el.pause();
+                                const otherText = el.closest('.card').querySelector('.js-play-text');
+                                if (otherText) otherText.textContent = 'PLAY';
+                            }
+                        });
+
+                        if (audio.paused) {
+                            audio.play().then(() => {
+                                if (playText) playText.textContent = 'PAUSE';
+                            }).catch(err => console.error("Audio block: ", err));
+                        } else {
+                            audio.pause();
+                            audio.currentTime = 0;
+                            if (playText) playText.textContent = 'PLAY';
+                        }
+                    }
+                    currentX = 0;
+                    activeCard = null;
+                    return;
+                }
+
+                if (currentX < -80 || currentX > 80) {
+                    activeCard.style.transition = "transform 0.3s ease, opacity 0.3s ease";
+                    activeCard.style.transform = currentX < 0 ? "translateX(-200%) rotate(-20deg)" : "translateX(200%) rotate(20deg)";
+                    activeCard.style.opacity = "0";
+
+                    setTimeout(() => {
+                        const movedCard = cards.shift();
+                        movedCard.style.zIndex = 0;
+                        movedCard.style.transform = "translateX(-50%) translateY(30px) scale(0.9)";
+                        cards.push(movedCard);
+
+                        requestAnimationFrame(() => {
+                            movedCard.style.transition = "transform 0.4s ease, opacity 0.4s ease";
+                            movedCard.style.opacity = "1";
+                            updateStack();
+                        });
+                    }, 300);
+                } else {
+                    activeCard.style.transition = "transform 0.3s ease";
+                    activeCard.style.transform = "translateX(-50%)";
+                }
+
+                currentX = 0;
+                activeCard = null;
+            });
+        }
+    }
+
+    // --- C. AUTOMATICK√â SPOU≈†TƒöN√ç ASCII VIDE√ç ---
+    const serviceCards = document.querySelectorAll(".services-section .service-card");
+
+    if (serviceCards.length > 0) {
+        serviceCards.forEach(card => {
+            const video = card.querySelector("video") || card.querySelector('.js-custom-loop');
+            if (video) video.pause();
         });
-    });
-})();
+
+        if ('IntersectionObserver' in window) {
+            const observerOptions = { root: null, rootMargin: "-45% 0px -45% 0px", threshold: 0.01 };
+            const serviceObserver = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    const video = entry.target.querySelector("video") || entry.target.querySelector('.js-custom-loop');
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add("active-scroll-card");
+                        if (video) video.play().catch(() => { });
+                    } else {
+                        entry.target.classList.remove("active-scroll-card");
+                        if (video) video.pause();
+                    }
+                });
+            }, observerOptions);
+            serviceCards.forEach(card => serviceObserver.observe(card));
+        }
+    }
+
+}); // üëà TATO JEDIN√Å Z√ÅVORKA TEƒé ƒåISTƒö UZAV√çR√Å CEL√ù SOUBOR SCRIPT.JS

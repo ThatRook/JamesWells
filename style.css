@@ -1,5 +1,5 @@
-/* ==========================================================================
-   1. Z¡KLADNÕ NASTAVENÕ STR¡NKY A SCROLLOV¡NÕ
+Ôªø/* ==========================================================================
+   1. Z√ÅKLADN√ç NASTAVEN√ç STR√ÅNKY A SCROLLOV√ÅN√ç
    ========================================================================== */
 html {
     scroll-behavior: smooth;
@@ -12,7 +12,7 @@ body {
     width: 100%;
     min-height: 100vh;
     font-family: 'Inter', sans-serif;
-    overflow-x: hidden; /* ZabraÚuje h˝b·nÌ webu do stran, ale dovolÌ scrollovat dol˘ */
+    overflow-x: hidden; /* Zabra≈àuje h√Ωb√°n√≠ webu do stran, ale dovol√≠ scrollovat dol≈Ø */
 }
 
 .scroll-wrapper {
@@ -21,7 +21,7 @@ body {
     z-index: 1;
 }
 
-/* »IST… »ERN… POZADÕ STR¡NKY */
+/* ƒåIST√â ƒåERN√â POZAD√ç STR√ÅNKY */
 .bg {
     position: fixed;
     top: 0;
@@ -33,47 +33,47 @@ body {
 }
 
 /* ==========================================================================
-   2. SEZNA»ENÕ MAINU A ANIMACE (ODSCROLLOV¡V¡ PRY»)
+   2. SEZNAƒåEN√ç MAINU A ANIMACE (ODSCROLLOV√ÅV√Å PRYƒå)
    ========================================================================== */
 .main-content {
     position: relative;
     width: 100%;
-    height: 100vh; /* P¯esn· v˝öka prvnÌ obrazovky */
-    overflow: hidden; /* ZaruËÌ, ûe u¯ÌznutÈ kusy ËtvercovÈho videa nebudou scrollovat dop¯edu */
+    height: 100vh; /* P≈ôesn√° v√Ω≈°ka prvn√≠ obrazovky */
+    overflow: hidden; /* Zaruƒç√≠, ≈æe u≈ô√≠znut√© kusy ƒçtvercov√©ho videa nebudou scrollovat dop≈ôedu */
 }
 
-/* Kontejner na video je teÔ relativnÌ ñ posouv· se s webem nahoru */
+/* Kontejner na video je teƒè relativn√≠ ‚Äì posouv√° se s webem nahoru */
 .video-container {
     position: relative;
     width: 100%;
     height: 100%;
 }
 
-/* NastavenÌ samotnÈho videa */
+/* Nastaven√≠ samotn√©ho videa */
 .video-bg {
     position: absolute;
     width: 100%;
     height: 100vw;
     left: 50%;
     top: 50%;
-    transform: translate(-50%, -55%); /* Tv˘j p¯esn˝ vyzkouöen˝ posun */
+    transform: translate(-50%, -55%); /* Tv≈Øj p≈ôesn√Ω vyzkou≈°en√Ω posun */
     opacity: 1.0;
     mix-blend-mode: normal;
 }
 
 /* ==========================================================================
-   3. STYL KARET (PÿESN… PARAMETRY CALVIN HARRIS)
+   3. STYL KARET (P≈òESN√â PARAMETRY CALVIN HARRIS)
    ========================================================================== */
 .music-container {
     height: 100vh;
     display: flex;
-    flex-direction: column; /* ÿadÌ nadpis a karty pod sebe */
+    flex-direction: column; /* ≈òad√≠ nadpis a karty pod sebe */
     align-items: center;
     justify-content: center;
     overflow: hidden;
     gap: 0px;
     box-sizing: border-box;
-    padding: 2vh 0; /* Jemn· pojistka, aby vÏci nelepily na okraj obrazovky */
+    padding: 2vh 0; /* Jemn√° pojistka, aby vƒõci nelepily na okraj obrazovky */
 }
 
     .music-container .container {
@@ -86,7 +86,7 @@ body {
         aspect-ratio: 0.8;
     }
 
-        /* P¯ekr˝v·nÌ karet p¯es sebe */
+        /* P≈ôekr√Ωv√°n√≠ karet p≈ôes sebe */
         .music-container .card:not(:first-child) {
             margin: 0 0 0 -10vw;
         }
@@ -109,10 +109,10 @@ body {
                 font: 900 normal 1.9vw / 0.9 'Inter', sans-serif;
                 letter-spacing: -0.03em;
                 position: relative;
-                z-index: 2; /* NiûöÌ neû z-index öumu (10), takûe öum bude NAD nÌm */
+                z-index: 2; /* Ni≈æ≈°√≠ ne≈æ z-index ≈°umu (10), tak≈æe ≈°um bude NAD n√≠m */
             }
 
-/* OMEZENÕ ROZMÃRŸ PRO PÿEBAL UVNITÿ KARTY */
+/* OMEZEN√ç ROZMƒöR≈Æ PRO P≈òEBAL UVNIT≈ò KARTY */
 .card-cover-wrap {
     margin: 10px auto;
     width: 100%;
@@ -120,9 +120,9 @@ body {
     aspect-ratio: 1;
     border-radius: 6px;
     overflow: hidden;
-    position: relative; /* D˘leûitÈ pro spr·vnÈ usazenÌ overlay vrstvy naho¯e */
+    position: relative; /* D≈Øle≈æit√© pro spr√°vn√© usazen√≠ overlay vrstvy naho≈ôe */
     box-shadow: 0 6px 16px rgba(0, 0, 0, 0.25);
-    z-index: 2; /* NiûöÌ neû z-index öumu */
+    z-index: 2; /* Ni≈æ≈°√≠ ne≈æ z-index ≈°umu */
 }
 
 .card-center-cover {
@@ -132,7 +132,7 @@ body {
     object-position: center;
 }
 
-/* NEVIDITELN¡ VRSTVA PÿES OBR¡ZEK - ROZSVÕTÕ SE PÿI HOVERU */
+/* NEVIDITELN√Å VRSTVA P≈òES OBR√ÅZEK - ROZSV√çT√ç SE P≈òI HOVERU */
 .card-cover-wrap .play-overlay {
     position: absolute;
     top: 0;
@@ -143,21 +143,21 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
-    opacity: 0; /* StandardnÏ je vrstva neviditeln· */
+    opacity: 0; /* Standardnƒõ je vrstva neviditeln√° */
     transition: opacity 0.25s ease;
 }
 
-/* Aktivace overlay vrstvy, kdyû myö najede na kartu */
+/* Aktivace overlay vrstvy, kdy≈æ my≈° najede na kartu */
 .music-container .card:hover .play-overlay {
     opacity: 1;
 }
 
-/* MINIMALISTICK› TEXT PLAY PÿES PÿEBAL */
+/* MINIMALISTICK√ù TEXT PLAY P≈òES P≈òEBAL */
 .play-text-in-cover {
     font-family: 'Inter', sans-serif;
-    font-size: 2.5vw; /* VelkÈ, dominantnÌ pÌsmo */
-    font-weight: 900; /* Maxim·lnÌ tlouöùka */
-    letter-spacing: 0.05em; /* LehkÈ roztaûenÌ pÌsmen */
+    font-size: 2.5vw; /* Velk√©, dominantn√≠ p√≠smo */
+    font-weight: 900; /* Maxim√°ln√≠ tlou≈°≈•ka */
+    letter-spacing: 0.05em; /* Lehk√© rozta≈æen√≠ p√≠smen */
     text-transform: uppercase;
     color: var(--card-accent);
     transform: scale(0.85);
@@ -165,28 +165,28 @@ body {
     text-shadow: 0 4px 15px rgba(0, 0, 0, 0.6);
 }
 
-/* Kdyû uûivatel najede myöÌ na kartu, text s pruûn˝m efektem vyskoËÌ dop¯edu */
+/* Kdy≈æ u≈æivatel najede my≈°√≠ na kartu, text s pru≈æn√Ωm efektem vyskoƒç√≠ dop≈ôedu */
 .music-container .card:hover .play-text-in-cover {
     transform: scale(1);
 }
 
-/* Kdyû najede myöÌ p¯Ìmo na slovo PLAY, n·pis se jeötÏ vÌc rozz·¯Ì */
+/* Kdy≈æ najede my≈°√≠ p≈ô√≠mo na slovo PLAY, n√°pis se je≈°tƒõ v√≠c rozz√°≈ô√≠ */
 .play-text-in-cover:hover {
     transform: scale(1.1) !important;
-    filter: brightness(1.4); /* Kr·snÏ n·pis rozsvÌtÌ */
+    filter: brightness(1.4); /* Kr√°snƒõ n√°pis rozsv√≠t√≠ */
 }
 
-/* SPODNÕ LIäTA: Zarovn·nÌ textu a Ë·rkovan· Ë·ra v barvÏ textu karty */
+/* SPODN√ç LI≈†TA: Zarovn√°n√≠ textu a ƒç√°rkovan√° ƒç√°ra v barvƒõ textu karty */
 .music-container .card .content .bottom {
     display: flex;
     align-items: center;
     justify-content: space-between;
     font: 800 normal 1.1vw / 0.9 'Inter', sans-serif;
     letter-spacing: -0.03em;
-    border-top: 1px dashed currentColor; /* »·rkovan· Ë·ra drûÌ tmavou barvu textu karty */
+    border-top: 1px dashed currentColor; /* ƒå√°rkovan√° ƒç√°ra dr≈æ√≠ tmavou barvu textu karty */
     padding: 20px 0 0;
     position: relative;
-    z-index: 2; /* NiûöÌ neû z-index öumu */
+    z-index: 2; /* Ni≈æ≈°√≠ ne≈æ z-index ≈°umu */
 }
 
 .music-container .card .content .job {
@@ -194,7 +194,7 @@ body {
     text-transform: uppercase;
 }
 
-/* Bublina pro ostatnÌ karty, kterÈ jeötÏ nemajÌ p¯ebal */
+/* Bublina pro ostatn√≠ karty, kter√© je≈°tƒõ nemaj√≠ p≈ôebal */
 .music-container .card .content .bubble {
     width: 2.8vw;
     aspect-ratio: 1;
@@ -207,7 +207,7 @@ body {
     font-size: 1.2vw;
 }
 
-/* STYL PRO ROVN› NADPIS (POKUD BYL POUéIT) */
+/* STYL PRO ROVN√ù NADPIS (POKUD BYL POU≈ΩIT) */
 .section-title {
     font-family: 'Inter', sans-serif;
     font-size: 4vw;
@@ -219,7 +219,7 @@ body {
     align-self: center;
 }
 
-/* NOV› STYL PRO ANIMOVAN› NADPIS Z AFTER EFFECTS */
+/* NOV√ù STYL PRO ANIMOVAN√ù NADPIS Z AFTER EFFECTS */
 .section-title-video {
     width: 35vw;
     height: auto;
@@ -232,7 +232,7 @@ body {
     transform-origin: center center;
 }
 
-/* BARVY KARET A JEJICH OBSAHU + PROMÃNN… PRO JASN› TEXT PLAY */
+/* BARVY KARET A JEJICH OBSAHU + PROMƒöNN√â PRO JASN√ù TEXT PLAY */
 .card-orange {
     background-color: #e49f51;
     color: #110900;
@@ -257,7 +257,7 @@ body {
     --card-accent: #bceffb;
 }
 
-/* VrstvenÌ z-index˘ karet */
+/* Vrstven√≠ z-index≈Ø karet */
 .music-container .card:nth-child(1) {
     z-index: 4;
 }
@@ -275,7 +275,7 @@ body {
 }
 
 /* ==========================================================================
-   4. AUTORSK› äUM Z AFTER EFFECTS (NAVYääÕ VRSTVA KARTY)
+   4. AUTORSK√ù ≈†UM Z AFTER EFFECTS (NAVY≈†≈†√ç VRSTVA KARTY)
    ========================================================================== */
 .card-ae-noise {
     position: absolute;
@@ -293,7 +293,7 @@ body {
 }
 
 /* ==========================================================================
-   5. SEKCE SLUéBY - KREATIVNÕ KARTY S FULL-SCREEN ASCII VIDEEM
+   5. SEKCE SLU≈ΩBY - KREATIVN√ç KARTY S FULL-SCREEN ASCII VIDEEM
    ========================================================================== */
 .services-section {
     min-height: 100vh;
@@ -315,7 +315,7 @@ body {
     gap: 80px;
 }
 
-/* PootoËen˝ video nadpis */
+/* Pootoƒçen√Ω video nadpis */
 .services-title-video {
     width: 35vw;
     height: auto;
@@ -329,7 +329,7 @@ body {
     transform-origin: center center;
 }
 
-/* Grid sÌtÏ karet */
+/* Grid s√≠tƒõ karet */
 .services-grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
@@ -337,7 +337,7 @@ body {
     width: 100%;
 }
 
-/* PÿÕSN¡ GEOMETRICK¡ KARTA */
+/* P≈ò√çSN√Å GEOMETRICK√Å KARTA */
 .service-card {
     background-color: #ffffff;
     color: #000000;
@@ -347,11 +347,11 @@ body {
     display: flex;
     flex-direction: column;
     box-sizing: border-box;
-    border-radius: 0; /* é·dnÈ zaoblenÌ pro surov˝ look */
+    border-radius: 0; /* ≈Ω√°dn√© zaoblen√≠ pro surov√Ω look */
     transition: transform 0.4s ease, background-color 0.3s ease, color 0.3s ease;
 }
 
-    /* Invertov·nÌ karty p¯i hoveru do digit·lnÌ temnoty */
+    /* Invertov√°n√≠ karty p≈ôi hoveru do digit√°ln√≠ temnoty */
     .service-card:hover {
         transform: scale(1.03) translateY(-10px);
         background-color: #000000;
@@ -360,7 +360,7 @@ body {
         box-shadow: 0 30px 60px rgba(0, 0, 0, 0.9);
     }
 
-/* MATEMATICK¡ VRSTVA: BAYER ORDERED DITHER MATRIX 8x8 */
+/* MATEMATICK√Å VRSTVA: BAYER ORDERED DITHER MATRIX 8x8 */
 .card-dither-overlay {
     position: absolute;
     top: 0;
@@ -376,7 +376,7 @@ body {
     transition: mix-blend-mode 0.3s ease, opacity 0.3s ease;
 }
 
-/* P¯i hoveru se matice p¯epne a rozkmit· p¯es video */
+/* P≈ôi hoveru se matice p≈ôepne a rozkmit√° p≈ôes video */
 .service-card:hover .card-dither-overlay {
     background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='8' height='8'%3E%3Cpath d='M0 0h1v1H0zm4 4h1v1H4zm2-2h1v1H6zm-2 4h1v1H2zm-4 2h1v1H0zm6 0h1v1H6zm-4-4h1v1H2zm4 2h1v1H4z' fill='%23fff' fill-opacity='.25'/%3E%3C/svg%3E");
     mix-blend-mode: screen;
@@ -397,10 +397,10 @@ body {
     }
 }
 
-/* VNITÿNÕ OBSAH A TYPOGRAFIE KARTY */
+/* VNIT≈òN√ç OBSAH A TYPOGRAFIE KARTY */
 .service-card-content {
     position: relative;
-    z-index: 10; /* Nad vöemi podklady a video vrstvou */
+    z-index: 10; /* Nad v≈°emi podklady a video vrstvou */
     height: 100%;
     display: flex;
     flex-direction: column;
@@ -437,7 +437,7 @@ body {
     margin: 20px 0;
 }
 
-/* SPODNÕ TECHNICK¡ LIäTA */
+/* SPODN√ç TECHNICK√Å LI≈†TA */
 .sc-bottom {
     display: flex;
     align-items: center;
@@ -450,7 +450,7 @@ body {
     text-transform: uppercase;
 }
 
-/* VIDEO NA POZADÕ KARET */
+/* VIDEO NA POZAD√ç KARET */
 .sc-card-bg-video {
     position: absolute;
     top: 0;
@@ -459,16 +459,16 @@ body {
     height: 100%;
     object-fit: cover;
     z-index: 1;
-    opacity: 0; /* V z·kladu skrytÈ, karta je ËistÏ bÌl· */
+    opacity: 0; /* V z√°kladu skryt√©, karta je ƒçistƒõ b√≠l√° */
     transition: opacity 0.3s ease;
 }
 
-/* SpuötÏnÌ After Effects videa p¯i hoveru na jakoukoli kartu */
+/* Spu≈°tƒõn√≠ After Effects videa p≈ôi hoveru na jakoukoli kartu */
 .sc-video-background-mode:hover .sc-card-bg-video {
-    opacity: 0.7; /* PustÌ video v plnÈ kr·se */
+    opacity: 0.7; /* Pust√≠ video v pln√© kr√°se */
 }
 
-/* OCHRANN› OBD…LNÕK POD TEXTEM PRO PERFEKTNÕ »ITELNOST */
+/* OCHRANN√ù OBD√âLN√çK POD TEXTEM PRO PERFEKTN√ç ƒåITELNOST */
 .sc-desc-video {
     position: relative;
     z-index: 12;
@@ -480,14 +480,14 @@ body {
 }
 
 .sc-video-background-mode:hover .sc-desc-video {
-    background-color: rgba(0, 0, 0, 0.88); /* Syt˝ tmav˝ podklad pod pÌsmeny */
+    background-color: rgba(0, 0, 0, 0.88); /* Syt√Ω tmav√Ω podklad pod p√≠smeny */
     color: #ffffff;
-    padding: 4px 10px; /* Mal˝ p¯esah vlevo a vpravo na kaûdÈm ¯·dku pro Ëitelnost */
+    padding: 4px 10px; /* Mal√Ω p≈ôesah vlevo a vpravo na ka≈æd√©m ≈ô√°dku pro ƒçitelnost */
     backdrop-filter: blur(3px);
 }
 
 /* ==========================================================================
-   6. FIXNÕ TYPOGRAFICK… SOCI¡LNÕ SÕTÃ V ROHU (FLOATING UI)
+   6. FIXN√ç TYPOGRAFICK√â SOCI√ÅLN√ç S√çTƒö V ROHU (FLOATING UI)
    ========================================================================== */
 .fixed-socials-corner {
     position: fixed;
@@ -521,7 +521,7 @@ body {
     transform-origin: right center;
 }
 
-    /* HOVER PRO SOCKY - TEXT DRéÕ NA MÕSTÃ, JEN SE ROZSVÕTÕ */
+    /* HOVER PRO SOCKY - TEXT DR≈Ω√ç NA M√çSTƒö, JEN SE ROZSV√çT√ç */
     .fixed-social-link:hover {
         opacity: 1 !important;
         color: #ffffff;
@@ -532,8 +532,9 @@ body {
     opacity: 0.65;
 }
 
+
 /* ==========================================================================
-   7. FIXNÕ TYPOGRAFICK… MENU V ROHU (NAVIGATION UI)
+   7. FIXN√ç TYPOGRAFICK√â MENU V ROHU (NAVIGATION UI)
    ========================================================================== */
 .fixed-menu-corner {
     position: fixed;
@@ -543,6 +544,11 @@ body {
     pointer-events: none;
 }
 
+/* Na desktopu hamburger TOT√ÅLNƒö skryjeme */
+.menu-toggle-btn {
+    display: none !important;
+}
+
 .fixed-menu-trigger {
     display: flex;
     flex-direction: column;
@@ -550,7 +556,6 @@ body {
     gap: 10px;
     pointer-events: auto;
 }
-
 .fixed-menu-link {
     font-family: 'Inter', sans-serif;
     font-size: 1.25vw;
@@ -565,7 +570,7 @@ body {
     transition: opacity 0.2s ease;
 }
 
-    /* HOVER PRO MENU - TEXT DRéÕ NA MÕSTÃ, JEN SE ROZSVÕTÕ */
+    /* HOVER PRO MENU - TEXT DR≈Ω√ç NA M√çSTƒö, JEN SE ROZSV√çT√ç */
     .fixed-menu-link:hover {
         opacity: 1 !important;
         mix-blend-mode: normal;
@@ -576,7 +581,7 @@ body {
 }
 
 /* ==========================================================================
-   8. SEKCE STUDIO - MINIMALISTICK› BÕL› HUD TERMIN¡L
+   8. SEKCE STUDIO - MINIMALISTICK√ù B√çL√ù HUD TERMIN√ÅL
    ========================================================================== */
 .interactive-studio-section {
     background-color: #000000;
@@ -688,7 +693,7 @@ body {
     }
 }
 
-/* KDYé JE SYST…M ONLINE */
+/* KDY≈Ω JE SYST√âM ONLINE */
 .studio-image-container:not(.locked-nodes) .hotspot .hotspot-core {
     background-color: #ff3333;
     box-shadow: 0 0 8px rgba(255, 51, 51, 0.6);
@@ -698,7 +703,7 @@ body {
     border-color: rgba(255, 51, 51, 0.5);
 }
 
-/* STAV PÿI HOVERU NEBO VYBRAN› */
+/* STAV P≈òI HOVERU NEBO VYBRAN√ù */
 .hotspot:hover .hotspot-core,
 .hotspot.active-hotspot .hotspot-core {
     background-color: #ff3333 !important;
@@ -720,7 +725,7 @@ body {
     letter-spacing: 1px;
 }
 
-/* --- REAK»NÕ BÕL› TERMIN¡L --- */
+/* --- REAKƒåN√ç B√çL√ù TERMIN√ÅL --- */
 .rack-terminal {
     display: flex;
     flex-direction: column;
@@ -729,14 +734,14 @@ body {
     border: 1px solid rgba(255, 255, 255, 0.1);
     padding: 35px;
     min-height: 580px;
-    max-height: none; /* Odemknut˝ hornÌ limit pro dynamick˝ obsah */
+    max-height: none; /* Odemknut√Ω horn√≠ limit pro dynamick√Ω obsah */
     width: 100%;
     box-sizing: border-box;
     position: relative;
     box-shadow: 0 20px 50px rgba(0, 0, 0, 0.8), inset 0 0 30px rgba(255, 255, 255, 0.01);
 }
 
-    /* »istÈ sklenÏnÈ CRT scanlines */
+    /* ƒåist√© sklenƒõn√© CRT scanlines */
     .rack-terminal::before {
         content: '';
         position: absolute;
@@ -758,7 +763,7 @@ body {
     justify-content: flex-start;
 }
 
-/* Protokolov˝ kÛd */
+/* Protokolov√Ω k√≥d */
 .panel-protocol {
     font-family: 'IBM Plex Mono', monospace;
     font-size: 10px;
@@ -839,7 +844,7 @@ body {
     color: rgba(255, 255, 255, 0.55);
 }
 
-/* TERMIN¡L PATI»KA */
+/* TERMIN√ÅL PATIƒåKA */
 .panel-footer {
     position: relative;
     z-index: 2;
@@ -1011,7 +1016,7 @@ body {
     }
 
 /* ==========================================================================
-   9. SEKCE STATEMENT - MINIMALISTICK› BÕL› MANIFEST S DEDIKOVAN›M VIDEEM
+   9. SEKCE STATEMENT - MINIMALISTICK√ù B√çL√ù MANIFEST S DEDIKOVAN√ùM VIDEEM
    ========================================================================== */
 .statement-section {
     background-color: #000000;
@@ -1029,7 +1034,7 @@ body {
     gap: 40px;
 }
 
-/* SpoleËn· vrchnÌ systÈmov· ¯·dka sekce */
+/* Spoleƒçn√° vrchn√≠ syst√©mov√° ≈ô√°dka sekce */
 .statement-global-header {
     font-family: 'IBM Plex Mono', monospace;
     display: flex;
@@ -1059,7 +1064,7 @@ body {
     gap: 80px;
 }
 
-/* GRID PRO SAMOTN› »L¡NEK */
+/* GRID PRO SAMOTN√ù ƒåL√ÅNEK */
 .statement-log-entry {
     display: grid;
     grid-template-columns: 35% 65%; /* 35% video vlevo, 65% text vpravo */
@@ -1078,13 +1083,13 @@ body {
     width: 100%;
 }
 
-/* Zarovn· do bloku POUZE samotn˝ dlouh˝ text */
+/* Zarovn√° do bloku POUZE samotn√Ω dlouh√Ω text */
 p.log-text {
     text-align: justify;
     text-justify: inter-word;
 }
 
-/* Pojistka: Nadpisy a meta popisky z˘stanou ost¯e zarovnanÈ doleva */
+/* Pojistka: Nadpisy a meta popisky z≈Østanou ost≈ôe zarovnan√© doleva */
 .log-title {
     text-align: left;
 }
@@ -1093,7 +1098,7 @@ p.log-text {
     text-align: left;
 }
 
-/* --- STYLING PRO VIDEO NADPISY S MOéNOSTÕ SCALE --- */
+/* --- STYLING PRO VIDEO NADPISY S MO≈ΩNOST√ç SCALE --- */
 .statement-header-video {
     position: relative;
     width: 100%;
@@ -1111,7 +1116,7 @@ p.log-text {
     transform-origin: center center;
 }
 
-/* Typografie Ël·nk˘ */
+/* Typografie ƒçl√°nk≈Ø */
 .log-meta {
     font-family: 'IBM Plex Mono', monospace;
     font-size: 10px;
@@ -1141,7 +1146,7 @@ p.log-text {
     max-width: 800px;
 }
 
-/* Hover efekty pro rozsvÌcenÌ celÈ ¯·dky */
+/* Hover efekty pro rozsv√≠cen√≠ cel√© ≈ô√°dky */
 .statement-log-entry:hover .log-title {
     color: #ffffff;
     text-shadow: 0 0 10px rgba(255, 255, 255, 0.2);
@@ -1151,206 +1156,109 @@ p.log-text {
     color: #ffffff;
 }
 
+
 /* ==========================================================================
-   12. STYLIZOVAN› SYSTEM LOCK (PASSWORD GATE)
+   SOCKY SE NA WEB APLIKACI NUKAZUJI V MENU
    ========================================================================== */
-#site-lock-overlay {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100vw;
-    height: 100vh;
-    background-color: #000000;
-    z-index: 999999; /* AbsolutnÌ priorita nad vöÌm na webu */
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 20px;
-    box-sizing: border-box;
-    font-family: 'IBM Plex Mono', monospace;
+
+.mobile-menu-socials {
+    display: none;
 }
 
-.lock-terminal {
-    width: 100%;
-    max-width: 500px;
-    background: #050505;
-    border: 1px solid rgba(255, 255, 255, 0.15);
-    padding: 35px;
-    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.9);
-    position: relative;
-}
 
-    /* CRT Scanlines */
-    .lock-terminal::before {
-        content: '';
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.3) 50%);
-        background-size: 100% 4px;
-        pointer-events: none;
-    }
-
-.lock-header {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    font-size: 10px;
-    color: rgba(255, 255, 255, 0.4);
-    letter-spacing: 2px;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
-    padding-bottom: 15px;
-    margin-bottom: 25px;
-}
-
-.lock-dot {
-    width: 6px;
-    height: 6px;
-    background-color: #ffffff;
-    border-radius: 50%;
-    opacity: 0.6;
-    animation: lockBlink 1s infinite steps(2);
-}
-
-.lock-title {
-    font-family: 'Inter', sans-serif;
-    font-size: 32px;
-    font-weight: 900;
-    margin: 0 0 5px 0;
-    letter-spacing: -0.02em;
-}
-
-.lock-subtitle {
-    font-size: 11px;
-    color: rgba(255, 255, 255, 0.4);
-    margin: 0 0 30px 0;
-    letter-spacing: 1px;
-}
-
-.lock-input-wrapper {
-    background: rgba(255, 255, 255, 0.02);
-    border: 1px dashed rgba(255, 255, 255, 0.15);
-    padding: 20px;
-    margin-bottom: 20px;
-    font-size: 13px;
-    color: rgba(255, 255, 255, 0.7);
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-}
-
-#site-password-input {
-    background: transparent;
-    border: none;
-    outline: none;
-    color: #ffffff;
-    font-family: 'IBM Plex Mono', monospace;
-    font-size: 16px;
-    width: 100%;
-    letter-spacing: 2px;
-}
-
-#lock-error-msg {
-    color: #ff3333;
-    font-size: 11px;
-    margin: 0 0 20px 0;
-    letter-spacing: 1px;
-    font-weight: bold;
-}
-
-#lock-submit-btn {
-    background: transparent;
-    border: 1px solid rgba(255, 255, 255, 0.3);
-    color: #ffffff;
-    font-family: 'IBM Plex Mono', monospace;
-    padding: 12px 20px;
-    font-size: 12px;
-    font-weight: bold;
-    cursor: pointer;
-    transition: all 0.2s ease;
-    width: 100%;
-}
-
-    #lock-submit-btn:hover {
-        background: #ffffff;
-        color: #000000;
-    }
-
-@keyframes lockBlink {
-    from {
-        opacity: 1;
-    }
-
-    to {
-        opacity: 0;
-    }
-}
 
 /* ==========================================================================
-   10. KOMPLETNÕ RESPONZIVNÕ STYLY PRO MOBILY A TABLETY
+   10. KOMPLETN√ç RESPONZIVN√ç STYLY PRO MOBILY A TABLETY
    ========================================================================== */
 @media (max-width: 1024px) {
 
-    /* --- GLOB¡LNÕ ⁄PRAVY STR¡NKY --- */
+    /* --- ‚ö†Ô∏è GLOB√ÅLN√ç Z√ÅMEK PROTI ROZKMIT√ÅN√ç DO STRAN --- */
+    html,
     body {
+        width: 100%;
+        max-width: 100%;
+        overflow-x: hidden;
+        position: relative;
+    }
+
+    .scroll-wrapper {
+        width: 100%;
+        max-width: 100%;
         overflow-x: hidden;
     }
 
-    /* --- FIXNÕ MENU A SOCIALS (FLOATING UI) --- */
-    /* Na mobilu skryjeme plovoucÌ texty v rozÌch, abychom uvolnili mÌsto pro obsah */
-    .fixed-menu-corner,
-    .fixed-socials-corner {
-        display: none !important;
+    .main-content {
+        height: auto;
+        width: 100%;
+        display: flex;
+        align-items: flex-start;
+        justify-content: center;
+        overflow: hidden;
+        position: relative;
     }
 
-    /* --- INTRO VIDEO BG --- */
-    .main-content {
-        height: 100vh; /* DrûÌ celou v˝öku displeje */
+    .video-container {
+        width: 100%;
+        height: auto;
+        display: flex;
+        justify-content: center;
+        overflow: hidden;
     }
 
     .video-bg {
-        height: 100vh;
-        width: auto; /* Zabr·nÌ deformaci videa, o¯Ìzne se filmovÏ na st¯ed */
-        object-fit: cover;
+        position: static;
+        width: 170%;
+        height: auto;
+        object-fit: contain;
+        margin-top: -50%;
+        transform: none;
     }
 
-    /* --- 1. SEKCE: PROJEKTY (KARTY POD SEBOU) --- */
+    /* --- 1. SEKCE: PROJEKTY --- */
     .music-container {
         height: auto;
         min-height: 100vh;
-        padding: 60px 20px;
-        overflow: visible;
+        padding: 0px 20px 60px 20px;
+        margin-top: -100px;
+        overflow: hidden;
+        width: 100%;
+        box-sizing: border-box;
     }
 
-    /* After Effects video nadpis zmenöÌme, aby netrËel z displeje */
     .section-title-video {
         width: 80vw;
-        margin-top: 0;
-        margin-bottom: 40px;
-        transform: scale(1.1) translateX(0) rotate(2deg); /* Vycentrov·nÌ na st¯ed */
+        height: 120px;
+        object-fit: cover;
+        margin-top: -60px;
+        margin-bottom: 10px;
+        transform: scale(1.1) translateX(-30px) rotate(2deg);
     }
 
     .music-container .container {
-        flex-direction: column; /* Karty pod sebou */
-        align-items: center;
-        gap: 30px; /* Mezera mezi kartami namÌsto p¯ekr˝v·nÌ */
+        position: relative;
         width: 100%;
+        height: 450px;
+        display: block;
+        margin: 20px auto 0 auto;
     }
 
     .music-container .card {
-        width: 85vw; /* Karty jsou na mobilu dominantnÌ */
+        position: absolute;
+        top: 0;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 85vw;
         max-width: 340px;
         aspect-ratio: 0.8;
+        cursor: grab;
+        touch-action: none;
+        transition: transform 0.3s ease, opacity 0.3s ease;
     }
 
-        /* ZruöÌme desktopovÈ negativnÌ okraje (p¯ekr˝v·nÌ) */
         .music-container .card:not(:first-child) {
             margin: 0;
         }
 
-        /* TypografickÈ zvÏtöenÌ pro mobilnÌ Ëitelnost text˘ v kart·ch */
         .music-container .card .content .top {
             font-size: 24px;
             line-height: 1.0;
@@ -1369,28 +1277,35 @@ p.log-text {
         font-size: 11px;
     }
 
-    /* --- 2. SEKCE: CO DELAM (SLUéBY V JEDNOM SLOUPCI) --- */
+    /* --- 2. SEKCE: CO DELAM (SLU≈ΩBY) --- */
     .services-section {
         height: auto;
         min-height: 100vh;
-        padding: 60px 20px;
+        padding: 0px 20px 60px 20px;
+        margin-top: -60px;
+        overflow: hidden;
+        width: 100%;
+        box-sizing: border-box;
     }
 
     .services-container {
         max-width: 100%;
-        gap: 40px;
+        gap: 10px;
     }
 
     .services-title-video {
         width: 80vw;
+        height: 120px;
+        object-fit: cover;
         margin-top: 0;
-        margin-bottom: 20px;
-        transform: scale(1.1) rotate(-2deg);
+        margin-bottom: 40px;
+        transform: scale(1.1) translateX(30px) rotate(-3deg);
     }
 
     .services-grid {
-        grid-template-columns: 1fr; /* Jeden sloupec */
+        grid-template-columns: 1fr;
         gap: 30px;
+        margin-top: -30px;
     }
 
     .service-card {
@@ -1398,15 +1313,50 @@ p.log-text {
         max-width: 380px;
         margin: 0 auto;
         aspect-ratio: 0.85;
+        transition: transform 0.4s ease, background-color 0.3s ease, color 0.3s ease;
     }
 
-    /* VÏtöÌ texty pro ohmat prstem */
+        .service-card.active-scroll-card {
+            transform: scale(1.02) translateY(-5px);
+            background-color: #000000;
+            color: #ffffff;
+            z-index: 20;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.9);
+        }
+
+            .service-card.active-scroll-card .sc-card-bg-video {
+                opacity: 0.7 !important;
+            }
+
+            .service-card.active-scroll-card .card-dither-overlay {
+                background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='8' height='8'%3E%3Cpath d='M0 0h1v1H0zm4 4h1v1H4zm2-2h1v1H6zm-2 4h1v1H2zm-4 2h1v1H0zm6 0h1v1H6zm-4-4h1v1H2zm4 2h1v1H4z' fill='%23fff' fill-opacity='.25'/%3E%3C/svg%3E");
+                mix-blend-mode: screen;
+                opacity: 0.8;
+                animation: bayerGlitch 0.1s infinite steps(2);
+            }
+
+            .service-card.active-scroll-card .sc-desc-video {
+                background-color: rgba(0, 0, 0, 0.88);
+                color: #ffffff;
+                padding: 4px 10px;
+                backdrop-filter: blur(3px);
+            }
+
+            .service-card.active-scroll-card .sc-num {
+                color: #ffffff !important;
+            }
+
+            .service-card.active-scroll-card h3 {
+                color: #ffffff !important;
+            }
+
     .sc-top .sc-num {
         font-size: 12px;
     }
 
     .sc-top h3 {
         font-size: 28px;
+        transition: color 0.3s ease;
     }
 
     .sc-desc {
@@ -1417,40 +1367,67 @@ p.log-text {
         font-size: 11px;
     }
 
-    /* --- 3. SEKCE: INTERAKTIVNÕ STUDIO (VERTIK¡LNÕ STACK) --- */
+    /* --- 3. SEKCE: INTERAKTIVN√ç STUDIO --- */
     .interactive-studio-section {
         height: auto;
         min-height: 100vh;
-        padding: 60px 0;
+        padding: 40px 0 60px 0;
     }
 
     .section-header-video {
-        height: 25vh;
+        height: 20vh;
         margin-top: 0;
         margin-bottom: 20px;
     }
 
     .header-bg-video {
-        transform: translate(-50%, -50%) scale(0.9) rotate(2deg); /* P¯izp˘sobenÌ o¯ezu */
+        transform: translate(-50%, -50%) scale(0.9) rotate(2deg);
     }
 
+    /* üéØ OPRAVENO: Kontejner rozt√°hneme na plnou ≈°√≠≈ôku a vyma≈æeme boƒçn√≠ tlaƒçen√≠ */
     .studio-container {
-        grid-template-columns: 1fr; /* Obr·zek naho¯e, termin·l dole */
-        gap: 30px;
-        padding: 0 20px;
+        grid-template-columns: 1fr !important;
+        gap: 30px !important;
+        padding: 0 16px !important; /* Bezpeƒçn√© symetrick√© odsazen√≠ od okraj≈Ø skla displeje */
+        width: 100% !important;
+        box-sizing: border-box !important;
     }
 
-    /* Hotspoty zvÏtöÌme na plochu 44x44px pro snadnÈ tap·nÌ prstem */
+    /* Kompletn√≠ vycentrov√°n√≠ obrazov√©ho kontejneru a uzl≈Ø na mobilu */
+    .fixed-menu-corner .studio-image-container,
+    .studio-image-container {
+        width: 100% !important;
+        position: relative !important;
+        display: block !important;
+        left: 0 !important;
+        transform: translateX(-0px) !important;
+    }
+
+        /* Zaji≈°tƒõn√≠, aby samotn√Ω render l√≠coval p≈ôesnƒõ na st≈ôed */
+        .studio-image-container img {
+            width: 100% !important;
+            max-width: 440px !important;
+            height: auto !important;
+            display: block !important;
+            margin: 0 auto !important;
+        }
+
+    /* Vƒõt≈°√≠ dotykov√° plocha pro mobiln√≠ prsty */
     .hotspot {
         width: 44px;
         height: 44px;
+        /* üéØ NOV√â: Na mobilu kompletnƒõ ignorovat dotyky pro tyto elementy, 
+           tak≈æe nebudou blokovat nic, co le≈æ√≠ pod nimi nebo v jejich okol√≠ */
+        pointer-events: none !important;
     }
 
+    /* Dokonal√© vycentrov√°n√≠ ƒçerven√©ho bodu na mobilu */
     .hotspot-core {
         width: 12px;
         height: 12px;
-        top: 16px;
-        left: 16px;
+        top: 50% !important;
+        left: 50% !important;
+        transform: translate(-50%, -50%) !important;
     }
 
     .hotspot-pulse {
@@ -1458,39 +1435,131 @@ p.log-text {
         height: 44px;
     }
 
-    /* CRT TERMIN¡L ⁄PRAVA */
     .rack-terminal {
-        min-height: auto; /* Odemkneme fixnÌ v˝öku, aù se p¯izp˘sobÌ text˘m */
-        padding: 25px;
-        box-shadow: none;
-        background: #090909; /* SurovÏjöÌ Ëern· */
+        min-height: 0 !important;
+        height: 460px !important; /* üéØ ZVƒöT≈†ENO: Zvedli jsme v√Ω≈°ku z 380px na 460px */
+        padding: 20px !important;
+        box-shadow: none !important;
+        background: #090909 !important;
+        width: 100% !important;
+        max-width: 100% !important;
+        box-sizing: border-box !important;
+        touch-action: pan-y !important;
+        border: 1px solid rgba(255, 255, 255, 0.1) !important;
+        overflow: hidden !important;
+        display: flex !important;
+        flex-direction: column !important;
+        justify-content: space-between !important;
     }
 
+    /* üéØ NOV√â: Hlavn√≠ textov√° obrazovka se u≈æ nebude roztahovat dol≈Ø p≈ôes tlaƒç√≠tko, 
+       ale zkr√°t√≠ se a v p≈ô√≠padƒõ pot≈ôeby bude scrollovat pouze ona sama uvnit≈ô */
+    .panel-screen {
+        flex: 1 !important;
+        overflow-y: auto !important;
+        margin-bottom: 15px !important;
+        padding-right: 5px !important;
+    }
+
+    /* P√≠sma uprav√≠me, a≈• na ≈°√≠≈ôku displeje telefonu neteƒçou ven */
     .panel-title {
-        font-size: 32px;
-        margin-bottom: 20px;
+        font-size: 26px !important; /* M√≠rnƒõ zmen≈°eno pro lep≈°√≠ ƒçistotu */
+        margin-bottom: 10px !important;
     }
 
     .studio-promo-text {
-        font-size: 15px;
-        line-height: 1.6;
-    }
-
-    .spec-text {
-        font-size: 13px;
+        font-size: 14px !important;
         line-height: 1.5;
     }
 
-    /* Boot overlay p¯izp˘sobenÌ mobilnÌmu boxu */
+    .spec-text {
+        font-size: 13px !important;
+        line-height: 1.4;
+    }
+
+    /* Zaji≈°tƒõn√≠, ≈æe bootovac√≠ obrazovka je na mobilu stoprocentnƒõ nad termin√°lem */
     .terminal-boot-overlay {
+        position: absolute !important;
+        top: 0 !important;
+        left: 0 !important;
+        width: 100% !important;
+        height: 100% !important;
+        z-index: 10 !important;
+        background: #090909 !important;
+        display: flex !important;
+        flex-direction: column !important;
+        justify-content: center !important;
+        align-items: center !important;
         padding: 25px;
+        box-sizing: border-box !important;
+    }
+
+    .boot-trigger-btn {
+        position: relative !important;
+        z-index: 99999 !important;
+        cursor: pointer !important;
+        pointer-events: auto !important;
+        padding: 20px 40px !important;
+        display: block !important;
+        margin: 20px auto !important;
+        -webkit-tap-highlight-color: rgba(0, 150, 255, 0.4) !important;
     }
 
     .boot-logo {
-        font-size: 16px;
+        font-size: 18px !important;
     }
 
-    /* --- 4. SEKCE: STATEMENT / MANIFEST (SROVN¡NÕ DO SLOUPCE) --- */
+    /* Plynul√© zhasnut√≠ a rozsv√≠cen√≠ textu p≈ôi p≈ôejet√≠ prstem */
+    .studio-promo-text,
+    .studio-gear-specs {
+        animation: terminalTextFade 0.25s ease-out;
+    }
+
+    @keyframes terminalTextFade {
+        from {
+            opacity: 0;
+            transform: translateY(3px);
+        }
+
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+    /* üéØ OPRAVA MOBILN√çHO SV√çCEN√ç: Standardnƒõ jsou body na mobilu zhasnut√© */
+    .studio-image-container:not(.locked-nodes) .hotspot .hotspot-core {
+        background-color: rgba(255, 255, 255, 0.2) !important; /* Matn√° b√≠l√°/≈°ed√° */
+        box-shadow: none !important;
+    }
+
+    .studio-image-container:not(.locked-nodes) .hotspot .hotspot-pulse {
+        border-color: rgba(255, 255, 255, 0.1) !important;
+        animation: none !important; /* Vypne blik√°n√≠ pro neaktivn√≠ body */
+    }
+
+    /* üåü Rozsv√≠t√≠ se POUZE ten uzel, kter√Ω je zrovna aktivn√≠ podle swipu */
+    .studio-image-container:not(.locked-nodes) .hotspot.active-hotspot .hotspot-core {
+        background-color: #ff3333 !important; /* Ostr√° ƒçerven√° */
+        box-shadow: 0 0 15px #ff3333 !important;
+    }
+
+    .studio-image-container:not(.locked-nodes) .hotspot.active-hotspot .hotspot-pulse {
+        border-color: rgba(255, 51, 51, 0.6) !important;
+        animation: hotspotGlow 2s infinite ease-out !important; /* Zapne puls vybran√©ho bodu */
+    }
+
+    .hud-terminal-line {
+        display: block !important;
+        width: 100% !important;
+        position: relative !important;
+        text-align: left !important;
+    }
+
+        .hud-terminal-line span {
+            font-size: 12px !important;
+            color: rgba(255, 255, 255, 0.25) !important;
+        }
+    /* --- 4. SEKCE: STATEMENT / MANIFEST --- */
     .statement-section {
         padding: 60px 20px;
     }
@@ -1506,22 +1575,35 @@ p.log-text {
     }
 
     .statement-log-entry {
-        grid-template-columns: 1fr; /* Video skoËÌ NAD text */
+        grid-template-columns: 1fr;
         gap: 20px;
         padding-bottom: 40px;
     }
-
+    /* üéØ KONTEJNER: Pevn√° schr√°nka, kter√° video nekompromisnƒõ o≈ô√≠zne */
     .statement-header-video {
-        max-width: 100%;
-        aspect-ratio: 16/9;
+        width: 100% !important;
+        max-width: 100% !important;
+        height: 140px !important; /* üîí Fixn√≠ statick√° v√Ω≈°ka boxu na mobilu */
+        overflow: hidden !important; /* üîí KL√çƒåOV√ù ≈†T√çT: Nepust√≠ ani pixel videa ven do textu */
+        position: relative !important;
+        display: block !important;
+        margin-bottom: 25px !important; /* Bezpeƒçn√Ω stabiln√≠ odstup od textu pod n√≠m */
     }
 
-    /* Reset mÏ¯Ìtka videa, aby na mobilu nevylÈzalo z r·mu */
+    /* üéØ VIDEO: Tady teƒè mƒõn√≠≈° jen jedno jedin√© ƒç√≠slo ve scale() */
     .statement-bg-video {
-        transform: scale(1.0);
+        width: 100% !important;
+        height: 100% !important;
+        object-fit: cover !important; /* Vypln√≠ prostor bez ƒçern√Ωch pruh≈Ø */
+
+        position: absolute !important;
+        top: 50% !important;
+        left: 50% !important;
+        /* ‚ö° TADY MƒöN√ç≈† JEN JEDNO ƒå√çSLO: Zvƒõt≈°uje/zmen≈°uje video od st≈ôedu a o≈ôez√°v√° se o hrany boxu */
+        transform: translate(-50%, -55%) scale(1.2) !important;
+        transform-origin: center center !important;
     }
 
-    /* Typografie logu */
     .log-title {
         font-size: 22px;
         line-height: 1.3;
@@ -1530,6 +1612,128 @@ p.log-text {
     .log-text {
         font-size: 15px;
         line-height: 1.6;
-        text-align: left; /* Na mobilech Ëist˝ justify obËas dÏl· velkÈ dÌry, left je bezpeËnÏjöÌ */
+        text-align: left;
+    }
+
+    /* --- ‚ö†Ô∏è OPRAVEN√â MOBILN√ç ROZBALOVAC√ç MENU (POLOHOV√ÅNO UVNIT≈ò MEDIA QUERY) --- */
+    .fixed-menu-corner {
+        position: fixed !important;
+        top: 25px !important;
+        right: 25px !important;
+        z-index: 99999 !important;
+        pointer-events: auto !important;
+        display: block !important;
+    }
+
+    .menu-toggle-btn {
+        display: flex !important;
+        flex-direction: column;
+        justify-content: space-between;
+        width: 30px;
+        height: 18px;
+        background: transparent !important;
+        border: none !important;
+        cursor: pointer;
+        padding: 0;
+        z-index: 100000 !important;
+        position: relative;
+    }
+
+        .menu-toggle-btn .bar {
+            width: 100%;
+            height: 2px;
+            background-color: #ffffff !important;
+            transition: transform 0.3s ease, opacity 0.3s ease;
+            display: block;
+        }
+
+        .menu-toggle-btn.menu-open .bar:nth-child(1) {
+            transform: translateY(8px) rotate(45deg);
+        }
+
+        .menu-toggle-btn.menu-open .bar:nth-child(2) {
+            opacity: 0;
+        }
+
+        .menu-toggle-btn.menu-open .bar:nth-child(3) {
+            transform: translateY(-8px) rotate(-45deg);
+        }
+
+    .fixed-menu-corner .fixed-menu-trigger {
+        position: fixed !important;
+        top: 0 !important;
+        left: 0 !important;
+        width: 100vw !important;
+        height: 100vh !important;
+        background-color: rgba(0, 0, 0, 0.98) !important;
+        backdrop-filter: blur(10px);
+        flex-direction: column !important;
+        align-items: center !important;
+        justify-content: center !important;
+        gap: 35px !important;
+        opacity: 0 !important;
+        transform: translateX(100%) !important;
+        transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.3s ease;
+        pointer-events: none !important;
+    }
+
+        .fixed-menu-corner .fixed-menu-trigger.nav-open {
+            opacity: 1 !important;
+            transform: translateX(0) !important;
+            pointer-events: auto !important;
+        }
+
+    .fixed-menu-corner .fixed-menu-link {
+        font-size: 32px !important;
+        letter-spacing: 2px;
+        color: #ffffff !important;
+        text-decoration: none;
+        opacity: 0.8;
+        position: relative;
+    }
+
+        .fixed-menu-corner .fixed-menu-link:active {
+            color: #f248b6 !important;
+        }
+
+    /* --- ‚ö†Ô∏è ODSTRANƒöN√ç P≈ÆVODN√çCH S√çT√ç Z PRAV√âHO DOLN√çHO ROHU NA MOBILU --- */
+    .fixed-socials-corner {
+        display: none !important;
+    }
+    /* --- STYLOV√ÅN√ç S√çT√ç UVNIT≈ò MENU --- */
+    /* --- √öPRAVA NA VERTIK√ÅLN√ç SLOUPEC --- */
+    .fixed-menu-corner .mobile-menu-socials {
+        display: flex !important;
+        flex-direction: column !important; /* Srovn√°me je pod sebe */
+        justify-content: center !important;
+        align-items: center !important;
+        gap: 16px !important; /* ƒåist√° mezera mezi nimi */
+        margin-top: 45px !important;
+        padding-top: 25px !important;
+        border-top: 1px dashed rgba(255, 255, 255, 0.15) !important;
+        width: 80% !important;
+    }
+
+    /* ‚ö†Ô∏è UPRAVENO: P≈ôidali jsme sem explicitnƒõ i ID pro mobiln√≠ email, aby p≈ôevzal stejn√Ω styl */
+    .fixed-menu-corner .mobile-social-link,
+    .fixed-menu-corner #mobile-copy-email-btn {
+        font-size: 13px !important;
+        letter-spacing: 1px !important;
+        color: #ffffff !important;
+        text-decoration: none !important;
+        opacity: 0.5 !important;
+        transition: opacity 0.2s ease !important;
+        display: inline-block !important; /* Pojistka pro spr√°vn√© zobrazen√≠ vedle sebe */
+    }
+
+        .fixed-menu-corner .mobile-social-link:active,
+        .fixed-menu-corner #mobile-copy-email-btn:active {
+            opacity: 1 !important;
+            color: #f248b6 !important; /* P≈ôi kliknut√≠ prstem kr√°snƒõ r≈Ø≈æovƒõ blikne */
+        }
+
+    .fixed-menu-corner .mobile-menu-socials .divider {
+        display: none !important; /* Na mobilu schov√°me lom√≠tka, proto≈æe jsou pod sebou */
     }
 }
+/* Tato z√°vorka bezpeƒçnƒõ uzav√≠r√° celou mobiln√≠ @media sekci */
