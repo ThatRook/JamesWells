@@ -1068,9 +1068,9 @@ body {
 }
 
 .system-locked {
-    opacity: 0;
-    pointer-events: none;
-    transform: scale(0.98);
+    opacity: 1 !important; /* Změněno z 0 na 1 */
+    pointer-events: auto !important; /* Změněno z none na auto */
+    transform: scale(1) !important; /* Změněno z 0.98 na 1 */
     transition: opacity 0.5s ease, transform 0.5s ease;
 }
 
@@ -1081,9 +1081,9 @@ body {
 }
 
 .studio-image-container.locked-nodes .hotspot {
-    pointer-events: none !important;
-    opacity: 0.15;
-    filter: grayscale(100%);
+    pointer-events: auto !important; /* Změněno na auto */
+    opacity: 1 !important; /* Změněno na 1 */
+    filter: none !important; /* Zrušeno zašednutí */
     transition: all 0.5s ease;
 }
 
@@ -1617,6 +1617,8 @@ p.log-text {
     }
 
     .rack-terminal {
+        display: none !important; /* TOTO SKRYJE TEXTOVÝ PANEL */
+        flex-direction: column;
         min-height: 0 !important;
         height: 460px !important; /* 🎯 ZVĚTŠENO: Zvedli jsme výšku z 380px na 460px */
         padding: 20px !important;
@@ -1660,6 +1662,7 @@ p.log-text {
 
     /* Zajištění, že bootovací obrazovka je na mobilu stoprocentně nad terminálem */
     .terminal-boot-overlay {
+        display: none !important;
         position: absolute !important;
         top: 0 !important;
         left: 0 !important;
