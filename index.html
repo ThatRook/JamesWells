@@ -235,142 +235,95 @@
             </div>
         </section>
 
-        <section id="studio" class="interactive-studio-section">
+    <section id="studio" class="interactive-studio-section">
 
-            <div class="section-header-video">
-                <video autoplay loop muted playsinline class="header-bg-video">
-                    <source src="MEDIA/STUDIO.mp4" type="video/mp4">
-                </video>
+        <div class="section-header-video">
+            <video autoplay loop muted playsinline class="header-bg-video">
+                <source src="MEDIA/STUDIO.mp4" type="video/mp4">
+            </video>
+        </div>
+
+        <div class="studio-container">
+            <!-- LEVÁ ČÁST: OBRÁZEK -->
+            <div class="studio-visual-wrapper">
+                <div class="studio-image-container">
+                    <img src="MEDIA/STUDIOBLENDER.png" alt="James Wells Studio Blueprint" class="studio-render-img">
+
+                    <!-- Hotspoty ponechány pouze jako vizuální prvek (bez interakce) -->
+                    <div class="hotspot active-hotspot" style="top: 38%; left: 28%;">
+                        <div class="hotspot-pulse"></div>
+                        <div class="hotspot-core"></div>
+                    </div>
+                    <div class="hotspot" style="top: 55%; left: 45%;">
+                        <div class="hotspot-pulse"></div>
+                        <div class="hotspot-core"></div>
+                    </div>
+                    <div class="hotspot" style="top: 80%; left: 65%;">
+                        <div class="hotspot-pulse"></div>
+                        <div class="hotspot-core"></div>
+                    </div>
+                    <div class="hotspot" style="top: 66%; left: 74%;">
+                        <div class="hotspot-pulse"></div>
+                        <div class="hotspot-core"></div>
+                    </div>
+                </div>
+                <div class="hud-dimensions-tag">Created in Blender</div>
             </div>
 
-            <div class="studio-container">
+            <!-- PRAVÁ ČÁST: VYBAVENÍ (bez terminálu a bez načítání) -->
+            <div class="studio-info-panel">
+                <div class="panel-screen">
+                    <h3 class="panel-title">VYBAVENÍ STUDIA</h3>
 
-                <div class="studio-visual-wrapper">
-                    <div class="studio-image-container">
-
-                        <img src="MEDIA/STUDIOBLENDER.png" alt="James Wells Studio Blueprint" class="studio-render-img">
-
-                        <div class="hotspot js-hotspot active-hotspot" data-space="workstation" style="top: 38%; left: 28%;">
-                            <div class="hotspot-pulse"></div>
-                            <div class="hotspot-core"></div>
-                        </div>
-
-                        <div class="hotspot js-hotspot" data-space="capture" style="top: 55%; left: 45%;">
-                            <div class="hotspot-pulse"></div>
-                            <div class="hotspot-core"></div>
-                        </div>
-
-                        <div class="hotspot js-hotspot" data-space="chill" style="top: 80%; left: 65%;">
-                            <div class="hotspot-pulse"></div>
-                            <div class="hotspot-core"></div>
-                        </div>
-
-                        <div class="hotspot js-hotspot" data-space="minibar" style="top: 66%; left: 74%;">
-                            <div class="hotspot-pulse"></div>
-                            <div class="hotspot-core"></div>
-                        </div>
+                    <!-- Popis -->
+                    <div class="studio-promo-wrapper">
+                        <p class="studio-promo-text">
+                            Ať už jde o produkci, nebo mastering, tohle je můj flek, kde to všechno vzniká. Nástroje a zesilovače si klidně můžeš přinést svoje. Kdyby ti ale něco chybělo, můžeme sáhnout po něčem ze seznamu dole. 
+                        </p>
                     </div>
 
-                    <div class="hud-dimensions-tag">Created in Blender</div>
-                </div>
-
-                <div class="studio-info-panel rack-terminal" id="studio-terminal-zone">
-
-                    <div class="terminal-boot-overlay" id="boot-screen">
-                        <div class="boot-content">
-                            <div class="boot-logo">NAKOUKNI DO STUDIA</div>
+                    <!-- Všechno vybavení zobrazené rovnou v jednom seznamu -->
+                    <div class="studio-gear-specs-wrapper">
+                        <div class="studio-gear-specs">
                             
-                            <button class="boot-trigger-btn" id="start-boot-btn"> VSTOUPIT </button>
-
-                            <div class="boot-progress-wrapper" id="progress-container" style="display: none;">
-                                <div class="boot-loading-text">LOADING...</div>
-                                <div class="boot-bar-frame">
-                                    <div class="boot-bar-fill" id="boot-progress-bar"></div>
-                                </div>
-                                <div class="boot-percentage" id="boot-percentage-text">0%</div>
+                            <div class="spec-group">
+                                <span class="spec-label">MONITORY:</span>
+                                <p class="spec-text">Adam Audio T7V</p>
                             </div>
-                        </div>
-                    </div>
-
-                    <div class="panel-screen system-locked" id="terminal-content">
-
-
-                        <h3 class="panel-title" id="st-title">CORE</h3>
-
-                        <div class="studio-promo-wrapper">
-                            <p class="studio-promo-text" id="promo-workstation">
-                                Jádro celé operace. Ať už jde o produkci, nebo mastering, tohle je můj flek, kde to všechno vzniká. Ty na druhou stranu nemusíš nic řešit, já to všechno připravím a nastavím pro pohodlné nahrávání.
-                            </p>
-                            <p class="studio-promo-text" id="promo-capture" style="display: none;">
-                                Nástroje a zesilovače si klidně můžeš přinést svoje. Kdyby ti ale něco chybělo, můžeme šáhnout po něčem ze seznamu dole. Mikrofony můžeš ale nechat na mě, je z čeho vybírat.
-                            </p>
-                            <p class="studio-promo-text" id="promo-chill" style="display: none;">
-                                Občas je to nahrávání fakt náročný, tak si tady sedni, lehni, nebo postav na hlavu a dej si oraz. Rozhodně nikam nemusíme pospíchat, přece jenom nejsme továrna na hudbu.
-                            </p>
-                            <p class="studio-promo-text" id="promo-minibar" style="display: none;">
-                                Určitě se neboj si nabídnout, ten bar je tu pro tebe. Noky a bramborový knedlík tam asi nenajdeš, ale myslím si, že nebudeš zklamaný.
-                            </p>
-                        </div>
-
-                        <div class="studio-gear-specs-wrapper">
-
-                            <div class="studio-gear-specs" id="specs-workstation">
-                                <div class="spec-group">
-                                    <span class="spec-label">MONITORY:</span>
-                                    <p class="spec-text">Adam Audio T7V</p>
-                                </div>
-                                <div class="spec-group">
-                                    <span class="spec-label">INTERFACE:</span>
-                                    <p class="spec-text">SSL 2+</p>
-                                </div>
-                                <div class="spec-group">
-                                    <span class="spec-label">ANALOGOVÝ ARZENÁL (COMING SOON):</span>
-                                    <p class="spec-text">GAP PRE-73 PREMIER, 76-KT, 2A-KT, EQP-KT</p>
-                                </div>
+                            
+                            <div class="spec-group">
+                                <span class="spec-label">INTERFACE:</span>
+                                <p class="spec-text">SSL 2+</p>
+                            </div>
+                            
+                            <div class="spec-group">
+                                <span class="spec-label">MIKROFONY:</span>
+                                <p class="spec-text">Warm Audio WA-251, Shure SM7B, SHURE 57/58</p>
                             </div>
 
-                            <div class="studio-gear-specs" id="specs-capture" style="display: none;">
-                                <div class="spec-group">
-                                    <span class="spec-label">MIKROFONY:</span>
-                                    <p class="spec-text">Warm Audio WA-251, Shure SM7B, SHURE 57/58</p>
-                                </div>
-                                <div class="spec-group">
-                                    <span class="spec-label">NÁSTROJE:</span>
-                                    <p class="spec-text">Ibanez RG652LWFX, HBZ-2004 Deluxe, Bromo BAR1HM</p>
-                                </div>
-                                <div class="spec-group">
-                                    <span class="spec-label">OSTATNÍ:</span>
-                                    <p class="spec-text">NI Komplete Kontrol A61, Nux DM-210</p>
-                                </div>
+                            <div class="spec-group">
+                                <span class="spec-label">ANALOGOVÝ ARZENÁL (COMING SOON):</span>
+                                <p class="spec-text">GAP PRE-73 PREMIER, 76-KT, 2A-KT, EQP-KT</p>
                             </div>
-
-                            <div class="studio-gear-specs" id="specs-chill" style="display: none;"></div>
-
-                            <div class="studio-gear-specs" id="specs-minibar" style="display: none;">
-                                <div class="spec-group">
-                                    <span class="spec-label">HORKÉ NÁPOJE:</span>
-                                    <p class="spec-text">3 druhy kávy, bylinné a ovoné čaje, med</p>
-                                </div>
-                                <div class="spec-group">
-                                    <span class="spec-label">STUDENÉ NÁPOJE:</span>
-                                    <p class="spec-text">Vody, sycené nápoje, energetické drinky, hroznový cukr</p>
-                                </div>
-                                <div class="spec-group">
-                                    <span class="spec-label">SVÁČA:</span>
-                                    <p class="spec-text">Rychlé cukry & něco malého k jídlu na dlouhé nahrávácí sessions</p>
-                                </div>
+                            
+                            <div class="spec-group">
+                                <span class="spec-label">NÁSTROJE:</span>
+                                <p class="spec-text">Ibanez RG652LWFX, HBZ-2004 Deluxe, Bromo BAR1HM, NI Komplete Kontrol A61, Nux DM-210</p>
+                            </div>
+                            
+                            <div class="spec-group">
+                                <span class="spec-label">PRO TVŮJ KOMFORT:</span>
+                                <p class="spec-text">Káva, čaje, nealko, energy drinky, rychlé cukry & něco malého k jídlu na dlouhé nahrávací sessions. Místo na odpočinek.</p>
                             </div>
 
                         </div>
-                    </div>
-
-                    <div class="panel-footer system-locked" id="terminal-footer">
-                     
                     </div>
 
                 </div>
             </div>
-        </section>
+        </div>
+    </section>
+
 
         <section id="statement" class="statement-section">
             <div class="statement-container">
