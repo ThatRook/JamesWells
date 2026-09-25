@@ -844,21 +844,20 @@ body {
 }
 
 .spec-label {
-    font-family: 'IBM Plex Mono', monospace;
-    font-size: 10px;
-    font-weight: bold;
-    color: #ffffff;
-    letter-spacing: 1px;
+    font-family: 'Inter', sans-serif;
+    font-size: 1.1vw;
+    font-weight: 700; /* Stejná tučnost jako log-title */
+    color: rgba(255, 255, 255, 0.8);
     display: block;
     margin-bottom: 2px;
 }
 
 .spec-text {
-    font-family: 'IBM Plex Mono', monospace;
-    font-size: 0.9vw;
-    line-height: 1.4;
+    font-family: 'Inter', sans-serif;
+    font-size: 1.1vw; /* Stejná velikost jako log-text */
+    line-height: 1.7; /* Stejné řádkování jako log-text */
     margin: 0;
-    color: rgba(255, 255, 255, 0.55);
+    color: rgba(255, 255, 255, 0.6); /* Stejná barva jako log-text */
 }
 
 /* TERMINÁL PATIČKA */
