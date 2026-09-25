@@ -839,14 +839,9 @@ body {
 }
 
 .spec-group {
-    border-left: 2px solid rgba(255, 255, 255, 0.12);
-    padding-left: 12px;
-    transition: border-color 0.3s ease;
+    /* border-left a transition jsme úplně smazali */
+    padding-left: 0; /* Změněno na 0, aby text nebyl zbytečně odsazený, když už tam není proužek */
 }
-
-    .spec-group:hover {
-        border-color: #ffffff;
-    }
 
 .spec-label {
     font-family: 'IBM Plex Mono', monospace;
