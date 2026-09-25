@@ -845,7 +845,7 @@ body {
 
 .spec-label {
     font-family: 'Inter', sans-serif;
-    font-size: 0.9vw;
+    font-size: 1.1vw;
     font-weight: 700; /* Stejná tučnost jako log-title */
     color: rgba(255, 255, 255, 0.8);
     display: block;
@@ -854,7 +854,7 @@ body {
 
 .spec-text {
     font-family: 'Inter', sans-serif;
-    font-size: 0.8vw; /* Stejná velikost jako log-text */
+    font-size: 1vw; /* Stejná velikost jako log-text */
     line-height: 1.7; /* Stejné řádkování jako log-text */
     margin: 0;
     color: rgba(255, 255, 255, 0.6); /* Stejná barva jako log-text */
