@@ -1012,13 +1012,6 @@ body {
     transform: scale(1) !important;
 }
 
-.studio-image-container.locked-nodes .hotspot {
-    pointer-events: auto !important; /* Změněno na auto */
-    opacity: 1 !important; /* Změněno na 1 */
-    filter: none !important; /* Zrušeno zašednutí */
-    transition: all 0.5s ease;
-}
-
 .terminal-logout-btn {
     background: transparent;
     border: none;
