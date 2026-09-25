@@ -867,7 +867,7 @@ body {
 }
 
 .status-blink-dot {
-    display: inline-block;
+    display: none;
     width: 5px;
     height: 5px;
     background-color: #ffffff;
